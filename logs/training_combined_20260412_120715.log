@@ -1,0 +1,157 @@
+2026-04-12 12:07:15,430 | INFO | Log file: logs/training_combined_20260412_120715.log
+2026-04-12 12:07:16,949 | INFO | 
+GPU: NVIDIA GeForce RTX 3050 Ti Laptop GPU
+2026-04-12 12:07:16,949 | INFO | GPU Memory: 4.3 GB
+2026-04-12 12:07:16,949 | INFO | CUDA Version: 12.1
+2026-04-12 12:07:16,949 | INFO | 
+----------------------------------------------------------------------
+2026-04-12 12:07:16,949 | INFO | CONFIGURATION
+2026-04-12 12:07:16,949 | INFO | ----------------------------------------------------------------------
+2026-04-12 12:07:16,949 | INFO |   DATA_DIR: data/MRL
+2026-04-12 12:07:16,949 | INFO |   MODEL_NAME: google/vit-base-patch16-224
+2026-04-12 12:07:16,949 | INFO |   OUTPUT_DIR: ./models/vit-base-mrl-drowsiness
+2026-04-12 12:07:16,949 | INFO |   BATCH_SIZE: 8
+2026-04-12 12:07:16,949 | INFO |   LEARNING_RATE: 2e-05
+2026-04-12 12:07:16,949 | INFO |   NUM_EPOCHS: 10
+2026-04-12 12:07:16,949 | INFO |   WARMUP_RATIO: 0.1
+2026-04-12 12:07:16,949 | INFO |   WEIGHT_DECAY: 0.01
+2026-04-12 12:07:16,949 | INFO |   EARLY_STOPPING_PATIENCE: 3
+2026-04-12 12:07:16,949 | INFO |   AUGMENTATION_STRENGTH: strong
+2026-04-12 12:07:16,949 | INFO |   USE_SUBSET: False
+2026-04-12 12:07:16,949 | INFO |   SUBSET_SIZE: 5000
+2026-04-12 12:07:16,949 | INFO |   GRADIENT_ACCUMULATION_STEPS: 4
+2026-04-12 12:07:16,949 | INFO |   FP16_TRAINING: True
+2026-04-12 12:07:16,949 | INFO |   LABEL_SMOOTHING: 0.1
+2026-04-12 12:07:16,949 | INFO |   SEED: 42
+2026-04-12 12:07:16,962 | INFO | 
+======================================================================
+2026-04-12 12:07:16,962 | INFO | STEP 1: LOADING COMBINED DATASET
+2026-04-12 12:07:16,962 | INFO | ======================================================================
+2026-04-12 12:07:16,962 | INFO | Loading from: data/MRL
+2026-04-12 12:07:17,544 | INFO | HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/imagefolder/imagefolder.py "HTTP/1.1 404 Not Found"
+2026-04-12 12:08:34,343 | INFO | Dataset structure: DatasetDict({
+    train: Dataset({
+        features: ['image', 'label'],
+        num_rows: 50937
+    })
+    validation: Dataset({
+        features: ['image', 'label'],
+        num_rows: 16980
+    })
+    test: Dataset({
+        features: ['image', 'label'],
+        num_rows: 16981
+    })
+})
+2026-04-12 12:08:34,343 | INFO | 
+Dataset sizes:
+2026-04-12 12:08:34,343 | INFO |   Train:      50,937 samples
+2026-04-12 12:08:34,343 | INFO |   Validation: 16,980 samples
+2026-04-12 12:08:34,343 | INFO |   Test:       16,981 samples
+2026-04-12 12:08:34,343 | INFO | 
+======================================================================
+2026-04-12 12:08:34,343 | INFO | STEP 2: LABEL CONFIGURATION
+2026-04-12 12:08:34,343 | INFO | ======================================================================
+2026-04-12 12:08:34,348 | INFO | Classes detected: ['awake', 'sleepy']
+2026-04-12 12:08:34,348 | INFO | Number of classes: 2
+2026-04-12 12:08:34,348 | INFO | Label mapping: {'awake': 0, 'sleepy': 1}
+2026-04-12 12:08:35,868 | INFO |   awake: 25,770 samples (50.6%)
+2026-04-12 12:08:36,896 | INFO |   sleepy: 25,167 samples (49.4%)
+2026-04-12 12:08:36,898 | INFO | 
+======================================================================
+2026-04-12 12:08:36,898 | INFO | STEP 3: IMAGE PREPROCESSING & AUGMENTATION
+2026-04-12 12:08:36,898 | INFO | ======================================================================
+2026-04-12 12:08:36,898 | INFO | Loading image processor: google/vit-base-patch16-224
+2026-04-12 12:08:37,088 | INFO | HTTP Request: HEAD https://huggingface.co/google/vit-base-patch16-224/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-04-12 12:08:37,268 | INFO | HTTP Request: HEAD https://huggingface.co/google/vit-base-patch16-224/resolve/main/preprocessor_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-12 12:08:37,288 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/google/vit-base-patch16-224/3f49326eb077187dfe1c2a2bb15fbd74e6ab91e3/preprocessor_config.json "HTTP/1.1 200 OK"
+2026-04-12 12:08:37,458 | INFO | HTTP Request: HEAD https://huggingface.co/google/vit-base-patch16-224/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-12 12:08:37,468 | WARNING | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-04-12 12:08:37,478 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/google/vit-base-patch16-224/3f49326eb077187dfe1c2a2bb15fbd74e6ab91e3/config.json "HTTP/1.1 200 OK"
+2026-04-12 12:08:37,758 | INFO | HTTP Request: HEAD https://huggingface.co/google/vit-base-patch16-224/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-04-12 12:08:37,928 | INFO | HTTP Request: HEAD https://huggingface.co/google/vit-base-patch16-224/resolve/main/preprocessor_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-12 12:08:37,948 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/google/vit-base-patch16-224/3f49326eb077187dfe1c2a2bb15fbd74e6ab91e3/preprocessor_config.json "HTTP/1.1 200 OK"
+2026-04-12 12:08:37,951 | INFO | Augmentation strength: strong
+2026-04-12 12:08:38,569 | INFO | Transforms applied successfully
+2026-04-12 12:08:38,569 | INFO |   Training: Resize + strong augmentation
+2026-04-12 12:08:38,569 | INFO |   Validation/Test: Resize + Normalize only
+2026-04-12 12:08:38,569 | INFO | 
+======================================================================
+2026-04-12 12:08:38,569 | INFO | STEP 4: LOADING PRE-TRAINED MODEL
+2026-04-12 12:08:38,569 | INFO | ======================================================================
+2026-04-12 12:08:38,569 | INFO | Base model: google/vit-base-patch16-224
+2026-04-12 12:08:38,718 | INFO | HTTP Request: HEAD https://huggingface.co/google/vit-base-patch16-224/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-12 12:08:38,742 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/google/vit-base-patch16-224/3f49326eb077187dfe1c2a2bb15fbd74e6ab91e3/config.json "HTTP/1.1 200 OK"
+2026-04-12 12:08:38,908 | INFO | Total parameters: 85,800,194
+2026-04-12 12:08:38,908 | INFO | Trainable parameters: 85,800,194
+2026-04-12 12:08:38,908 | INFO | Model size: ~343.2 MB
+2026-04-12 12:08:38,908 | INFO | 
+======================================================================
+2026-04-12 12:08:38,908 | INFO | STEP 5: TRAINING CONFIGURATION
+2026-04-12 12:08:38,908 | INFO | ======================================================================
+2026-04-12 12:08:38,908 | INFO | 
+======================================================================
+2026-04-12 12:08:38,908 | INFO | STEP 5: TRAINING CONFIGURATION
+2026-04-12 12:08:38,908 | INFO | ======================================================================
+2026-04-12 12:08:40,474 | INFO | Training arguments configured:
+2026-04-12 12:08:40,474 | INFO |   Epochs: 10
+2026-04-12 12:08:40,474 | INFO |   Batch size: 8
+2026-04-12 12:08:40,475 | INFO |   Gradient accumulation: 4
+2026-04-12 12:08:40,475 | INFO |   Effective batch size: 32
+2026-04-12 12:08:40,475 | INFO |   Learning rate: 2e-05
+2026-04-12 12:08:40,475 | INFO |   FP16 training: True
+2026-04-12 12:08:40,476 | INFO | 
+======================================================================
+2026-04-12 12:08:40,476 | INFO | STEP 6: DATA COLLATOR
+2026-04-12 12:08:40,476 | INFO | ======================================================================
+2026-04-12 12:08:40,476 | INFO | Custom collate function created
+2026-04-12 12:08:40,478 | INFO | 
+======================================================================
+2026-04-12 12:08:40,478 | INFO | STEP 7: INITIALIZING TRAINER
+2026-04-12 12:08:40,478 | INFO | ======================================================================
+2026-04-12 12:08:48,431 | INFO | Trainer initialized with:
+2026-04-12 12:08:48,432 | INFO |   Training samples: 50,937
+2026-04-12 12:08:48,432 | INFO |   Validation samples: 16,980
+2026-04-12 12:08:48,432 | INFO |   Early stopping patience: 3 epochs
+2026-04-12 12:08:48,432 | INFO | 
+======================================================================
+2026-04-12 12:08:48,432 | INFO | STEP 8: TRAINING STARTED
+2026-04-12 12:08:48,432 | INFO | ======================================================================
+2026-04-12 12:08:48,432 | INFO | Training started at: 2026-04-12 12:08:48
+2026-04-12 12:08:48,432 | INFO | This will take a while... Go grab some coffee! 
+
+2026-04-12 15:57:17,451 | INFO | Final training loss: 0.8984
+2026-04-12 15:57:17,451 | INFO | 
+======================================================================
+2026-04-12 15:57:17,451 | INFO | STEP 9: FINAL EVALUATION
+2026-04-12 15:57:17,451 | INFO | ======================================================================
+2026-04-12 15:57:17,451 | INFO | 
+Evaluating on validation set...
+2026-04-12 15:58:48,653 | INFO | 
+Validation Results:
+2026-04-12 15:58:48,653 | INFO |   Loss:      0.2135
+2026-04-12 15:58:48,653 | INFO |   Accuracy:  99.19%
+2026-04-12 15:58:48,653 | INFO |   Precision: 99.19%
+2026-04-12 15:58:48,654 | INFO |   Recall:    99.19%
+2026-04-12 15:58:48,654 | INFO |   F1 Score:  99.19%
+2026-04-12 15:58:48,654 | INFO | 
+Evaluating on test set...
+2026-04-12 16:01:39,148 | INFO | 
+Test Results:
+2026-04-12 16:01:39,148 | INFO |   Loss:      0.2127
+2026-04-12 16:01:39,148 | INFO |   Accuracy:  99.21%
+2026-04-12 16:01:39,149 | INFO |   Precision: 99.21%
+2026-04-12 16:01:39,149 | INFO |   Recall:    99.21%
+2026-04-12 16:01:39,150 | INFO |   F1 Score:  99.21%
+2026-04-12 16:01:39,150 | INFO | 
+======================================================================
+2026-04-12 16:01:39,150 | INFO | STEP 10: SAVING MODEL & VISUALIZATIONS
+2026-04-12 16:01:39,150 | INFO | ======================================================================
+2026-04-12 16:01:39,432 | INFO | 
+Generating confusion matrix...
+2026-04-12 16:03:10,645 | INFO | 
+Generating training curves...
+2026-04-12 16:03:10,793 | INFO | 
+======================================================================
+2026-04-12 16:03:10,793 | INFO | TRAINING COMPLETE - SUMMARY
+2026-04-12 16:03:10,793 | INFO | ======================================================================

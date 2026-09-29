@@ -1,0 +1,179 @@
+{
+  "config": {
+    "data_root": "data",
+    "manifest": "subject_disjoint/manifests/split_seed43.csv",
+    "out_dir": null,
+    "model": "vit-base",
+    "train_set": "base",
+    "online_aug": "strong",
+    "seed": 43,
+    "epochs": 10,
+    "batch_size": 8,
+    "grad_accum": 4,
+    "lr": 2e-05,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.1,
+    "label_smoothing": 0.1,
+    "grad_clip": 1.0,
+    "patience": 3,
+    "precision": "auto",
+    "workers": 2,
+    "resume": true,
+    "smoke": false,
+    "allow_subject_overlap": false,
+    "model_id": "google/vit-base-patch16-224@3f49326eb077187dfe1c2a2bb15fbd74e6ab91e3",
+    "n_variants": 1,
+    "amp_dtype": "torch.bfloat16",
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 3050 Ti Laptop GPU",
+    "torch": "2.14.0+cu126",
+    "transformers": "5.17.0",
+    "python": "3.11.9",
+    "total_steps": 15820,
+    "warmup_steps": 1582,
+    "images": {
+      "train": 50614,
+      "val": 17165,
+      "test": 17119
+    },
+    "train_samples_per_epoch": 50614
+  },
+  "subjects": {
+    "train": [
+      "s0001",
+      "s0002",
+      "s0003",
+      "s0004",
+      "s0006",
+      "s0008",
+      "s0009",
+      "s0010",
+      "s0013",
+      "s0015",
+      "s0016",
+      "s0019",
+      "s0022",
+      "s0026",
+      "s0029",
+      "s0030",
+      "s0032",
+      "s0033",
+      "s0034",
+      "s0035",
+      "s0036",
+      "s0037"
+    ],
+    "val": [
+      "s0007",
+      "s0014",
+      "s0018",
+      "s0021",
+      "s0023",
+      "s0031"
+    ],
+    "test": [
+      "s0005",
+      "s0011",
+      "s0012",
+      "s0017",
+      "s0020",
+      "s0024",
+      "s0025",
+      "s0027",
+      "s0028"
+    ]
+  },
+  "best_epoch": 5,
+  "training_minutes": 103.1,
+  "val": {
+    "n": 17165,
+    "accuracy": 98.992,
+    "accuracy_wilson95": [
+      98.831,
+      99.131
+    ],
+    "macro_f1": 98.993,
+    "closed_as_open_rate": 0.906,
+    "open_as_closed_rate": 1.108,
+    "confusion_matrix_rows_actual_open_closed": [
+      [
+        8568,
+        96
+      ],
+      [
+        77,
+        8424
+      ]
+    ],
+    "per_class": {
+      "open": {
+        "precision": 99.109,
+        "recall": 98.892,
+        "f1": 99.001,
+        "support": 8664
+      },
+      "closed": {
+        "precision": 98.873,
+        "recall": 99.094,
+        "f1": 98.984,
+        "support": 8501
+      }
+    },
+    "per_subject_accuracy": {
+      "s0007": 99.68,
+      "s0014": 99.75,
+      "s0018": 98.75,
+      "s0021": 94.93,
+      "s0023": 99.04,
+      "s0031": 97.76
+    },
+    "loss": 0.21745
+  },
+  "test": {
+    "n": 17119,
+    "accuracy": 98.534,
+    "accuracy_wilson95": [
+      98.343,
+      98.703
+    ],
+    "macro_f1": 98.534,
+    "closed_as_open_rate": 1.529,
+    "open_as_closed_rate": 1.405,
+    "confusion_matrix_rows_actual_open_closed": [
+      [
+        8493,
+        121
+      ],
+      [
+        130,
+        8375
+      ]
+    ],
+    "per_class": {
+      "open": {
+        "precision": 98.492,
+        "recall": 98.595,
+        "f1": 98.544,
+        "support": 8614
+      },
+      "closed": {
+        "precision": 98.576,
+        "recall": 98.471,
+        "f1": 98.524,
+        "support": 8505
+      }
+    },
+    "per_subject_accuracy": {
+      "s0005": 97.96,
+      "s0011": 99.94,
+      "s0012": 99.05,
+      "s0017": 100.0,
+      "s0020": 99.01,
+      "s0024": 94.68,
+      "s0025": 96.67,
+      "s0027": 95.79,
+      "s0028": 96.33
+    },
+    "loss": 0.22417
+  }
+}

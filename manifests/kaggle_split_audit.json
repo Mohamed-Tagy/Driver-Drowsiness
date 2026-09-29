@@ -1,0 +1,20 @@
+{
+  "images_per_split": {
+    "test": 16981,
+    "train": 50937,
+    "val": 16980
+  },
+  "subjects_per_split": {
+    "test": 37,
+    "train": 37,
+    "val": 37
+  },
+  "val_subjects_also_in_train": 37,
+  "val_images_of_subjects_seen_in_train": 16980,
+  "val_images_total": 16980,
+  "val_fraction_images_seen_subjects": 1.0,
+  "test_subjects_also_in_train": 37,
+  "test_images_of_subjects_seen_in_train": 16981,
+  "test_images_total": 16981,
+  "test_fraction_images_seen_subjects": 1.0
+}

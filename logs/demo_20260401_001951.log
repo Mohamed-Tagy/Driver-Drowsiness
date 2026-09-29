@@ -1,0 +1,22 @@
+2026-04-01 00:19:51,352 | INFO | Starting drowsiness detection demo
+2026-04-01 00:19:51,353 | INFO | Initializing components...
+2026-04-01 00:19:51,353 | INFO | Loading model from: ./models/vit-drowsiness-enhanced
+2026-04-01 00:19:53,103 | INFO | Model loaded successfully on cuda
+2026-04-01 00:19:53,103 | INFO | Model labels: {0: 'awake', 1: 'sleepy'}
+2026-04-01 00:19:53,103 | INFO | Awake label detected: 'awake'
+2026-04-01 00:19:53,103 | INFO | Drowsy label detected: 'sleepy'
+2026-04-01 00:19:53,107 | INFO | No serial ports found. Running without Arduino.
+2026-04-01 00:19:53,107 | INFO | Opening camera index 0...
+2026-04-01 00:19:53,779 | INFO | Camera opened: 1280x720
+2026-04-01 00:19:53,796 | INFO | Face detector initialized
+2026-04-01 00:19:53,799 | INFO | Demo started - press Q to quit
+2026-04-01 00:24:56,168 | INFO | Quit requested
+2026-04-01 00:24:56,168 | INFO | Cleaning up...
+2026-04-01 00:24:56,169 | INFO | Session statistics:
+2026-04-01 00:24:56,169 | INFO |   Total frames: 8324
+2026-04-01 00:24:56,169 | INFO |   Drowsy frames: 179
+2026-04-01 00:24:56,169 | INFO |   Drowsy percentage: 2.2%
+2026-04-01 00:24:56,169 | INFO |   Average FPS: 27.5
+2026-04-01 00:24:56,169 | INFO |   Duration: 302.4 seconds
+2026-04-01 00:24:56,217 | INFO | Camera released
+2026-04-01 00:24:56,243 | INFO | Demo ended
