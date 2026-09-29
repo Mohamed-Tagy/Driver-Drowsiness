@@ -28,10 +28,12 @@ These are static eye-state results, not validated drowsiness detection.
 ## Model weights
 
 `checkpoint/` contains the model configuration and image-processor settings.
-The weights (`model.safetensors`, 328 MB) are too large for a normal Git file
-and are attached to the
-[Releases page](https://github.com/Mohamed-Tagy/Driver-Drowsiness/releases).
-Download the file into `checkpoint/`, then load it:
+The weights are too large for a normal Git file and are attached to the
+[Releases page](https://github.com/Mohamed-Tagy/Driver-Drowsiness/releases)
+as `model_weights.zip` (318 MB; SHA-256
+`bd7b8586c0b5e142790df845bd3267d64aa4b2b772baf9f309010e0d62a88bf2`).
+Unzip it into `checkpoint/`; the extracted `model.safetensors` is listed in
+`SHA256SUMS.txt`. Then load the model:
 
 ```python
 from transformers import AutoImageProcessor, AutoModelForImageClassification
