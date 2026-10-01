@@ -2,6 +2,9 @@
 Drowsiness Detection Demo
 Model: ViT-Base + MRL Augmented 2
 Fixed: FPS drop, batched inference, BF16, no model switching
+Face tracking: YuNet landmarks with level eye crops (face_tracker.py),
+falling back to the Haar cascade; needs
+models/face/face_detection_yunet_2023mar.onnx
 """
 
 import cv2
@@ -372,9 +375,10 @@ if ser:
 # FACE DETECTOR
 # =============================================================
 
-face_cascade = cv2.CascadeClassifier(
-    cv2.data.haarcascades +
-    "haarcascade_frontalface_default.xml")
+# YuNet landmarks + rotated retry + Haar fallback + short hold
+# (see face_tracker.py); keeps the face through head tilts and turns.
+from face_tracker import FaceTracker
+tracker = FaceTracker()
 
 
 # =============================================================
@@ -500,49 +504,33 @@ while True:
         frame_count % INFERENCE_EVERY_N_FRAMES == 0)
 
     # ── Face detection ────────────────────────────────────
-    gray  = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    faces = face_cascade.detectMultiScale(
-        gray,
-        scaleFactor=1.1,
-        minNeighbors=5,
-        minSize=(100, 100))
+    face = tracker.update(frame)
 
-    if len(faces) > 0:
-        faces = sorted(
-            faces,
-            key=lambda f: f[2] * f[3],
-            reverse=True)
-        (x, y, w, h) = faces[0]
+    if face is not None:
+        x, y, w, h = [int(v) for v in face["box"]]
 
-        face_color = frame[y:y+h, x:x+w]
+        # Crops are taken from the clean frame before any drawing
+        left_eye, right_eye, eye_quads = tracker.eye_crops(
+            frame, face)
 
-        eye_top  = int(0.18 * h)
-        eye_bot  = int(0.52 * h)
-        left_x1  = int(0.10 * w)
-        left_x2  = int(0.45 * w)
-        right_x1 = int(0.55 * w)
-        right_x2 = int(0.90 * w)
-
-        left_eye  = face_color[
-            eye_top:eye_bot, left_x1:left_x2]
-        right_eye = face_color[
-            eye_top:eye_bot, right_x1:right_x2]
-
+        box_color = ((0, 255, 0) if face["source"] == "yunet"
+                     else (0, 255, 255))
         cv2.rectangle(
             frame, (x, y), (x+w, y+h),
-            (0, 255, 0), 2)
-        cv2.rectangle(
-            frame,
-            (x+left_x1,  y+eye_top),
-            (x+left_x2,  y+eye_bot),
-            (255, 200, 0), 2)
-        cv2.rectangle(
-            frame,
-            (x+right_x1, y+eye_top),
-            (x+right_x2, y+eye_bot),
-            (255, 200, 0), 2)
+            box_color, 2)
+        for quad in eye_quads:
+            cv2.polylines(
+                frame, [quad], True,
+                (255, 200, 0), 2)
+        cv2.putText(
+            frame, f"track: {face['source']}",
+            (x, y + h + 75),
+            cv2.FONT_HERSHEY_SIMPLEX,
+            0.5, box_color, 1)
 
-        if run_inference:
+        # A held (not freshly detected) face may have moved: its crops are
+        # stale, so skip classification and leave the counter unchanged.
+        if run_inference and face["source"] != "hold":
             (left_drowsy, right_drowsy,
              left_conf,   right_conf,
              left_probs,  right_probs

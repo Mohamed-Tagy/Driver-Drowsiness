@@ -1,0 +1,35 @@
+{
+  "source": "Videos/IMG_0570.MOV",
+  "detector": "haar",
+  "resize": "1280x720",
+  "device": "cuda",
+  "bf16": true,
+  "gpu": "NVIDIA GeForce RTX 3050 Ti Laptop GPU",
+  "frames_processed": 7738,
+  "processed_fps": 30.0,
+  "simulate_fps": null,
+  "face_detected_fraction": 0.9301,
+  "latency_ms": {
+    "ms_face": {
+      "mean": 9.06,
+      "median": 9.3,
+      "p95": 10.54
+    },
+    "ms_crop": {
+      "mean": 0.07,
+      "median": 0.07,
+      "p95": 0.1
+    },
+    "ms_infer": {
+      "mean": 12.99,
+      "median": 13.24,
+      "p95": 20.14
+    },
+    "ms_total": {
+      "mean": 22.12,
+      "median": 22.85,
+      "p95": 29.7
+    }
+  },
+  "serial_acks": []
+}

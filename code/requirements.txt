@@ -14,7 +14,7 @@ accelerate>=0.25.0
 huggingface_hub>=0.20.0
 
 # Computer Vision
-opencv-python>=4.8.0
+opencv-python>=4.8.0,<5  # 5.x removed the Haar cascade classifier used by demo.py
 Pillow>=10.0.0
 
 # Machine Learning

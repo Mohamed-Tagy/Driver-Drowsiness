@@ -1,0 +1,1835 @@
+2026-04-18 19:36:12,785 | INFO | Log file: logs/training_final_20260418_193612.log
+2026-04-18 19:36:12,785 | INFO | ============================================================
+2026-04-18 19:36:12,785 | INFO | CONFIGURATION
+2026-04-18 19:36:12,785 | INFO | ============================================================
+2026-04-18 19:36:12,785 | INFO |   BATCH_SIZE                = 32
+2026-04-18 19:36:12,785 | INFO |   DATA_DIR                  = data/MRL_AUGMENTED
+2026-04-18 19:36:12,786 | INFO |   GRAD_CLIP                 = 1.0
+2026-04-18 19:36:12,786 | INFO |   IMAGE_SIZE                = 224
+2026-04-18 19:36:12,786 | INFO |   LABEL_SMOOTHING           = 0.1
+2026-04-18 19:36:12,786 | INFO |   LEARNING_RATE             = 2e-05
+2026-04-18 19:36:12,786 | INFO |   LOG_EVERY                 = 100
+2026-04-18 19:36:12,786 | INFO |   MODEL_NAME                = google/vit-base-patch16-224
+2026-04-18 19:36:12,786 | INFO |   MONITOR_EVERY             = 100
+2026-04-18 19:36:12,787 | INFO |   NUM_EPOCHS                = 15
+2026-04-18 19:36:12,787 | INFO |   NUM_LABELS                = 2
+2026-04-18 19:36:12,787 | INFO |   NUM_WORKERS               = 2
+2026-04-18 19:36:12,787 | INFO |   OUTPUT_DIR                = ./models/vit-base-mrl-augmented
+2026-04-18 19:36:12,787 | INFO |   PATIENCE                  = 3
+2026-04-18 19:36:12,787 | INFO |   PIN_MEMORY                = True
+2026-04-18 19:36:12,787 | INFO |   PREFETCH_FACTOR           = 2
+2026-04-18 19:36:12,787 | INFO |   SEED                      = 42
+2026-04-18 19:36:12,787 | INFO |   SUBSET_SIZE               = 5000
+2026-04-18 19:36:12,787 | INFO |   USE_BF16                  = True
+2026-04-18 19:36:12,787 | INFO |   USE_SUBSET                = False
+2026-04-18 19:36:12,787 | INFO |   WARMUP_RATIO              = 0.1
+2026-04-18 19:36:12,787 | INFO |   WEIGHT_DECAY              = 0.01
+2026-04-18 19:36:12,787 | INFO | ============================================================
+2026-04-18 19:36:12,922 | INFO | GPU:      NVIDIA GeForce RTX 5050
+2026-04-18 19:36:12,922 | INFO | VRAM:     8.5 GB
+2026-04-18 19:36:12,923 | INFO | CUDA:     12.8
+2026-04-18 19:36:12,923 | INFO | PyTorch:  2.12.0.dev20260408+cu128
+2026-04-18 19:36:12,923 | INFO | BF16:     True
+2026-04-18 19:36:12,924 | INFO | TF32:     True
+2026-04-18 19:36:12,924 | INFO | GC:       disabled (prevents training spikes)
+2026-04-18 19:36:12,924 | INFO | Pre-allocating CUDA memory pool...
+2026-04-18 19:36:12,946 | INFO | CUDA pool ready
+2026-04-18 19:36:12,985 | INFO | Initial GPU state: temp=32C | util=0% | vram=1.0GB | clock=195MHz
+2026-04-18 19:36:12,988 | INFO | 
+============================================================
+2026-04-18 19:36:12,988 | INFO | STEP 1: DATASETS
+2026-04-18 19:36:12,988 | INFO | ============================================================
+2026-04-18 19:36:12,988 | INFO | Val split found: 'val'
+2026-04-18 19:36:13,395 | INFO | HTTP Request: HEAD https://huggingface.co/google/vit-base-patch16-224/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-04-18 19:36:13,545 | INFO | HTTP Request: HEAD https://huggingface.co/google/vit-base-patch16-224/resolve/main/preprocessor_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-18 19:36:13,546 | WARNING | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-04-18 19:36:13,558 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/google/vit-base-patch16-224/3f49326eb077187dfe1c2a2bb15fbd74e6ab91e3/preprocessor_config.json "HTTP/1.1 200 OK"
+2026-04-18 19:36:13,708 | INFO | HTTP Request: HEAD https://huggingface.co/google/vit-base-patch16-224/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-18 19:36:13,720 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/google/vit-base-patch16-224/3f49326eb077187dfe1c2a2bb15fbd74e6ab91e3/config.json "HTTP/1.1 200 OK"
+2026-04-18 19:36:13,886 | INFO | HTTP Request: HEAD https://huggingface.co/google/vit-base-patch16-224/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-04-18 19:36:14,033 | INFO | HTTP Request: HEAD https://huggingface.co/google/vit-base-patch16-224/resolve/main/preprocessor_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-18 19:36:14,046 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/google/vit-base-patch16-224/3f49326eb077187dfe1c2a2bb15fbd74e6ab91e3/preprocessor_config.json "HTTP/1.1 200 OK"
+2026-04-18 19:36:14,048 | INFO | Image processor: mean=(0.5, 0.5, 0.5) std=(0.5, 0.5, 0.5)
+2026-04-18 19:36:16,547 | INFO | Train: 305,622 images | 9,550 batches/epoch
+2026-04-18 19:36:16,547 | INFO | Val:   16,980 images | 266 batches
+2026-04-18 19:36:16,547 | INFO | Test:  16,981 images | 266 batches
+2026-04-18 19:36:16,547 | INFO | 
+============================================================
+2026-04-18 19:36:16,548 | INFO | STEP 2: MODEL (ViT-Base)
+2026-04-18 19:36:16,548 | INFO | ============================================================
+2026-04-18 19:36:16,695 | INFO | HTTP Request: HEAD https://huggingface.co/google/vit-base-patch16-224/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-18 19:36:16,708 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/google/vit-base-patch16-224/3f49326eb077187dfe1c2a2bb15fbd74e6ab91e3/config.json "HTTP/1.1 200 OK"
+2026-04-18 19:36:16,952 | INFO | Architecture:    ViT-Base-Patch16-224
+2026-04-18 19:36:16,953 | INFO | Total params:    85.8M
+2026-04-18 19:36:16,953 | INFO | Trainable:       85.8M (all layers)
+2026-04-18 19:36:16,954 | INFO | Patch size:      16x16 pixels
+2026-04-18 19:36:16,954 | INFO | Patches/image:   196 (14x14 grid)
+2026-04-18 19:36:16,954 | INFO | Hidden dim:      768
+2026-04-18 19:36:16,954 | INFO | Attention heads: 12
+2026-04-18 19:36:16,954 | INFO | Encoder layers:  12
+2026-04-18 19:36:16,954 | INFO | Classifier:      768 → 2 classes
+2026-04-18 19:36:16,955 | INFO | VRAM after load: 0.34GB
+2026-04-18 19:36:16,955 | INFO | 
+============================================================
+2026-04-18 19:36:16,955 | INFO | STEP 3: OPTIMIZER + SCHEDULER + LOSS
+2026-04-18 19:36:16,955 | INFO | ============================================================
+2026-04-18 19:36:16,955 | INFO | Optimizer:       AdamW (fused CUDA kernel)
+2026-04-18 19:36:16,955 | INFO | Learning rate:   2e-05
+2026-04-18 19:36:16,955 | INFO | Weight decay:    0.01
+2026-04-18 19:36:16,955 | INFO | LR schedule:     Cosine with warmup
+2026-04-18 19:36:16,955 | INFO | Total steps:     143,250
+2026-04-18 19:36:16,956 | INFO | Warmup steps:    14,325 (10%)
+2026-04-18 19:36:16,956 | INFO | Loss:            Label Smoothing (α=0.1)
+2026-04-18 19:36:16,956 | INFO | Grad clip:       1.0
+2026-04-18 19:36:16,956 | INFO | 
+============================================================
+2026-04-18 19:36:16,956 | INFO | STEP 4: TRAINING
+2026-04-18 19:36:16,956 | INFO | ============================================================
+2026-04-18 19:36:16,957 | INFO | 
+============================================================
+EPOCH 1/15
+============================================================
+2026-04-18 19:36:49,675 | INFO | [Monitor step=100] temp=53C | gpu=99% | vram=4.7GB | clock=2925MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-18 19:37:11,958 | INFO | [Monitor step=200] temp=55C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (74%) | it/s=4.49
+2026-04-18 19:37:34,261 | INFO | [Monitor step=300] temp=56C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (74%) | it/s=4.50
+2026-04-18 19:37:56,566 | INFO | [Monitor step=400] temp=57C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (75%) | it/s=4.50
+2026-04-18 19:38:18,871 | INFO | [Monitor step=500] temp=57C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (75%) | it/s=4.49
+2026-04-18 19:38:41,174 | INFO | [Monitor step=600] temp=58C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.6/16.8GB (75%) | it/s=4.50
+2026-04-18 19:39:03,479 | INFO | [Monitor step=700] temp=59C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.6/16.8GB (75%) | it/s=4.51
+2026-04-18 19:39:25,780 | INFO | [Monitor step=800] temp=58C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (75%) | it/s=4.51
+2026-04-18 19:39:48,076 | INFO | [Monitor step=900] temp=59C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (75%) | it/s=4.51
+2026-04-18 19:40:10,382 | INFO | [Monitor step=1000] temp=57C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (75%) | it/s=4.51
+2026-04-18 19:40:32,684 | INFO | [Monitor step=1100] temp=59C | gpu=96% | vram=4.7GB | clock=2917MHz (100%) | ram=12.6/16.8GB (75%) | it/s=4.51
+2026-04-18 19:40:54,992 | INFO | [Monitor step=1200] temp=59C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.6/16.8GB (75%) | it/s=4.50
+2026-04-18 19:41:17,302 | INFO | [Monitor step=1300] temp=59C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.6/16.8GB (75%) | it/s=4.50
+2026-04-18 19:41:39,608 | INFO | [Monitor step=1400] temp=57C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.6/16.8GB (75%) | it/s=4.50
+2026-04-18 19:42:01,918 | INFO | [Monitor step=1500] temp=60C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.6/16.8GB (75%) | it/s=4.48
+2026-04-18 19:42:24,200 | INFO | [Monitor step=1600] temp=60C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.6/16.8GB (75%) | it/s=4.50
+2026-04-18 19:42:46,503 | INFO | [Monitor step=1700] temp=60C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.6/16.8GB (75%) | it/s=4.50
+2026-04-18 19:43:08,810 | INFO | [Monitor step=1800] temp=59C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.6/16.8GB (76%) | it/s=4.51
+2026-04-18 19:43:31,109 | INFO | [Monitor step=1900] temp=59C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.6/16.8GB (75%) | it/s=4.51
+2026-04-18 19:43:53,406 | INFO | [Monitor step=2000] temp=60C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.6/16.8GB (76%) | it/s=4.51
+2026-04-18 19:44:15,707 | INFO | [Monitor step=2100] temp=60C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.7/16.8GB (76%) | it/s=4.51
+2026-04-18 19:44:38,003 | INFO | [Monitor step=2200] temp=60C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.6/16.8GB (75%) | it/s=4.49
+2026-04-18 19:45:00,298 | INFO | [Monitor step=2300] temp=60C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.7/16.8GB (76%) | it/s=4.51
+2026-04-18 19:45:22,594 | INFO | [Monitor step=2400] temp=61C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.7/16.8GB (76%) | it/s=4.51
+2026-04-18 19:45:44,888 | INFO | [Monitor step=2500] temp=60C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.6/16.8GB (75%) | it/s=4.50
+2026-04-18 19:46:07,180 | INFO | [Monitor step=2600] temp=60C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.6/16.8GB (75%) | it/s=4.51
+2026-04-18 19:46:29,477 | INFO | [Monitor step=2700] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.2/16.8GB (73%) | it/s=4.51
+2026-04-18 19:46:51,770 | INFO | [Monitor step=2800] temp=60C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.2/16.8GB (72%) | it/s=4.51
+2026-04-18 19:47:14,060 | INFO | [Monitor step=2900] temp=61C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.2/16.8GB (73%) | it/s=4.50
+2026-04-18 19:47:36,351 | INFO | [Monitor step=3000] temp=61C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.2/16.8GB (73%) | it/s=4.51
+2026-04-18 19:47:58,626 | INFO | [Monitor step=3100] temp=58C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.2/16.8GB (73%) | it/s=4.50
+2026-04-18 19:48:20,919 | INFO | [Monitor step=3200] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (73%) | it/s=4.49
+2026-04-18 19:48:43,212 | INFO | [Monitor step=3300] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (73%) | it/s=4.51
+2026-04-18 19:49:05,503 | INFO | [Monitor step=3400] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (73%) | it/s=4.51
+2026-04-18 19:49:27,794 | INFO | [Monitor step=3500] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-18 19:49:50,093 | INFO | [Monitor step=3600] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-18 19:50:12,385 | INFO | [Monitor step=3700] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.52
+2026-04-18 19:50:34,674 | INFO | [Monitor step=3800] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-18 19:50:56,966 | INFO | [Monitor step=3900] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.50
+2026-04-18 19:51:19,239 | INFO | [Monitor step=4000] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-18 19:51:41,528 | INFO | [Monitor step=4100] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-18 19:52:03,821 | INFO | [Monitor step=4200] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.52
+2026-04-18 19:52:26,092 | INFO | [Monitor step=4300] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-18 19:52:48,384 | INFO | [Monitor step=4400] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.52
+2026-04-18 19:53:10,676 | INFO | [Monitor step=4500] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-18 19:53:32,972 | INFO | [Monitor step=4600] temp=61C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.48
+2026-04-18 19:53:55,268 | INFO | [Monitor step=4700] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-18 19:54:17,565 | INFO | [Monitor step=4800] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.50
+2026-04-18 19:54:39,860 | INFO | [Monitor step=4900] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.50
+2026-04-18 19:55:02,155 | INFO | [Monitor step=5000] temp=61C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.50
+2026-04-18 19:55:24,447 | INFO | [Monitor step=5100] temp=61C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-18 19:55:46,781 | INFO | [Monitor step=5200] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-18 19:56:09,074 | INFO | [Monitor step=5300] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.49
+2026-04-18 19:56:31,370 | INFO | [Monitor step=5400] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-18 19:56:53,667 | INFO | [Monitor step=5500] temp=61C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.52
+2026-04-18 19:57:15,960 | INFO | [Monitor step=5600] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-18 19:57:38,267 | INFO | [Monitor step=5700] temp=59C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-18 19:58:00,579 | INFO | [Monitor step=5800] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-18 19:58:22,875 | INFO | [Monitor step=5900] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.50
+2026-04-18 19:58:45,170 | INFO | [Monitor step=6000] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.50
+2026-04-18 19:59:07,465 | INFO | [Monitor step=6100] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.50
+2026-04-18 19:59:29,757 | INFO | [Monitor step=6200] temp=59C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-18 19:59:52,052 | INFO | [Monitor step=6300] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.49
+2026-04-18 20:00:14,362 | INFO | [Monitor step=6400] temp=61C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-18 20:00:36,652 | INFO | [Monitor step=6500] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-18 20:00:58,949 | INFO | [Monitor step=6600] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.52
+2026-04-18 20:01:21,243 | INFO | [Monitor step=6700] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.52
+2026-04-18 20:01:43,535 | INFO | [Monitor step=6800] temp=60C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-18 20:02:05,827 | INFO | [Monitor step=6900] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-18 20:02:28,095 | INFO | [Monitor step=7000] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.50
+2026-04-18 20:02:50,385 | INFO | [Monitor step=7100] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.52
+2026-04-18 20:03:12,691 | INFO | [Monitor step=7200] temp=61C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (73%) | it/s=4.51
+2026-04-18 20:03:34,986 | INFO | [Monitor step=7300] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (73%) | it/s=4.49
+2026-04-18 20:03:57,276 | INFO | [Monitor step=7400] temp=60C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.50
+2026-04-18 20:04:19,568 | INFO | [Monitor step=7500] temp=63C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.50
+2026-04-18 20:04:41,865 | INFO | [Monitor step=7600] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.50
+2026-04-18 20:05:04,147 | INFO | [Monitor step=7700] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.48
+2026-04-18 20:05:26,438 | INFO | [Monitor step=7800] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.50
+2026-04-18 20:05:48,732 | INFO | [Monitor step=7900] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-18 20:06:11,028 | INFO | [Monitor step=8000] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.50
+2026-04-18 20:06:33,320 | INFO | [Monitor step=8100] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-18 20:06:55,615 | INFO | [Monitor step=8200] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-18 20:07:17,914 | INFO | [Monitor step=8300] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.52
+2026-04-18 20:07:40,206 | INFO | [Monitor step=8400] temp=61C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-18 20:08:02,504 | INFO | [Monitor step=8500] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-18 20:08:24,804 | INFO | [Monitor step=8600] temp=61C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-18 20:08:47,108 | INFO | [Monitor step=8700] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.50
+2026-04-18 20:09:09,403 | INFO | [Monitor step=8800] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (75%) | it/s=4.51
+2026-04-18 20:09:31,699 | INFO | [Monitor step=8900] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (74%) | it/s=4.50
+2026-04-18 20:09:53,992 | INFO | [Monitor step=9000] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (74%) | it/s=4.50
+2026-04-18 20:10:16,286 | INFO | [Monitor step=9100] temp=61C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (75%) | it/s=4.50
+2026-04-18 20:10:38,579 | INFO | [Monitor step=9200] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (75%) | it/s=4.51
+2026-04-18 20:11:00,875 | INFO | [Monitor step=9300] temp=60C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (75%) | it/s=4.48
+2026-04-18 20:11:23,170 | INFO | [Monitor step=9400] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (75%) | it/s=4.49
+2026-04-18 20:11:45,471 | INFO | [Monitor step=9500] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.6/16.8GB (75%) | it/s=4.51
+2026-04-18 20:11:56,612 | INFO | Epoch 1 complete: loss=0.3549 | avg=4.51 it/s | time=35.7min
+2026-04-18 20:11:56,900 | INFO |   Running validation...
+2026-04-18 20:13:04,895 | INFO |   Val Accuracy:  99.00%
+2026-04-18 20:13:04,896 | INFO |   Val F1:        99.00%
+2026-04-18 20:13:04,900 | INFO |   Val Precision: 99.01%
+2026-04-18 20:13:04,900 | INFO |   Val Recall:    99.00%
+2026-04-18 20:13:04,900 | INFO |   Val Loss:      0.3381
+2026-04-18 20:13:13,023 | INFO |   Checkpoint saved: ./models/vit-base-mrl-augmented\best_model
+2026-04-18 20:13:13,023 | INFO |   New best: 99.00%
+2026-04-18 20:13:13,024 | INFO | 
+============================================================
+EPOCH 2/15
+============================================================
+2026-04-18 20:13:24,681 | INFO | [Monitor step=9600] temp=59C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.5/16.8GB (80%) | it/s=4.50
+2026-04-18 20:13:46,989 | INFO | [Monitor step=9700] temp=61C | gpu=100% | vram=4.8GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.51
+2026-04-18 20:14:09,398 | INFO | [Monitor step=9800] temp=60C | gpu=98% | vram=4.8GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.15
+2026-04-18 20:14:31,741 | INFO | [Monitor step=9900] temp=61C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.50
+2026-04-18 20:14:54,045 | INFO | [Monitor step=10000] temp=61C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.48
+2026-04-18 20:15:16,352 | INFO | [Monitor step=10100] temp=62C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.6/16.8GB (81%) | it/s=4.51
+2026-04-18 20:15:38,720 | INFO | [Monitor step=10200] temp=62C | gpu=100% | vram=4.8GB | clock=2917MHz (100%) | ram=13.6/16.8GB (81%) | it/s=4.44
+2026-04-18 20:16:01,038 | INFO | [Monitor step=10300] temp=61C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.6/16.8GB (81%) | it/s=4.46
+2026-04-18 20:16:23,344 | INFO | [Monitor step=10400] temp=62C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.6/16.8GB (81%) | it/s=4.51
+2026-04-18 20:16:45,647 | INFO | [Monitor step=10500] temp=61C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.6/16.8GB (81%) | it/s=4.51
+2026-04-18 20:17:07,952 | INFO | [Monitor step=10600] temp=62C | gpu=100% | vram=4.8GB | clock=2917MHz (100%) | ram=13.6/16.8GB (81%) | it/s=4.51
+2026-04-18 20:17:30,257 | INFO | [Monitor step=10700] temp=62C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.6/16.8GB (81%) | it/s=4.51
+2026-04-18 20:17:52,561 | INFO | [Monitor step=10800] temp=61C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.6/16.8GB (81%) | it/s=4.51
+2026-04-18 20:18:14,871 | INFO | [Monitor step=10900] temp=62C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.6/16.8GB (81%) | it/s=4.50
+2026-04-18 20:18:37,181 | INFO | [Monitor step=11000] temp=60C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.6/16.8GB (81%) | it/s=4.50
+2026-04-18 20:18:59,490 | INFO | [Monitor step=11100] temp=62C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.6/16.8GB (81%) | it/s=4.50
+2026-04-18 20:19:21,798 | INFO | [Monitor step=11200] temp=61C | gpu=98% | vram=4.8GB | clock=2917MHz (100%) | ram=13.6/16.8GB (81%) | it/s=4.51
+2026-04-18 20:19:44,104 | INFO | [Monitor step=11300] temp=62C | gpu=98% | vram=4.8GB | clock=2917MHz (100%) | ram=13.6/16.8GB (81%) | it/s=4.50
+2026-04-18 20:20:06,412 | INFO | [Monitor step=11400] temp=61C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.6/16.8GB (81%) | it/s=4.51
+2026-04-18 20:20:28,720 | INFO | [Monitor step=11500] temp=62C | gpu=100% | vram=4.8GB | clock=2917MHz (100%) | ram=13.6/16.8GB (81%) | it/s=4.51
+2026-04-18 20:20:51,032 | INFO | [Monitor step=11600] temp=62C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.1/16.8GB (78%) | it/s=4.49
+2026-04-18 20:21:13,335 | INFO | [Monitor step=11700] temp=62C | gpu=97% | vram=4.8GB | clock=2917MHz (100%) | ram=13.1/16.8GB (78%) | it/s=4.51
+2026-04-18 20:21:35,640 | INFO | [Monitor step=11800] temp=62C | gpu=99% | vram=4.8GB | clock=2910MHz (99%) | ram=13.1/16.8GB (78%) | it/s=4.51
+2026-04-18 20:21:57,948 | INFO | [Monitor step=11900] temp=62C | gpu=100% | vram=4.8GB | clock=2917MHz (100%) | ram=13.1/16.8GB (78%) | it/s=4.51
+2026-04-18 20:22:20,234 | INFO | [Monitor step=12000] temp=62C | gpu=100% | vram=4.8GB | clock=2917MHz (100%) | ram=13.1/16.8GB (78%) | it/s=4.51
+2026-04-18 20:22:42,540 | INFO | [Monitor step=12100] temp=62C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.2/16.8GB (79%) | it/s=4.50
+2026-04-18 20:23:04,850 | INFO | [Monitor step=12200] temp=62C | gpu=98% | vram=4.8GB | clock=2917MHz (100%) | ram=13.2/16.8GB (79%) | it/s=4.50
+2026-04-18 20:23:27,160 | INFO | [Monitor step=12300] temp=62C | gpu=98% | vram=4.8GB | clock=2917MHz (100%) | ram=13.2/16.8GB (79%) | it/s=4.47
+2026-04-18 20:23:49,470 | INFO | [Monitor step=12400] temp=62C | gpu=100% | vram=4.8GB | clock=2917MHz (100%) | ram=13.2/16.8GB (79%) | it/s=4.50
+2026-04-18 20:24:11,771 | INFO | [Monitor step=12500] temp=61C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.2/16.8GB (79%) | it/s=4.52
+2026-04-18 20:24:34,072 | INFO | [Monitor step=12600] temp=61C | gpu=92% | vram=4.8GB | clock=2917MHz (100%) | ram=13.2/16.8GB (79%) | it/s=4.48
+2026-04-18 20:24:56,374 | INFO | [Monitor step=12700] temp=62C | gpu=98% | vram=4.8GB | clock=2917MHz (100%) | ram=13.1/16.8GB (78%) | it/s=4.51
+2026-04-18 20:25:18,675 | INFO | [Monitor step=12800] temp=62C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.1/16.8GB (78%) | it/s=4.52
+2026-04-18 20:25:40,975 | INFO | [Monitor step=12900] temp=62C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.1/16.8GB (78%) | it/s=4.52
+2026-04-18 20:26:03,276 | INFO | [Monitor step=13000] temp=62C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.1/16.8GB (78%) | it/s=4.51
+2026-04-18 20:26:25,576 | INFO | [Monitor step=13100] temp=60C | gpu=88% | vram=4.8GB | clock=2917MHz (100%) | ram=13.1/16.8GB (78%) | it/s=4.51
+2026-04-18 20:26:47,884 | INFO | [Monitor step=13200] temp=62C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.1/16.8GB (78%) | it/s=4.50
+2026-04-18 20:27:10,193 | INFO | [Monitor step=13300] temp=62C | gpu=98% | vram=4.8GB | clock=2917MHz (100%) | ram=13.2/16.8GB (78%) | it/s=4.49
+2026-04-18 20:27:32,498 | INFO | [Monitor step=13400] temp=62C | gpu=98% | vram=4.8GB | clock=2917MHz (100%) | ram=13.2/16.8GB (79%) | it/s=4.50
+2026-04-18 20:27:54,806 | INFO | [Monitor step=13500] temp=60C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.2/16.8GB (79%) | it/s=4.50
+2026-04-18 20:28:17,112 | INFO | [Monitor step=13600] temp=62C | gpu=100% | vram=4.8GB | clock=2917MHz (100%) | ram=13.2/16.8GB (79%) | it/s=4.49
+2026-04-18 20:28:39,421 | INFO | [Monitor step=13700] temp=62C | gpu=98% | vram=4.8GB | clock=2917MHz (100%) | ram=13.2/16.8GB (79%) | it/s=4.51
+2026-04-18 20:29:01,735 | INFO | [Monitor step=13800] temp=63C | gpu=98% | vram=4.8GB | clock=2910MHz (99%) | ram=13.2/16.8GB (79%) | it/s=4.51
+2026-04-18 20:29:24,047 | INFO | [Monitor step=13900] temp=62C | gpu=100% | vram=4.8GB | clock=2917MHz (100%) | ram=13.2/16.8GB (79%) | it/s=4.50
+2026-04-18 20:29:46,358 | INFO | [Monitor step=14000] temp=63C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.2/16.8GB (79%) | it/s=4.51
+2026-04-18 20:30:08,670 | INFO | [Monitor step=14100] temp=63C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.2/16.8GB (79%) | it/s=4.51
+2026-04-18 20:30:30,979 | INFO | [Monitor step=14200] temp=63C | gpu=99% | vram=4.8GB | clock=2910MHz (99%) | ram=13.2/16.8GB (79%) | it/s=4.51
+2026-04-18 20:30:53,289 | INFO | [Monitor step=14300] temp=62C | gpu=98% | vram=4.8GB | clock=2917MHz (100%) | ram=13.2/16.8GB (79%) | it/s=4.50
+2026-04-18 20:31:15,604 | INFO | [Monitor step=14400] temp=62C | gpu=98% | vram=4.8GB | clock=2910MHz (99%) | ram=13.2/16.8GB (79%) | it/s=4.50
+2026-04-18 20:31:37,910 | INFO | [Monitor step=14500] temp=62C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=12.9/16.8GB (77%) | it/s=4.51
+2026-04-18 20:32:00,197 | INFO | [Monitor step=14600] temp=63C | gpu=98% | vram=4.8GB | clock=2917MHz (100%) | ram=13.0/16.8GB (77%) | it/s=4.48
+2026-04-18 20:32:22,479 | INFO | [Monitor step=14700] temp=62C | gpu=98% | vram=4.8GB | clock=2917MHz (100%) | ram=13.0/16.8GB (78%) | it/s=4.50
+2026-04-18 20:32:44,788 | INFO | [Monitor step=14800] temp=62C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.0/16.8GB (78%) | it/s=4.50
+2026-04-18 20:33:07,094 | INFO | [Monitor step=14900] temp=62C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.1/16.8GB (78%) | it/s=4.51
+2026-04-18 20:33:29,392 | INFO | [Monitor step=15000] temp=63C | gpu=98% | vram=4.8GB | clock=2910MHz (99%) | ram=14.0/16.8GB (84%) | it/s=4.51
+2026-04-18 20:33:51,701 | INFO | [Monitor step=15100] temp=62C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.8/16.8GB (82%) | it/s=4.51
+2026-04-18 20:34:14,010 | INFO | [Monitor step=15200] temp=62C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.8/16.8GB (83%) | it/s=4.53
+2026-04-18 20:34:36,319 | INFO | [Monitor step=15300] temp=60C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.8/16.8GB (82%) | it/s=4.51
+2026-04-18 20:34:58,633 | INFO | [Monitor step=15400] temp=62C | gpu=98% | vram=4.8GB | clock=2917MHz (100%) | ram=13.8/16.8GB (82%) | it/s=4.51
+2026-04-18 20:35:20,940 | INFO | [Monitor step=15500] temp=62C | gpu=98% | vram=4.8GB | clock=2910MHz (99%) | ram=13.9/16.8GB (83%) | it/s=4.50
+2026-04-18 20:35:43,257 | INFO | [Monitor step=15600] temp=62C | gpu=98% | vram=4.8GB | clock=2910MHz (99%) | ram=13.8/16.8GB (82%) | it/s=4.49
+2026-04-18 20:36:05,566 | INFO | [Monitor step=15700] temp=62C | gpu=100% | vram=4.8GB | clock=2917MHz (100%) | ram=13.8/16.8GB (82%) | it/s=4.51
+2026-04-18 20:36:27,878 | INFO | [Monitor step=15800] temp=63C | gpu=100% | vram=4.8GB | clock=2917MHz (100%) | ram=13.8/16.8GB (82%) | it/s=4.50
+2026-04-18 20:36:50,193 | INFO | [Monitor step=15900] temp=62C | gpu=98% | vram=4.8GB | clock=2917MHz (100%) | ram=13.8/16.8GB (82%) | it/s=4.48
+2026-04-18 20:37:12,501 | INFO | [Monitor step=16000] temp=62C | gpu=98% | vram=4.8GB | clock=2917MHz (100%) | ram=13.8/16.8GB (82%) | it/s=4.51
+2026-04-18 20:37:34,810 | INFO | [Monitor step=16100] temp=61C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.8/16.8GB (82%) | it/s=4.51
+2026-04-18 20:37:57,123 | INFO | [Monitor step=16200] temp=62C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.8/16.8GB (83%) | it/s=4.50
+2026-04-18 20:38:19,439 | INFO | [Monitor step=16300] temp=61C | gpu=98% | vram=4.8GB | clock=2917MHz (100%) | ram=13.9/16.8GB (83%) | it/s=4.51
+2026-04-18 20:38:41,747 | INFO | [Monitor step=16400] temp=62C | gpu=100% | vram=4.8GB | clock=2917MHz (100%) | ram=13.9/16.8GB (83%) | it/s=4.51
+2026-04-18 20:39:04,056 | INFO | [Monitor step=16500] temp=62C | gpu=98% | vram=4.8GB | clock=2910MHz (99%) | ram=13.8/16.8GB (82%) | it/s=4.49
+2026-04-18 20:39:26,366 | INFO | [Monitor step=16600] temp=62C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.8/16.8GB (82%) | it/s=4.50
+2026-04-18 20:39:48,674 | INFO | [Monitor step=16700] temp=62C | gpu=100% | vram=4.8GB | clock=2917MHz (100%) | ram=13.7/16.8GB (82%) | it/s=4.50
+2026-04-18 20:40:10,980 | INFO | [Monitor step=16800] temp=62C | gpu=100% | vram=4.8GB | clock=2910MHz (99%) | ram=13.8/16.8GB (82%) | it/s=4.51
+2026-04-18 20:40:33,284 | INFO | [Monitor step=16900] temp=62C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.8/16.8GB (82%) | it/s=4.49
+2026-04-18 20:40:55,600 | INFO | [Monitor step=17000] temp=63C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.8/16.8GB (82%) | it/s=4.51
+2026-04-18 20:41:17,912 | INFO | [Monitor step=17100] temp=61C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.8/16.8GB (82%) | it/s=4.51
+2026-04-18 20:41:40,217 | INFO | [Monitor step=17200] temp=62C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.8/16.8GB (82%) | it/s=4.50
+2026-04-18 20:42:02,532 | INFO | [Monitor step=17300] temp=62C | gpu=99% | vram=4.8GB | clock=2910MHz (99%) | ram=13.8/16.8GB (82%) | it/s=4.51
+2026-04-18 20:42:24,829 | INFO | [Monitor step=17400] temp=62C | gpu=98% | vram=4.8GB | clock=2917MHz (100%) | ram=13.8/16.8GB (82%) | it/s=4.50
+2026-04-18 20:42:47,144 | INFO | [Monitor step=17500] temp=60C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.8/16.8GB (82%) | it/s=4.49
+2026-04-18 20:43:09,454 | INFO | [Monitor step=17600] temp=62C | gpu=100% | vram=4.8GB | clock=2917MHz (100%) | ram=13.8/16.8GB (83%) | it/s=4.50
+2026-04-18 20:43:31,763 | INFO | [Monitor step=17700] temp=62C | gpu=100% | vram=4.8GB | clock=2917MHz (100%) | ram=13.9/16.8GB (83%) | it/s=4.51
+2026-04-18 20:43:54,074 | INFO | [Monitor step=17800] temp=62C | gpu=98% | vram=4.8GB | clock=2917MHz (100%) | ram=13.7/16.8GB (82%) | it/s=4.49
+2026-04-18 20:44:16,380 | INFO | [Monitor step=17900] temp=62C | gpu=99% | vram=4.8GB | clock=2910MHz (99%) | ram=13.8/16.8GB (82%) | it/s=4.50
+2026-04-18 20:44:38,691 | INFO | [Monitor step=18000] temp=62C | gpu=100% | vram=4.8GB | clock=2917MHz (100%) | ram=13.8/16.8GB (82%) | it/s=4.50
+2026-04-18 20:45:00,977 | INFO | [Monitor step=18100] temp=62C | gpu=100% | vram=4.8GB | clock=2917MHz (100%) | ram=13.9/16.8GB (83%) | it/s=4.49
+2026-04-18 20:45:23,292 | INFO | [Monitor step=18200] temp=63C | gpu=98% | vram=4.8GB | clock=2917MHz (100%) | ram=13.9/16.8GB (83%) | it/s=4.48
+2026-04-18 20:45:45,601 | INFO | [Monitor step=18300] temp=62C | gpu=97% | vram=4.8GB | clock=2917MHz (100%) | ram=13.9/16.8GB (83%) | it/s=4.51
+2026-04-18 20:46:07,907 | INFO | [Monitor step=18400] temp=62C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.7/16.8GB (82%) | it/s=4.52
+2026-04-18 20:46:30,211 | INFO | [Monitor step=18500] temp=62C | gpu=100% | vram=4.8GB | clock=2917MHz (100%) | ram=13.8/16.8GB (82%) | it/s=4.50
+2026-04-18 20:46:52,521 | INFO | [Monitor step=18600] temp=62C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.8/16.8GB (82%) | it/s=4.51
+2026-04-18 20:47:14,831 | INFO | [Monitor step=18700] temp=62C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.8/16.8GB (82%) | it/s=4.51
+2026-04-18 20:47:37,140 | INFO | [Monitor step=18800] temp=62C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.8/16.8GB (82%) | it/s=4.48
+2026-04-18 20:47:59,442 | INFO | [Monitor step=18900] temp=62C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.8/16.8GB (82%) | it/s=4.50
+2026-04-18 20:48:21,745 | INFO | [Monitor step=19000] temp=62C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.8/16.8GB (83%) | it/s=4.51
+2026-04-18 20:48:44,054 | INFO | [Monitor step=19100] temp=62C | gpu=99% | vram=4.8GB | clock=2917MHz (100%) | ram=13.9/16.8GB (83%) | it/s=4.50
+2026-04-18 20:48:44,055 | INFO | Epoch 2 complete: loss=0.3366 | avg=4.50 it/s | time=35.5min
+2026-04-18 20:48:44,223 | INFO |   Running validation...
+2026-04-18 20:49:21,991 | INFO |   Val Accuracy:  99.05%
+2026-04-18 20:49:21,992 | INFO |   Val F1:        99.05%
+2026-04-18 20:49:21,992 | INFO |   Val Precision: 99.05%
+2026-04-18 20:49:21,992 | INFO |   Val Recall:    99.05%
+2026-04-18 20:49:21,992 | INFO |   Val Loss:      0.3368
+2026-04-18 20:49:28,147 | INFO |   Checkpoint saved: ./models/vit-base-mrl-augmented\best_model
+2026-04-18 20:49:28,147 | INFO |   New best: 99.05%
+2026-04-18 20:49:28,149 | INFO | 
+============================================================
+EPOCH 3/15
+============================================================
+2026-04-18 20:49:50,860 | INFO | [Monitor step=19200] temp=61C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (79%) | it/s=4.50
+2026-04-18 20:50:13,159 | INFO | [Monitor step=19300] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (79%) | it/s=4.50
+2026-04-18 20:50:35,460 | INFO | [Monitor step=19400] temp=61C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.2/16.8GB (79%) | it/s=4.51
+2026-04-18 20:50:57,763 | INFO | [Monitor step=19500] temp=59C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.2/16.8GB (79%) | it/s=4.51
+2026-04-18 20:51:20,062 | INFO | [Monitor step=19600] temp=63C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.2/16.8GB (79%) | it/s=4.50
+2026-04-18 20:51:42,362 | INFO | [Monitor step=19700] temp=62C | gpu=100% | vram=4.7GB | clock=2910MHz (99%) | ram=13.2/16.8GB (79%) | it/s=4.51
+2026-04-18 20:52:04,662 | INFO | [Monitor step=19800] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.2/16.8GB (79%) | it/s=4.51
+2026-04-18 20:52:26,948 | INFO | [Monitor step=19900] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (79%) | it/s=4.51
+2026-04-18 20:52:49,251 | INFO | [Monitor step=20000] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (80%) | it/s=4.50
+2026-04-18 20:53:11,557 | INFO | [Monitor step=20100] temp=60C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (80%) | it/s=4.50
+2026-04-18 20:53:33,853 | INFO | [Monitor step=20200] temp=63C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (80%) | it/s=4.50
+2026-04-18 20:53:56,150 | INFO | [Monitor step=20300] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (80%) | it/s=4.48
+2026-04-18 20:54:18,448 | INFO | [Monitor step=20400] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (80%) | it/s=4.50
+2026-04-18 20:54:40,747 | INFO | [Monitor step=20500] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (79%) | it/s=4.50
+2026-04-18 20:55:03,051 | INFO | [Monitor step=20600] temp=60C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (79%) | it/s=4.51
+2026-04-18 20:55:25,355 | INFO | [Monitor step=20700] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (79%) | it/s=4.51
+2026-04-18 20:55:47,661 | INFO | [Monitor step=20800] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (80%) | it/s=4.51
+2026-04-18 20:56:09,970 | INFO | [Monitor step=20900] temp=62C | gpu=99% | vram=4.7GB | clock=2910MHz (99%) | ram=13.3/16.8GB (79%) | it/s=4.51
+2026-04-18 20:56:32,280 | INFO | [Monitor step=21000] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (79%) | it/s=4.48
+2026-04-18 20:56:54,587 | INFO | [Monitor step=21100] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (80%) | it/s=4.51
+2026-04-18 20:57:16,896 | INFO | [Monitor step=21200] temp=63C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (80%) | it/s=4.51
+2026-04-18 20:57:39,205 | INFO | [Monitor step=21300] temp=61C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (80%) | it/s=4.48
+2026-04-18 20:58:01,513 | INFO | [Monitor step=21400] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (80%) | it/s=4.49
+2026-04-18 20:58:23,817 | INFO | [Monitor step=21500] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (80%) | it/s=4.51
+2026-04-18 20:58:46,128 | INFO | [Monitor step=21600] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (80%) | it/s=4.47
+2026-04-18 20:59:08,429 | INFO | [Monitor step=21700] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 20:59:30,740 | INFO | [Monitor step=21800] temp=63C | gpu=99% | vram=4.7GB | clock=2910MHz (99%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 20:59:53,047 | INFO | [Monitor step=21900] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 21:00:15,351 | INFO | [Monitor step=22000] temp=63C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 21:00:37,651 | INFO | [Monitor step=22100] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.52
+2026-04-18 21:00:59,955 | INFO | [Monitor step=22200] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 21:01:22,261 | INFO | [Monitor step=22300] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.50
+2026-04-18 21:01:44,541 | INFO | [Monitor step=22400] temp=62C | gpu=99% | vram=4.7GB | clock=2910MHz (99%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 21:02:06,843 | INFO | [Monitor step=22500] temp=62C | gpu=99% | vram=4.7GB | clock=2910MHz (99%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 21:02:29,119 | INFO | [Monitor step=22600] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.49
+2026-04-18 21:02:51,416 | INFO | [Monitor step=22700] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 21:03:13,725 | INFO | [Monitor step=22800] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.50
+2026-04-18 21:03:36,023 | INFO | [Monitor step=22900] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.50
+2026-04-18 21:03:58,322 | INFO | [Monitor step=23000] temp=61C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 21:04:20,624 | INFO | [Monitor step=23100] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 21:04:42,925 | INFO | [Monitor step=23200] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.55
+2026-04-18 21:05:05,218 | INFO | [Monitor step=23300] temp=63C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.50
+2026-04-18 21:05:27,518 | INFO | [Monitor step=23400] temp=63C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 21:05:49,814 | INFO | [Monitor step=23500] temp=61C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (80%) | it/s=4.51
+2026-04-18 21:06:12,115 | INFO | [Monitor step=23600] temp=63C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (80%) | it/s=4.49
+2026-04-18 21:06:34,416 | INFO | [Monitor step=23700] temp=60C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (80%) | it/s=4.51
+2026-04-18 21:06:56,713 | INFO | [Monitor step=23800] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 21:07:19,015 | INFO | [Monitor step=23900] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 21:07:41,360 | INFO | [Monitor step=24000] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 21:08:03,790 | INFO | [Monitor step=24100] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.52
+2026-04-18 21:08:26,093 | INFO | [Monitor step=24200] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.50
+2026-04-18 21:08:48,407 | INFO | [Monitor step=24300] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 21:09:10,708 | INFO | [Monitor step=24400] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.52
+2026-04-18 21:09:33,009 | INFO | [Monitor step=24500] temp=63C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.52
+2026-04-18 21:09:55,315 | INFO | [Monitor step=24600] temp=62C | gpu=98% | vram=4.7GB | clock=2910MHz (99%) | ram=13.4/16.8GB (80%) | it/s=4.50
+2026-04-18 21:10:17,613 | INFO | [Monitor step=24700] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 21:10:39,911 | INFO | [Monitor step=24800] temp=60C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (80%) | it/s=4.51
+2026-04-18 21:11:02,215 | INFO | [Monitor step=24900] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (80%) | it/s=4.49
+2026-04-18 21:11:24,513 | INFO | [Monitor step=25000] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (80%) | it/s=4.50
+2026-04-18 21:11:46,814 | INFO | [Monitor step=25100] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.50
+2026-04-18 21:12:09,121 | INFO | [Monitor step=25200] temp=63C | gpu=97% | vram=4.7GB | clock=2910MHz (99%) | ram=13.6/16.8GB (81%) | it/s=4.50
+2026-04-18 21:12:31,409 | INFO | [Monitor step=25300] temp=59C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.6/16.8GB (81%) | it/s=4.51
+2026-04-18 21:12:53,713 | INFO | [Monitor step=25400] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.6/16.8GB (81%) | it/s=4.51
+2026-04-18 21:13:16,014 | INFO | [Monitor step=25500] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.6/16.8GB (81%) | it/s=4.51
+2026-04-18 21:13:38,324 | INFO | [Monitor step=25600] temp=62C | gpu=99% | vram=4.7GB | clock=2910MHz (99%) | ram=13.6/16.8GB (81%) | it/s=4.50
+2026-04-18 21:14:00,621 | INFO | [Monitor step=25700] temp=62C | gpu=98% | vram=4.7GB | clock=2910MHz (99%) | ram=13.6/16.8GB (81%) | it/s=4.51
+2026-04-18 21:14:22,922 | INFO | [Monitor step=25800] temp=60C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.6/16.8GB (81%) | it/s=4.51
+2026-04-18 21:14:45,225 | INFO | [Monitor step=25900] temp=63C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.6/16.8GB (81%) | it/s=4.50
+2026-04-18 21:15:07,524 | INFO | [Monitor step=26000] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.6/16.8GB (81%) | it/s=4.51
+2026-04-18 21:15:29,825 | INFO | [Monitor step=26100] temp=62C | gpu=99% | vram=4.7GB | clock=2910MHz (99%) | ram=13.6/16.8GB (81%) | it/s=4.51
+2026-04-18 21:15:52,127 | INFO | [Monitor step=26200] temp=62C | gpu=98% | vram=4.7GB | clock=2910MHz (99%) | ram=13.6/16.8GB (81%) | it/s=4.49
+2026-04-18 21:16:14,428 | INFO | [Monitor step=26300] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (80%) | it/s=4.50
+2026-04-18 21:16:36,731 | INFO | [Monitor step=26400] temp=62C | gpu=100% | vram=4.7GB | clock=2910MHz (99%) | ram=13.3/16.8GB (80%) | it/s=4.50
+2026-04-18 21:16:59,035 | INFO | [Monitor step=26500] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 21:17:21,342 | INFO | [Monitor step=26600] temp=62C | gpu=100% | vram=4.7GB | clock=2910MHz (99%) | ram=13.4/16.8GB (80%) | it/s=4.50
+2026-04-18 21:17:43,642 | INFO | [Monitor step=26700] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 21:18:05,948 | INFO | [Monitor step=26800] temp=62C | gpu=97% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 21:18:28,251 | INFO | [Monitor step=26900] temp=62C | gpu=98% | vram=4.7GB | clock=2910MHz (99%) | ram=13.4/16.8GB (80%) | it/s=4.50
+2026-04-18 21:18:50,555 | INFO | [Monitor step=27000] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (80%) | it/s=4.52
+2026-04-18 21:19:12,855 | INFO | [Monitor step=27100] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (80%) | it/s=4.52
+2026-04-18 21:19:35,156 | INFO | [Monitor step=27200] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (80%) | it/s=4.49
+2026-04-18 21:19:57,461 | INFO | [Monitor step=27300] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (80%) | it/s=4.50
+2026-04-18 21:20:19,763 | INFO | [Monitor step=27400] temp=62C | gpu=99% | vram=4.7GB | clock=2910MHz (99%) | ram=13.5/16.8GB (81%) | it/s=4.51
+2026-04-18 21:20:42,064 | INFO | [Monitor step=27500] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.51
+2026-04-18 21:21:04,365 | INFO | [Monitor step=27600] temp=62C | gpu=100% | vram=4.7GB | clock=2910MHz (99%) | ram=13.5/16.8GB (81%) | it/s=4.49
+2026-04-18 21:21:26,661 | INFO | [Monitor step=27700] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.50
+2026-04-18 21:21:48,959 | INFO | [Monitor step=27800] temp=62C | gpu=97% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.51
+2026-04-18 21:22:11,259 | INFO | [Monitor step=27900] temp=62C | gpu=97% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.48
+2026-04-18 21:22:33,538 | INFO | [Monitor step=28000] temp=59C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.6/16.8GB (81%) | it/s=4.51
+2026-04-18 21:22:55,835 | INFO | [Monitor step=28100] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.6/16.8GB (81%) | it/s=4.51
+2026-04-18 21:23:18,133 | INFO | [Monitor step=28200] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.6/16.8GB (81%) | it/s=4.51
+2026-04-18 21:23:40,431 | INFO | [Monitor step=28300] temp=63C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.51
+2026-04-18 21:24:02,728 | INFO | [Monitor step=28400] temp=61C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.51
+2026-04-18 21:24:25,025 | INFO | [Monitor step=28500] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.6/16.8GB (81%) | it/s=4.52
+2026-04-18 21:24:47,327 | INFO | [Monitor step=28600] temp=60C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.6/16.8GB (81%) | it/s=4.50
+2026-04-18 21:24:58,472 | INFO | Epoch 3 complete: loss=0.3335 | avg=4.50 it/s | time=35.5min
+2026-04-18 21:24:58,640 | INFO |   Running validation...
+2026-04-18 21:25:36,445 | INFO |   Val Accuracy:  99.07%
+2026-04-18 21:25:36,445 | INFO |   Val F1:        99.07%
+2026-04-18 21:25:36,446 | INFO |   Val Precision: 99.07%
+2026-04-18 21:25:36,446 | INFO |   Val Recall:    99.07%
+2026-04-18 21:25:36,446 | INFO |   Val Loss:      0.3368
+2026-04-18 21:25:43,669 | INFO |   Checkpoint saved: ./models/vit-base-mrl-augmented\best_model
+2026-04-18 21:25:43,669 | INFO |   New best: 99.07%
+2026-04-18 21:25:43,671 | INFO | 
+============================================================
+EPOCH 4/15
+============================================================
+2026-04-18 21:25:55,235 | INFO | [Monitor step=28700] temp=60C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.48
+2026-04-18 21:26:17,532 | INFO | [Monitor step=28800] temp=61C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (80%) | it/s=4.51
+2026-04-18 21:26:39,831 | INFO | [Monitor step=28900] temp=59C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.50
+2026-04-18 21:27:02,131 | INFO | [Monitor step=29000] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 21:27:24,434 | INFO | [Monitor step=29100] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 21:27:46,733 | INFO | [Monitor step=29200] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.52
+2026-04-18 21:28:09,035 | INFO | [Monitor step=29300] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 21:28:31,340 | INFO | [Monitor step=29400] temp=60C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.49
+2026-04-18 21:28:53,642 | INFO | [Monitor step=29500] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 21:29:15,943 | INFO | [Monitor step=29600] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 21:29:38,244 | INFO | [Monitor step=29700] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.49
+2026-04-18 21:30:00,547 | INFO | [Monitor step=29800] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.52
+2026-04-18 21:30:22,846 | INFO | [Monitor step=29900] temp=60C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 21:30:45,154 | INFO | [Monitor step=30000] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (80%) | it/s=4.50
+2026-04-18 21:31:07,465 | INFO | [Monitor step=30100] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (80%) | it/s=4.50
+2026-04-18 21:31:29,775 | INFO | [Monitor step=30200] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (80%) | it/s=4.50
+2026-04-18 21:31:52,065 | INFO | [Monitor step=30300] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.50
+2026-04-18 21:32:14,364 | INFO | [Monitor step=30400] temp=62C | gpu=97% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.52
+2026-04-18 21:32:36,669 | INFO | [Monitor step=30500] temp=59C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.51
+2026-04-18 21:32:58,980 | INFO | [Monitor step=30600] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.51
+2026-04-18 21:33:21,296 | INFO | [Monitor step=30700] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.47
+2026-04-18 21:33:43,603 | INFO | [Monitor step=30800] temp=62C | gpu=97% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.51
+2026-04-18 21:34:05,905 | INFO | [Monitor step=30900] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.51
+2026-04-18 21:34:28,214 | INFO | [Monitor step=31000] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.50
+2026-04-18 21:34:50,520 | INFO | [Monitor step=31100] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.49
+2026-04-18 21:35:12,826 | INFO | [Monitor step=31200] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.6/16.8GB (81%) | it/s=4.50
+2026-04-18 21:35:35,130 | INFO | [Monitor step=31300] temp=63C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.6/16.8GB (81%) | it/s=4.50
+2026-04-18 21:35:57,431 | INFO | [Monitor step=31400] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.49
+2026-04-18 21:36:19,733 | INFO | [Monitor step=31500] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.51
+2026-04-18 21:36:42,032 | INFO | [Monitor step=31600] temp=63C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.51
+2026-04-18 21:37:04,341 | INFO | [Monitor step=31700] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.49
+2026-04-18 21:37:26,641 | INFO | [Monitor step=31800] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.51
+2026-04-18 21:37:48,942 | INFO | [Monitor step=31900] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.51
+2026-04-18 21:38:11,248 | INFO | [Monitor step=32000] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.50
+2026-04-18 21:38:33,557 | INFO | [Monitor step=32100] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.51
+2026-04-18 21:38:55,863 | INFO | [Monitor step=32200] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.51
+2026-04-18 21:39:18,166 | INFO | [Monitor step=32300] temp=60C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.50
+2026-04-18 21:39:40,469 | INFO | [Monitor step=32400] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.49
+2026-04-18 21:40:02,771 | INFO | [Monitor step=32500] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.50
+2026-04-18 21:40:25,069 | INFO | [Monitor step=32600] temp=63C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.50
+2026-04-18 21:40:47,366 | INFO | [Monitor step=32700] temp=61C | gpu=98% | vram=4.7GB | clock=2910MHz (99%) | ram=13.5/16.8GB (81%) | it/s=4.48
+2026-04-18 21:41:09,664 | INFO | [Monitor step=32800] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.52
+2026-04-18 21:41:31,962 | INFO | [Monitor step=32900] temp=60C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.51
+2026-04-18 21:41:54,258 | INFO | [Monitor step=33000] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.51
+2026-04-18 21:42:16,541 | INFO | [Monitor step=33100] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.51
+2026-04-18 21:42:38,834 | INFO | [Monitor step=33200] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.51
+2026-04-18 21:43:01,135 | INFO | [Monitor step=33300] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.2/16.8GB (79%) | it/s=4.51
+2026-04-18 21:43:23,430 | INFO | [Monitor step=33400] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (79%) | it/s=4.50
+2026-04-18 21:43:45,730 | INFO | [Monitor step=33500] temp=63C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (79%) | it/s=4.51
+2026-04-18 21:44:08,028 | INFO | [Monitor step=33600] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (79%) | it/s=4.51
+2026-04-18 21:44:30,326 | INFO | [Monitor step=33700] temp=63C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (79%) | it/s=4.48
+2026-04-18 21:44:52,627 | INFO | [Monitor step=33800] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (79%) | it/s=4.51
+2026-04-18 21:45:14,924 | INFO | [Monitor step=33900] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 21:45:37,232 | INFO | [Monitor step=34000] temp=62C | gpu=97% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.50
+2026-04-18 21:45:59,531 | INFO | [Monitor step=34100] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 21:46:21,834 | INFO | [Monitor step=34200] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 21:46:44,136 | INFO | [Monitor step=34300] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.50
+2026-04-18 21:47:06,434 | INFO | [Monitor step=34400] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.49
+2026-04-18 21:47:28,734 | INFO | [Monitor step=34500] temp=63C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 21:47:51,010 | INFO | [Monitor step=34600] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (80%) | it/s=4.52
+2026-04-18 21:48:13,308 | INFO | [Monitor step=34700] temp=62C | gpu=99% | vram=4.7GB | clock=2910MHz (99%) | ram=13.5/16.8GB (80%) | it/s=4.50
+2026-04-18 21:48:35,605 | INFO | [Monitor step=34800] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (80%) | it/s=4.51
+2026-04-18 21:48:57,904 | INFO | [Monitor step=34900] temp=63C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (80%) | it/s=4.51
+2026-04-18 21:49:20,204 | INFO | [Monitor step=35000] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (80%) | it/s=4.51
+2026-04-18 21:49:42,501 | INFO | [Monitor step=35100] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.49
+2026-04-18 21:50:04,802 | INFO | [Monitor step=35200] temp=60C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.50
+2026-04-18 21:50:27,099 | INFO | [Monitor step=35300] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.51
+2026-04-18 21:50:49,404 | INFO | [Monitor step=35400] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.49
+2026-04-18 21:51:11,706 | INFO | [Monitor step=35500] temp=62C | gpu=98% | vram=4.7GB | clock=2910MHz (99%) | ram=13.5/16.8GB (81%) | it/s=4.51
+2026-04-18 21:51:34,002 | INFO | [Monitor step=35600] temp=61C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.51
+2026-04-18 21:51:56,305 | INFO | [Monitor step=35700] temp=59C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.6/16.8GB (81%) | it/s=4.50
+2026-04-18 21:52:18,578 | INFO | [Monitor step=35800] temp=59C | gpu=98% | vram=4.7GB | clock=2910MHz (99%) | ram=13.6/16.8GB (81%) | it/s=4.51
+2026-04-18 21:52:40,877 | INFO | [Monitor step=35900] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.6/16.8GB (81%) | it/s=4.51
+2026-04-18 21:53:03,234 | INFO | [Monitor step=36000] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.6/16.8GB (81%) | it/s=4.52
+2026-04-18 21:53:25,533 | INFO | [Monitor step=36100] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.6/16.8GB (81%) | it/s=4.49
+2026-04-18 21:53:47,832 | INFO | [Monitor step=36200] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.7/16.8GB (82%) | it/s=4.51
+2026-04-18 21:54:10,130 | INFO | [Monitor step=36300] temp=63C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.7/16.8GB (82%) | it/s=4.50
+2026-04-18 21:54:32,424 | INFO | [Monitor step=36400] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.7/16.8GB (82%) | it/s=4.50
+2026-04-18 21:54:54,722 | INFO | [Monitor step=36500] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 21:55:17,015 | INFO | [Monitor step=36600] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (80%) | it/s=4.51
+2026-04-18 21:55:39,311 | INFO | [Monitor step=36700] temp=60C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 21:56:01,608 | INFO | [Monitor step=36800] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.50
+2026-04-18 21:56:23,904 | INFO | [Monitor step=36900] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 21:56:46,204 | INFO | [Monitor step=37000] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (80%) | it/s=4.51
+2026-04-18 21:57:08,503 | INFO | [Monitor step=37100] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (80%) | it/s=4.50
+2026-04-18 21:57:30,807 | INFO | [Monitor step=37200] temp=61C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (80%) | it/s=4.51
+2026-04-18 21:57:53,111 | INFO | [Monitor step=37300] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.51
+2026-04-18 21:58:15,413 | INFO | [Monitor step=37400] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.48
+2026-04-18 21:58:37,718 | INFO | [Monitor step=37500] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.52
+2026-04-18 21:59:00,016 | INFO | [Monitor step=37600] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.6/16.8GB (81%) | it/s=4.52
+2026-04-18 21:59:22,318 | INFO | [Monitor step=37700] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.6/16.8GB (81%) | it/s=4.49
+2026-04-18 21:59:44,619 | INFO | [Monitor step=37800] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.6/16.8GB (81%) | it/s=4.50
+2026-04-18 22:00:06,912 | INFO | [Monitor step=37900] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.6/16.8GB (81%) | it/s=4.51
+2026-04-18 22:00:29,210 | INFO | [Monitor step=38000] temp=60C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.6/16.8GB (81%) | it/s=4.50
+2026-04-18 22:00:51,503 | INFO | [Monitor step=38100] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.6/16.8GB (81%) | it/s=4.49
+2026-04-18 22:01:13,809 | INFO | [Monitor step=38200] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.6/16.8GB (81%) | it/s=4.52
+2026-04-18 22:01:13,811 | INFO | Epoch 4 complete: loss=0.3314 | avg=4.50 it/s | time=35.5min
+2026-04-18 22:01:13,981 | INFO |   Running validation...
+2026-04-18 22:01:51,725 | INFO |   Val Accuracy:  99.09%
+2026-04-18 22:01:51,725 | INFO |   Val F1:        99.09%
+2026-04-18 22:01:51,727 | INFO |   Val Precision: 99.09%
+2026-04-18 22:01:51,727 | INFO |   Val Recall:    99.09%
+2026-04-18 22:01:51,727 | INFO |   Val Loss:      0.3383
+2026-04-18 22:01:59,412 | INFO |   Checkpoint saved: ./models/vit-base-mrl-augmented\best_model
+2026-04-18 22:01:59,412 | INFO |   New best: 99.09%
+2026-04-18 22:01:59,414 | INFO | 
+============================================================
+EPOCH 5/15
+============================================================
+2026-04-18 22:02:22,229 | INFO | [Monitor step=38300] temp=61C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 22:02:44,523 | INFO | [Monitor step=38400] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.48
+2026-04-18 22:03:06,824 | INFO | [Monitor step=38500] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 22:03:29,119 | INFO | [Monitor step=38600] temp=61C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.52
+2026-04-18 22:03:51,419 | INFO | [Monitor step=38700] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.48
+2026-04-18 22:04:13,717 | INFO | [Monitor step=38800] temp=60C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.52
+2026-04-18 22:04:36,017 | INFO | [Monitor step=38900] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 22:04:58,304 | INFO | [Monitor step=39000] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (80%) | it/s=4.51
+2026-04-18 22:05:20,605 | INFO | [Monitor step=39100] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (81%) | it/s=4.50
+2026-04-18 22:05:42,908 | INFO | [Monitor step=39200] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (80%) | it/s=4.50
+2026-04-18 22:06:05,210 | INFO | [Monitor step=39300] temp=61C | gpu=99% | vram=4.7GB | clock=2910MHz (99%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 22:06:27,510 | INFO | [Monitor step=39400] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.49
+2026-04-18 22:06:49,813 | INFO | [Monitor step=39500] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 22:07:12,116 | INFO | [Monitor step=39600] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.2/16.8GB (78%) | it/s=4.52
+2026-04-18 22:07:34,417 | INFO | [Monitor step=39700] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.1/16.8GB (78%) | it/s=4.48
+2026-04-18 22:07:56,721 | INFO | [Monitor step=39800] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.2/16.8GB (79%) | it/s=4.52
+2026-04-18 22:08:19,028 | INFO | [Monitor step=39900] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.2/16.8GB (79%) | it/s=4.51
+2026-04-18 22:08:41,335 | INFO | [Monitor step=40000] temp=61C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.2/16.8GB (79%) | it/s=4.51
+2026-04-18 22:09:03,640 | INFO | [Monitor step=40100] temp=63C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.2/16.8GB (79%) | it/s=4.51
+2026-04-18 22:09:25,945 | INFO | [Monitor step=40200] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.2/16.8GB (79%) | it/s=4.51
+2026-04-18 22:09:48,251 | INFO | [Monitor step=40300] temp=62C | gpu=97% | vram=4.7GB | clock=2917MHz (100%) | ram=13.2/16.8GB (79%) | it/s=4.50
+2026-04-18 22:10:10,555 | INFO | [Monitor step=40400] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.2/16.8GB (79%) | it/s=4.49
+2026-04-18 22:10:32,855 | INFO | [Monitor step=40500] temp=63C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.2/16.8GB (79%) | it/s=4.50
+2026-04-18 22:10:55,160 | INFO | [Monitor step=40600] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.2/16.8GB (79%) | it/s=4.50
+2026-04-18 22:11:17,471 | INFO | [Monitor step=40700] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.2/16.8GB (78%) | it/s=4.48
+2026-04-18 22:11:39,783 | INFO | [Monitor step=40800] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.2/16.8GB (78%) | it/s=4.52
+2026-04-18 22:12:02,092 | INFO | [Monitor step=40900] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.2/16.8GB (79%) | it/s=4.51
+2026-04-18 22:12:24,379 | INFO | [Monitor step=41000] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.2/16.8GB (79%) | it/s=4.50
+2026-04-18 22:12:46,689 | INFO | [Monitor step=41100] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.2/16.8GB (79%) | it/s=4.51
+2026-04-18 22:13:08,994 | INFO | [Monitor step=41200] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.2/16.8GB (79%) | it/s=4.51
+2026-04-18 22:13:31,295 | INFO | [Monitor step=41300] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.2/16.8GB (79%) | it/s=4.51
+2026-04-18 22:13:53,598 | INFO | [Monitor step=41400] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.2/16.8GB (79%) | it/s=4.49
+2026-04-18 22:14:15,895 | INFO | [Monitor step=41500] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (79%) | it/s=4.51
+2026-04-18 22:14:38,193 | INFO | [Monitor step=41600] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (79%) | it/s=4.50
+2026-04-18 22:15:00,491 | INFO | [Monitor step=41700] temp=62C | gpu=97% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (80%) | it/s=4.50
+2026-04-18 22:15:22,789 | INFO | [Monitor step=41800] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (80%) | it/s=4.50
+2026-04-18 22:15:45,093 | INFO | [Monitor step=41900] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (80%) | it/s=4.50
+2026-04-18 22:16:07,393 | INFO | [Monitor step=42000] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (79%) | it/s=4.50
+2026-04-18 22:16:29,695 | INFO | [Monitor step=42100] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (80%) | it/s=4.51
+2026-04-18 22:16:51,992 | INFO | [Monitor step=42200] temp=62C | gpu=97% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (80%) | it/s=4.51
+2026-04-18 22:17:14,296 | INFO | [Monitor step=42300] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (80%) | it/s=4.50
+2026-04-18 22:17:36,603 | INFO | [Monitor step=42400] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (80%) | it/s=4.48
+2026-04-18 22:17:58,907 | INFO | [Monitor step=42500] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 22:18:21,213 | INFO | [Monitor step=42600] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.52
+2026-04-18 22:18:43,514 | INFO | [Monitor step=42700] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.48
+2026-04-18 22:19:05,822 | INFO | [Monitor step=42800] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 22:19:28,133 | INFO | [Monitor step=42900] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 22:19:50,436 | INFO | [Monitor step=43000] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.47
+2026-04-18 22:20:12,743 | INFO | [Monitor step=43100] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 22:20:35,045 | INFO | [Monitor step=43200] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 22:20:57,351 | INFO | [Monitor step=43300] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (80%) | it/s=4.51
+2026-04-18 22:21:19,650 | INFO | [Monitor step=43400] temp=61C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (80%) | it/s=4.51
+2026-04-18 22:21:41,954 | INFO | [Monitor step=43500] temp=60C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.52
+2026-04-18 22:22:04,260 | INFO | [Monitor step=43600] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (80%) | it/s=4.51
+2026-04-18 22:22:26,535 | INFO | [Monitor step=43700] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.50
+2026-04-18 22:22:48,835 | INFO | [Monitor step=43800] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.52
+2026-04-18 22:23:11,135 | INFO | [Monitor step=43900] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.51
+2026-04-18 22:23:33,437 | INFO | [Monitor step=44000] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.48
+2026-04-18 22:23:55,737 | INFO | [Monitor step=44100] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.50
+2026-04-18 22:24:18,084 | INFO | [Monitor step=44200] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.2/16.8GB (79%) | it/s=4.52
+2026-04-18 22:24:40,391 | INFO | [Monitor step=44300] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.2/16.8GB (79%) | it/s=4.51
+2026-04-18 22:25:02,699 | INFO | [Monitor step=44400] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.2/16.8GB (79%) | it/s=4.51
+2026-04-18 22:25:25,000 | INFO | [Monitor step=44500] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (79%) | it/s=4.51
+2026-04-18 22:25:47,302 | INFO | [Monitor step=44600] temp=62C | gpu=99% | vram=4.7GB | clock=2910MHz (99%) | ram=13.3/16.8GB (79%) | it/s=4.51
+2026-04-18 22:26:09,604 | INFO | [Monitor step=44700] temp=62C | gpu=97% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (79%) | it/s=4.49
+2026-04-18 22:26:31,909 | INFO | [Monitor step=44800] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (79%) | it/s=4.52
+2026-04-18 22:26:54,213 | INFO | [Monitor step=44900] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (80%) | it/s=4.52
+2026-04-18 22:27:16,516 | INFO | [Monitor step=45000] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=13.3/16.8GB (80%) | it/s=4.49
+2026-04-18 22:27:38,823 | INFO | [Monitor step=45100] temp=62C | gpu=99% | vram=4.7GB | clock=2910MHz (99%) | ram=13.4/16.8GB (80%) | it/s=4.50
+2026-04-18 22:28:01,119 | INFO | [Monitor step=45200] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.49
+2026-04-18 22:28:23,440 | INFO | [Monitor step=45300] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.48
+2026-04-18 22:28:45,776 | INFO | [Monitor step=45400] temp=63C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.4/16.8GB (80%) | it/s=4.52
+2026-04-18 22:29:10,868 | INFO | [Monitor step=45500] temp=61C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (80%) | it/s=4.44
+2026-04-18 22:29:33,431 | INFO | [Monitor step=45600] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.5/16.8GB (80%) | it/s=4.49
+2026-04-18 22:29:55,941 | INFO | [Monitor step=45700] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.9/16.8GB (77%) | it/s=4.46
+2026-04-18 22:30:18,888 | INFO | [Monitor step=45800] temp=61C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.9/16.8GB (77%) | it/s=4.52
+2026-04-18 22:30:41,221 | INFO | [Monitor step=45900] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.9/16.8GB (77%) | it/s=4.50
+2026-04-18 22:31:03,519 | INFO | [Monitor step=46000] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.9/16.8GB (77%) | it/s=4.48
+2026-04-18 22:31:25,813 | INFO | [Monitor step=46100] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.9/16.8GB (77%) | it/s=4.51
+2026-04-18 22:31:48,094 | INFO | [Monitor step=46200] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.0/16.8GB (78%) | it/s=4.51
+2026-04-18 22:32:10,395 | INFO | [Monitor step=46300] temp=61C | gpu=97% | vram=4.7GB | clock=2917MHz (100%) | ram=13.0/16.8GB (78%) | it/s=4.51
+2026-04-18 22:32:32,670 | INFO | [Monitor step=46400] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.1/16.8GB (78%) | it/s=4.51
+2026-04-18 22:32:54,968 | INFO | [Monitor step=46500] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.1/16.8GB (78%) | it/s=4.52
+2026-04-18 22:33:17,274 | INFO | [Monitor step=46600] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.0/16.8GB (78%) | it/s=4.51
+2026-04-18 22:33:39,577 | INFO | [Monitor step=46700] temp=59C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.1/16.8GB (78%) | it/s=4.49
+2026-04-18 22:34:01,876 | INFO | [Monitor step=46800] temp=63C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.1/16.8GB (78%) | it/s=4.51
+2026-04-18 22:34:24,180 | INFO | [Monitor step=46900] temp=63C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=13.1/16.8GB (78%) | it/s=4.52
+2026-04-18 22:34:46,484 | INFO | [Monitor step=47000] temp=63C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=13.1/16.8GB (78%) | it/s=4.48
+2026-04-18 22:35:08,801 | INFO | [Monitor step=47100] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.7/16.8GB (76%) | it/s=4.51
+2026-04-18 22:35:31,110 | INFO | [Monitor step=47200] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (74%) | it/s=4.51
+2026-04-18 22:35:53,411 | INFO | [Monitor step=47300] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (75%) | it/s=4.50
+2026-04-18 22:36:15,712 | INFO | [Monitor step=47400] temp=61C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (74%) | it/s=4.50
+2026-04-18 22:36:38,013 | INFO | [Monitor step=47500] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (74%) | it/s=4.51
+2026-04-18 22:37:00,305 | INFO | [Monitor step=47600] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (75%) | it/s=4.51
+2026-04-18 22:37:22,607 | INFO | [Monitor step=47700] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (75%) | it/s=4.50
+2026-04-18 22:37:33,748 | INFO | Epoch 5 complete: loss=0.3297 | avg=4.50 it/s | time=35.6min
+2026-04-18 22:37:33,918 | INFO |   Running validation...
+2026-04-18 22:38:11,697 | INFO |   Val Accuracy:  99.16%
+2026-04-18 22:38:11,697 | INFO |   Val F1:        99.16%
+2026-04-18 22:38:11,698 | INFO |   Val Precision: 99.17%
+2026-04-18 22:38:11,699 | INFO |   Val Recall:    99.16%
+2026-04-18 22:38:11,699 | INFO |   Val Loss:      0.3375
+2026-04-18 22:38:18,350 | INFO |   Checkpoint saved: ./models/vit-base-mrl-augmented\best_model
+2026-04-18 22:38:18,350 | INFO |   New best: 99.16%
+2026-04-18 22:38:18,351 | INFO | 
+============================================================
+EPOCH 6/15
+============================================================
+2026-04-18 22:38:29,720 | INFO | [Monitor step=47800] temp=61C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (75%) | it/s=4.51
+2026-04-18 22:38:52,010 | INFO | [Monitor step=47900] temp=61C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (74%) | it/s=4.51
+2026-04-18 22:39:14,302 | INFO | [Monitor step=48000] temp=61C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (74%) | it/s=4.50
+2026-04-18 22:39:36,600 | INFO | [Monitor step=48100] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (74%) | it/s=4.50
+2026-04-18 22:39:58,900 | INFO | [Monitor step=48200] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.2/16.8GB (73%) | it/s=4.51
+2026-04-18 22:40:21,198 | INFO | [Monitor step=48300] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.2/16.8GB (73%) | it/s=4.51
+2026-04-18 22:40:43,496 | INFO | [Monitor step=48400] temp=61C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.2/16.8GB (73%) | it/s=4.49
+2026-04-18 22:41:05,795 | INFO | [Monitor step=48500] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.2/16.8GB (73%) | it/s=4.51
+2026-04-18 22:41:28,090 | INFO | [Monitor step=48600] temp=61C | gpu=99% | vram=4.7GB | clock=2910MHz (99%) | ram=12.3/16.8GB (73%) | it/s=4.51
+2026-04-18 22:41:50,385 | INFO | [Monitor step=48700] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (73%) | it/s=4.51
+2026-04-18 22:42:12,686 | INFO | [Monitor step=48800] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (73%) | it/s=4.51
+2026-04-18 22:42:34,966 | INFO | [Monitor step=48900] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (73%) | it/s=4.51
+2026-04-18 22:42:57,273 | INFO | [Monitor step=49000] temp=63C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (73%) | it/s=4.50
+2026-04-18 22:43:19,580 | INFO | [Monitor step=49100] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (73%) | it/s=4.49
+2026-04-18 22:43:41,880 | INFO | [Monitor step=49200] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.50
+2026-04-18 22:44:04,184 | INFO | [Monitor step=49300] temp=60C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.50
+2026-04-18 22:44:26,490 | INFO | [Monitor step=49400] temp=62C | gpu=99% | vram=4.7GB | clock=2910MHz (99%) | ram=12.3/16.8GB (74%) | it/s=4.48
+2026-04-18 22:44:48,794 | INFO | [Monitor step=49500] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-18 22:45:11,097 | INFO | [Monitor step=49600] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-18 22:45:33,393 | INFO | [Monitor step=49700] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-18 22:45:55,692 | INFO | [Monitor step=49800] temp=59C | gpu=98% | vram=4.7GB | clock=2910MHz (99%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-18 22:46:17,994 | INFO | [Monitor step=49900] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-18 22:46:40,299 | INFO | [Monitor step=50000] temp=60C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-18 22:47:02,603 | INFO | [Monitor step=50100] temp=62C | gpu=100% | vram=4.7GB | clock=2910MHz (99%) | ram=12.4/16.8GB (74%) | it/s=4.49
+2026-04-18 22:47:24,909 | INFO | [Monitor step=50200] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.50
+2026-04-18 22:47:47,218 | INFO | [Monitor step=50300] temp=61C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.50
+2026-04-18 22:48:09,531 | INFO | [Monitor step=50400] temp=60C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.48
+2026-04-18 22:48:31,835 | INFO | [Monitor step=50500] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.50
+2026-04-18 22:48:54,140 | INFO | [Monitor step=50600] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.50
+2026-04-18 22:49:16,449 | INFO | [Monitor step=50700] temp=61C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.50
+2026-04-18 22:49:38,750 | INFO | [Monitor step=50800] temp=63C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-18 22:50:01,051 | INFO | [Monitor step=50900] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.50
+2026-04-18 22:50:23,349 | INFO | [Monitor step=51000] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-18 22:50:45,646 | INFO | [Monitor step=51100] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-18 22:51:07,949 | INFO | [Monitor step=51200] temp=61C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (73%) | it/s=4.52
+2026-04-18 22:51:30,244 | INFO | [Monitor step=51300] temp=63C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (73%) | it/s=4.51
+2026-04-18 22:51:52,542 | INFO | [Monitor step=51400] temp=60C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (73%) | it/s=4.49
+2026-04-18 22:52:14,822 | INFO | [Monitor step=51500] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (73%) | it/s=4.55
+2026-04-18 22:52:37,116 | INFO | [Monitor step=51600] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.50
+2026-04-18 22:52:59,414 | INFO | [Monitor step=51700] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.50
+2026-04-18 22:53:21,710 | INFO | [Monitor step=51800] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-18 22:53:44,010 | INFO | [Monitor step=51900] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.50
+2026-04-18 22:54:06,312 | INFO | [Monitor step=52000] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-18 22:54:28,616 | INFO | [Monitor step=52100] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.49
+2026-04-18 22:54:50,922 | INFO | [Monitor step=52200] temp=63C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-18 22:55:13,226 | INFO | [Monitor step=52300] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.52
+2026-04-18 22:55:35,530 | INFO | [Monitor step=52400] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.49
+2026-04-18 22:55:57,829 | INFO | [Monitor step=52500] temp=60C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.52
+2026-04-18 22:56:20,129 | INFO | [Monitor step=52600] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-18 22:56:42,430 | INFO | [Monitor step=52700] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.52
+2026-04-18 22:57:04,736 | INFO | [Monitor step=52800] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.50
+2026-04-18 22:57:27,032 | INFO | [Monitor step=52900] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.50
+2026-04-18 22:57:49,331 | INFO | [Monitor step=53000] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (73%) | it/s=4.50
+2026-04-18 22:58:11,632 | INFO | [Monitor step=53100] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (73%) | it/s=4.48
+2026-04-18 22:58:33,933 | INFO | [Monitor step=53200] temp=59C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (73%) | it/s=4.50
+2026-04-18 22:58:56,234 | INFO | [Monitor step=53300] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (73%) | it/s=4.51
+2026-04-18 22:59:18,533 | INFO | [Monitor step=53400] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (73%) | it/s=4.50
+2026-04-18 22:59:40,832 | INFO | [Monitor step=53500] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-18 23:00:03,130 | INFO | [Monitor step=53600] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (73%) | it/s=4.51
+2026-04-18 23:00:25,428 | INFO | [Monitor step=53700] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (73%) | it/s=4.52
+2026-04-18 23:00:47,725 | INFO | [Monitor step=53800] temp=60C | gpu=95% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (73%) | it/s=4.51
+2026-04-18 23:01:10,022 | INFO | [Monitor step=53900] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.52
+2026-04-18 23:01:32,327 | INFO | [Monitor step=54000] temp=61C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-18 23:01:54,608 | INFO | [Monitor step=54100] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.48
+2026-04-18 23:02:16,895 | INFO | [Monitor step=54200] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-18 23:02:39,194 | INFO | [Monitor step=54300] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.50
+2026-04-18 23:03:01,502 | INFO | [Monitor step=54400] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.48
+2026-04-18 23:03:23,807 | INFO | [Monitor step=54500] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.50
+2026-04-18 23:03:46,113 | INFO | [Monitor step=54600] temp=63C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.50
+2026-04-18 23:04:08,414 | INFO | [Monitor step=54700] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-18 23:04:30,709 | INFO | [Monitor step=54800] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-18 23:04:52,988 | INFO | [Monitor step=54900] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (75%) | it/s=4.51
+2026-04-18 23:05:15,287 | INFO | [Monitor step=55000] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.6/16.8GB (75%) | it/s=4.51
+2026-04-18 23:05:37,582 | INFO | [Monitor step=55100] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.6/16.8GB (75%) | it/s=4.50
+2026-04-18 23:05:59,882 | INFO | [Monitor step=55200] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (74%) | it/s=4.51
+2026-04-18 23:06:22,179 | INFO | [Monitor step=55300] temp=60C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (74%) | it/s=4.51
+2026-04-18 23:06:44,473 | INFO | [Monitor step=55400] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.1/16.8GB (72%) | it/s=4.50
+2026-04-18 23:07:06,772 | INFO | [Monitor step=55500] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.1/16.8GB (72%) | it/s=4.51
+2026-04-18 23:07:29,070 | INFO | [Monitor step=55600] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.2/16.8GB (72%) | it/s=4.50
+2026-04-18 23:07:51,364 | INFO | [Monitor step=55700] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.2/16.8GB (73%) | it/s=4.51
+2026-04-18 23:08:13,665 | INFO | [Monitor step=55800] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.2/16.8GB (73%) | it/s=4.50
+2026-04-18 23:08:35,964 | INFO | [Monitor step=55900] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.2/16.8GB (73%) | it/s=4.50
+2026-04-18 23:08:58,266 | INFO | [Monitor step=56000] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.1/16.8GB (72%) | it/s=4.50
+2026-04-18 23:09:20,566 | INFO | [Monitor step=56100] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.2/16.8GB (72%) | it/s=4.48
+2026-04-18 23:09:42,867 | INFO | [Monitor step=56200] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.2/16.8GB (73%) | it/s=4.52
+2026-04-18 23:10:05,167 | INFO | [Monitor step=56300] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.2/16.8GB (73%) | it/s=4.51
+2026-04-18 23:10:27,464 | INFO | [Monitor step=56400] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.2/16.8GB (73%) | it/s=4.51
+2026-04-18 23:10:49,927 | INFO | [Monitor step=56500] temp=61C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.40
+2026-04-18 23:11:12,648 | INFO | [Monitor step=56600] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.6/16.8GB (75%) | it/s=4.44
+2026-04-18 23:11:35,324 | INFO | [Monitor step=56700] temp=61C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.7/16.8GB (76%) | it/s=4.49
+2026-04-18 23:11:57,824 | INFO | [Monitor step=56800] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.8/16.8GB (76%) | it/s=4.53
+2026-04-18 23:12:20,434 | INFO | [Monitor step=56900] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.7/16.8GB (76%) | it/s=4.52
+2026-04-18 23:12:42,779 | INFO | [Monitor step=57000] temp=59C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.8/16.8GB (76%) | it/s=4.51
+2026-04-18 23:13:05,376 | INFO | [Monitor step=57100] temp=62C | gpu=98% | vram=4.8GB | clock=2917MHz (100%) | ram=13.3/16.8GB (79%) | it/s=4.50
+2026-04-18 23:13:27,955 | INFO | [Monitor step=57200] temp=61C | gpu=98% | vram=4.8GB | clock=2917MHz (100%) | ram=13.7/16.8GB (82%) | it/s=4.51
+2026-04-18 23:13:50,490 | INFO | [Monitor step=57300] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.7/16.8GB (76%) | it/s=4.50
+2026-04-18 23:13:50,492 | INFO | Epoch 6 complete: loss=0.3286 | avg=4.50 it/s | time=35.5min
+2026-04-18 23:13:50,663 | INFO |   Running validation...
+2026-04-18 23:14:28,686 | INFO |   Val Accuracy:  99.11%
+2026-04-18 23:14:28,686 | INFO |   Val F1:        99.11%
+2026-04-18 23:14:28,687 | INFO |   Val Precision: 99.11%
+2026-04-18 23:14:28,687 | INFO |   Val Recall:    99.11%
+2026-04-18 23:14:28,687 | INFO |   Val Loss:      0.3382
+2026-04-18 23:14:28,687 | INFO |   No improvement. Patience: 1/3
+2026-04-18 23:14:28,688 | INFO | 
+============================================================
+EPOCH 7/15
+============================================================
+2026-04-18 23:14:51,090 | INFO | [Monitor step=57400] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.6/16.8GB (75%) | it/s=4.44
+2026-04-18 23:15:16,997 | INFO | [Monitor step=57500] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.6/16.8GB (75%) | it/s=4.50
+2026-04-18 23:15:39,304 | INFO | [Monitor step=57600] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (75%) | it/s=4.50
+2026-04-18 23:16:01,608 | INFO | [Monitor step=57700] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (75%) | it/s=4.49
+2026-04-18 23:16:23,908 | INFO | [Monitor step=57800] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (74%) | it/s=4.51
+2026-04-18 23:16:46,211 | INFO | [Monitor step=57900] temp=61C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (75%) | it/s=4.51
+2026-04-18 23:17:08,511 | INFO | [Monitor step=58000] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (75%) | it/s=4.48
+2026-04-18 23:17:30,813 | INFO | [Monitor step=58100] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (75%) | it/s=4.51
+2026-04-18 23:17:53,121 | INFO | [Monitor step=58200] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (75%) | it/s=4.51
+2026-04-18 23:18:15,428 | INFO | [Monitor step=58300] temp=62C | gpu=99% | vram=4.7GB | clock=2910MHz (99%) | ram=12.5/16.8GB (74%) | it/s=4.50
+2026-04-18 23:18:37,738 | INFO | [Monitor step=58400] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (74%) | it/s=4.52
+2026-04-18 23:19:00,066 | INFO | [Monitor step=58500] temp=59C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (74%) | it/s=4.52
+2026-04-18 23:19:22,398 | INFO | [Monitor step=58600] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (74%) | it/s=4.52
+2026-04-18 23:19:44,707 | INFO | [Monitor step=58700] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (74%) | it/s=4.50
+2026-04-18 23:20:07,035 | INFO | [Monitor step=58800] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.52
+2026-04-18 23:20:29,354 | INFO | [Monitor step=58900] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-18 23:20:51,662 | INFO | [Monitor step=59000] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-18 23:21:13,973 | INFO | [Monitor step=59100] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-18 23:21:36,284 | INFO | [Monitor step=59200] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-18 23:21:58,588 | INFO | [Monitor step=59300] temp=61C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.1/16.8GB (72%) | it/s=4.50
+2026-04-18 23:22:20,870 | INFO | [Monitor step=59400] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.1/16.8GB (72%) | it/s=4.51
+2026-04-18 23:22:43,174 | INFO | [Monitor step=59500] temp=60C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.1/16.8GB (72%) | it/s=4.50
+2026-04-18 23:23:05,477 | INFO | [Monitor step=59600] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.1/16.8GB (72%) | it/s=4.49
+2026-04-18 23:23:27,783 | INFO | [Monitor step=59700] temp=63C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.1/16.8GB (72%) | it/s=4.50
+2026-04-18 23:23:50,090 | INFO | [Monitor step=59800] temp=61C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.2/16.8GB (73%) | it/s=4.50
+2026-04-18 23:24:12,398 | INFO | [Monitor step=59900] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.2/16.8GB (73%) | it/s=4.51
+2026-04-18 23:24:34,703 | INFO | [Monitor step=60000] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.2/16.8GB (73%) | it/s=4.51
+2026-04-18 23:24:57,009 | INFO | [Monitor step=60100] temp=62C | gpu=100% | vram=4.7GB | clock=2910MHz (99%) | ram=12.2/16.8GB (73%) | it/s=4.51
+2026-04-18 23:25:19,316 | INFO | [Monitor step=60200] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (73%) | it/s=4.51
+2026-04-18 23:25:41,621 | INFO | [Monitor step=60300] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.2/16.8GB (73%) | it/s=4.48
+2026-04-18 23:26:03,925 | INFO | [Monitor step=60400] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.1/16.8GB (72%) | it/s=4.52
+2026-04-18 23:26:26,230 | INFO | [Monitor step=60500] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.1/16.8GB (72%) | it/s=4.51
+2026-04-18 23:26:48,533 | INFO | [Monitor step=60600] temp=63C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.1/16.8GB (72%) | it/s=4.49
+2026-04-18 23:27:10,838 | INFO | [Monitor step=60700] temp=61C | gpu=97% | vram=4.7GB | clock=2917MHz (100%) | ram=12.2/16.8GB (73%) | it/s=4.50
+2026-04-18 23:27:33,139 | INFO | [Monitor step=60800] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.2/16.8GB (73%) | it/s=4.50
+2026-04-18 23:27:55,447 | INFO | [Monitor step=60900] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.2/16.8GB (73%) | it/s=4.48
+2026-04-18 23:28:17,758 | INFO | [Monitor step=61000] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.2/16.8GB (73%) | it/s=4.50
+2026-04-18 23:28:40,075 | INFO | [Monitor step=61100] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.2/16.8GB (73%) | it/s=4.51
+2026-04-18 23:29:02,380 | INFO | [Monitor step=61200] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.2/16.8GB (73%) | it/s=4.51
+2026-04-18 23:29:24,687 | INFO | [Monitor step=61300] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.2/16.8GB (73%) | it/s=4.51
+2026-04-18 23:29:46,991 | INFO | [Monitor step=61400] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.2/16.8GB (73%) | it/s=4.51
+2026-04-18 23:30:09,295 | INFO | [Monitor step=61500] temp=62C | gpu=99% | vram=4.7GB | clock=2910MHz (99%) | ram=12.2/16.8GB (73%) | it/s=4.50
+2026-04-18 23:30:31,604 | INFO | [Monitor step=61600] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.2/16.8GB (73%) | it/s=4.50
+2026-04-18 23:30:53,913 | INFO | [Monitor step=61700] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.2/16.8GB (73%) | it/s=4.51
+2026-04-18 23:31:16,220 | INFO | [Monitor step=61800] temp=61C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.2/16.8GB (73%) | it/s=4.50
+2026-04-18 23:31:38,537 | INFO | [Monitor step=61900] temp=60C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (73%) | it/s=4.35
+2026-04-18 23:32:00,864 | INFO | [Monitor step=62000] temp=63C | gpu=97% | vram=4.7GB | clock=2910MHz (99%) | ram=12.3/16.8GB (73%) | it/s=4.50
+2026-04-18 23:32:23,155 | INFO | [Monitor step=62100] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (73%) | it/s=4.50
+2026-04-18 23:32:45,466 | INFO | [Monitor step=62200] temp=63C | gpu=97% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (73%) | it/s=4.51
+2026-04-18 23:33:07,780 | INFO | [Monitor step=62300] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (73%) | it/s=4.51
+2026-04-18 23:33:30,091 | INFO | [Monitor step=62400] temp=60C | gpu=91% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (73%) | it/s=4.51
+2026-04-18 23:33:52,402 | INFO | [Monitor step=62500] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (73%) | it/s=4.52
+2026-04-18 23:34:14,713 | INFO | [Monitor step=62600] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (73%) | it/s=4.51
+2026-04-18 23:34:37,014 | INFO | [Monitor step=62700] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-18 23:34:59,324 | INFO | [Monitor step=62800] temp=60C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.50
+2026-04-18 23:35:21,635 | INFO | [Monitor step=62900] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.49
+2026-04-18 23:35:43,941 | INFO | [Monitor step=63000] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-18 23:36:06,244 | INFO | [Monitor step=63100] temp=61C | gpu=97% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.50
+2026-04-18 23:36:28,546 | INFO | [Monitor step=63200] temp=60C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.49
+2026-04-18 23:36:50,854 | INFO | [Monitor step=63300] temp=63C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-18 23:37:13,155 | INFO | [Monitor step=63400] temp=63C | gpu=100% | vram=4.7GB | clock=2910MHz (99%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-18 23:37:35,463 | INFO | [Monitor step=63500] temp=62C | gpu=97% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.50
+2026-04-18 23:37:57,769 | INFO | [Monitor step=63600] temp=63C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-18 23:38:20,078 | INFO | [Monitor step=63700] temp=62C | gpu=100% | vram=4.7GB | clock=2910MHz (99%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-18 23:38:42,389 | INFO | [Monitor step=63800] temp=62C | gpu=99% | vram=4.7GB | clock=2910MHz (99%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-18 23:39:04,697 | INFO | [Monitor step=63900] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-18 23:39:27,005 | INFO | [Monitor step=64000] temp=63C | gpu=98% | vram=4.7GB | clock=2910MHz (99%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-18 23:39:49,321 | INFO | [Monitor step=64100] temp=60C | gpu=99% | vram=4.7GB | clock=2910MHz (99%) | ram=12.3/16.8GB (74%) | it/s=4.50
+2026-04-18 23:40:11,638 | INFO | [Monitor step=64200] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.47
+2026-04-18 23:40:33,954 | INFO | [Monitor step=64300] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.50
+2026-04-18 23:40:56,264 | INFO | [Monitor step=64400] temp=63C | gpu=97% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-18 23:41:18,575 | INFO | [Monitor step=64500] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.49
+2026-04-18 23:41:40,878 | INFO | [Monitor step=64600] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-18 23:42:03,184 | INFO | [Monitor step=64700] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-18 23:42:25,463 | INFO | [Monitor step=64800] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.50
+2026-04-18 23:42:47,769 | INFO | [Monitor step=64900] temp=63C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-18 23:43:10,075 | INFO | [Monitor step=65000] temp=63C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-18 23:43:32,380 | INFO | [Monitor step=65100] temp=63C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-18 23:43:54,683 | INFO | [Monitor step=65200] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.50
+2026-04-18 23:44:17,043 | INFO | [Monitor step=65300] temp=60C | gpu=99% | vram=4.7GB | clock=2910MHz (99%) | ram=12.4/16.8GB (74%) | it/s=4.50
+2026-04-18 23:44:39,350 | INFO | [Monitor step=65400] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-18 23:45:01,656 | INFO | [Monitor step=65500] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.50
+2026-04-18 23:45:23,966 | INFO | [Monitor step=65600] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-18 23:45:46,271 | INFO | [Monitor step=65700] temp=63C | gpu=97% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-18 23:46:08,579 | INFO | [Monitor step=65800] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.50
+2026-04-18 23:46:30,890 | INFO | [Monitor step=65900] temp=62C | gpu=100% | vram=4.7GB | clock=2910MHz (99%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-18 23:46:53,204 | INFO | [Monitor step=66000] temp=59C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-18 23:47:15,518 | INFO | [Monitor step=66100] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.49
+2026-04-18 23:47:37,818 | INFO | [Monitor step=66200] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (74%) | it/s=4.55
+2026-04-18 23:48:00,126 | INFO | [Monitor step=66300] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (75%) | it/s=4.50
+2026-04-18 23:48:22,445 | INFO | [Monitor step=66400] temp=60C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (75%) | it/s=4.50
+2026-04-18 23:48:44,754 | INFO | [Monitor step=66500] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (75%) | it/s=4.51
+2026-04-18 23:49:07,059 | INFO | [Monitor step=66600] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (75%) | it/s=4.51
+2026-04-18 23:49:29,370 | INFO | [Monitor step=66700] temp=63C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.5/16.8GB (75%) | it/s=4.51
+2026-04-18 23:49:51,679 | INFO | [Monitor step=66800] temp=63C | gpu=99% | vram=4.7GB | clock=2910MHz (99%) | ram=12.6/16.8GB (75%) | it/s=4.49
+2026-04-18 23:50:02,824 | INFO | Epoch 7 complete: loss=0.3278 | avg=4.50 it/s | time=35.6min
+2026-04-18 23:50:02,993 | INFO |   Running validation...
+2026-04-18 23:50:40,752 | INFO |   Val Accuracy:  99.06%
+2026-04-18 23:50:40,753 | INFO |   Val F1:        99.06%
+2026-04-18 23:50:40,754 | INFO |   Val Precision: 99.06%
+2026-04-18 23:50:40,754 | INFO |   Val Recall:    99.06%
+2026-04-18 23:50:40,754 | INFO |   Val Loss:      0.3393
+2026-04-18 23:50:40,754 | INFO |   No improvement. Patience: 2/3
+2026-04-18 23:50:40,755 | INFO | 
+============================================================
+EPOCH 8/15
+============================================================
+2026-04-18 23:50:51,989 | INFO | [Monitor step=66900] temp=63C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.6/16.8GB (76%) | it/s=4.51
+2026-04-18 23:51:14,284 | INFO | [Monitor step=67000] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.7/16.8GB (76%) | it/s=4.50
+2026-04-18 23:51:36,600 | INFO | [Monitor step=67100] temp=62C | gpu=100% | vram=4.7GB | clock=2910MHz (99%) | ram=12.7/16.8GB (76%) | it/s=4.48
+2026-04-18 23:51:58,912 | INFO | [Monitor step=67200] temp=63C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.7/16.8GB (76%) | it/s=4.51
+2026-04-18 23:52:21,204 | INFO | [Monitor step=67300] temp=63C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.7/16.8GB (76%) | it/s=4.51
+2026-04-18 23:52:43,516 | INFO | [Monitor step=67400] temp=63C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.7/16.8GB (76%) | it/s=4.49
+2026-04-18 23:53:05,834 | INFO | [Monitor step=67500] temp=60C | gpu=88% | vram=4.7GB | clock=2917MHz (100%) | ram=12.7/16.8GB (76%) | it/s=4.50
+2026-04-18 23:53:28,144 | INFO | [Monitor step=67600] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.7/16.8GB (76%) | it/s=4.50
+2026-04-18 23:53:50,456 | INFO | [Monitor step=67700] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.7/16.8GB (76%) | it/s=4.51
+2026-04-18 23:54:12,770 | INFO | [Monitor step=67800] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.7/16.8GB (76%) | it/s=4.50
+2026-04-18 23:54:35,084 | INFO | [Monitor step=67900] temp=63C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.7/16.8GB (76%) | it/s=4.51
+2026-04-18 23:54:57,395 | INFO | [Monitor step=68000] temp=63C | gpu=99% | vram=4.7GB | clock=2910MHz (99%) | ram=12.7/16.8GB (76%) | it/s=4.51
+2026-04-18 23:55:19,721 | INFO | [Monitor step=68100] temp=63C | gpu=97% | vram=4.7GB | clock=2917MHz (100%) | ram=12.7/16.8GB (76%) | it/s=4.50
+2026-04-18 23:55:42,034 | INFO | [Monitor step=68200] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.7/16.8GB (76%) | it/s=4.51
+2026-04-18 23:56:04,354 | INFO | [Monitor step=68300] temp=62C | gpu=99% | vram=4.7GB | clock=2910MHz (99%) | ram=12.7/16.8GB (76%) | it/s=4.51
+2026-04-18 23:56:26,698 | INFO | [Monitor step=68400] temp=62C | gpu=98% | vram=4.7GB | clock=2910MHz (99%) | ram=12.6/16.8GB (75%) | it/s=4.49
+2026-04-18 23:56:49,011 | INFO | [Monitor step=68500] temp=63C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.6/16.8GB (75%) | it/s=4.51
+2026-04-18 23:57:11,324 | INFO | [Monitor step=68600] temp=63C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.7/16.8GB (76%) | it/s=4.51
+2026-04-18 23:57:33,638 | INFO | [Monitor step=68700] temp=63C | gpu=99% | vram=4.7GB | clock=2910MHz (99%) | ram=12.7/16.8GB (76%) | it/s=4.48
+2026-04-18 23:57:55,963 | INFO | [Monitor step=68800] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.7/16.8GB (76%) | it/s=4.52
+2026-04-18 23:58:18,288 | INFO | [Monitor step=68900] temp=60C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.7/16.8GB (76%) | it/s=4.50
+2026-04-18 23:58:40,608 | INFO | [Monitor step=69000] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.7/16.8GB (76%) | it/s=4.48
+2026-04-18 23:59:02,933 | INFO | [Monitor step=69100] temp=63C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.6/16.8GB (76%) | it/s=4.50
+2026-04-18 23:59:25,254 | INFO | [Monitor step=69200] temp=63C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.6/16.8GB (75%) | it/s=4.51
+2026-04-18 23:59:47,570 | INFO | [Monitor step=69300] temp=60C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.6/16.8GB (75%) | it/s=4.48
+2026-04-19 00:00:09,886 | INFO | [Monitor step=69400] temp=62C | gpu=99% | vram=4.7GB | clock=2910MHz (99%) | ram=12.6/16.8GB (75%) | it/s=4.51
+2026-04-19 00:00:32,206 | INFO | [Monitor step=69500] temp=62C | gpu=97% | vram=4.7GB | clock=2917MHz (100%) | ram=12.6/16.8GB (75%) | it/s=4.51
+2026-04-19 00:00:54,527 | INFO | [Monitor step=69600] temp=63C | gpu=99% | vram=4.7GB | clock=2910MHz (99%) | ram=12.6/16.8GB (75%) | it/s=4.49
+2026-04-19 00:01:16,845 | INFO | [Monitor step=69700] temp=62C | gpu=100% | vram=4.7GB | clock=2910MHz (99%) | ram=12.6/16.8GB (76%) | it/s=4.51
+2026-04-19 00:01:39,162 | INFO | [Monitor step=69800] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.6/16.8GB (76%) | it/s=4.50
+2026-04-19 00:02:01,483 | INFO | [Monitor step=69900] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.6/16.8GB (75%) | it/s=4.50
+2026-04-19 00:02:23,778 | INFO | [Monitor step=70000] temp=63C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.6/16.8GB (76%) | it/s=4.50
+2026-04-19 00:02:46,092 | INFO | [Monitor step=70100] temp=62C | gpu=100% | vram=4.7GB | clock=2910MHz (99%) | ram=12.6/16.8GB (75%) | it/s=4.50
+2026-04-19 00:03:08,413 | INFO | [Monitor step=70200] temp=62C | gpu=99% | vram=4.7GB | clock=2910MHz (99%) | ram=12.7/16.8GB (76%) | it/s=4.51
+2026-04-19 00:03:30,734 | INFO | [Monitor step=70300] temp=63C | gpu=100% | vram=4.7GB | clock=2910MHz (99%) | ram=12.6/16.8GB (75%) | it/s=4.49
+2026-04-19 00:03:53,052 | INFO | [Monitor step=70400] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.6/16.8GB (75%) | it/s=4.51
+2026-04-19 00:04:15,368 | INFO | [Monitor step=70500] temp=63C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.6/16.8GB (76%) | it/s=4.50
+2026-04-19 00:04:37,720 | INFO | [Monitor step=70600] temp=63C | gpu=100% | vram=4.7GB | clock=2910MHz (99%) | ram=12.6/16.8GB (75%) | it/s=4.51
+2026-04-19 00:04:59,975 | INFO | [Monitor step=70700] temp=62C | gpu=100% | vram=4.7GB | clock=2910MHz (99%) | ram=12.7/16.8GB (76%) | it/s=4.51
+2026-04-19 00:05:22,241 | INFO | [Monitor step=70800] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.7/16.8GB (76%) | it/s=4.51
+2026-04-19 00:05:44,505 | INFO | [Monitor step=70900] temp=63C | gpu=100% | vram=4.7GB | clock=2910MHz (99%) | ram=12.7/16.8GB (76%) | it/s=4.51
+2026-04-19 00:06:06,776 | INFO | [Monitor step=71000] temp=63C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.7/16.8GB (76%) | it/s=4.51
+2026-04-19 00:06:29,043 | INFO | [Monitor step=71100] temp=63C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.7/16.8GB (76%) | it/s=4.51
+2026-04-19 00:06:51,305 | INFO | [Monitor step=71200] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.7/16.8GB (76%) | it/s=4.51
+2026-04-19 00:07:13,573 | INFO | [Monitor step=71300] temp=62C | gpu=99% | vram=4.7GB | clock=2910MHz (99%) | ram=12.6/16.8GB (76%) | it/s=4.51
+2026-04-19 00:07:35,835 | INFO | [Monitor step=71400] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-19 00:07:58,102 | INFO | [Monitor step=71500] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-19 00:08:20,364 | INFO | [Monitor step=71600] temp=63C | gpu=99% | vram=4.7GB | clock=2910MHz (99%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-19 00:08:42,629 | INFO | [Monitor step=71700] temp=63C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-19 00:09:04,890 | INFO | [Monitor step=71800] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-19 00:09:27,151 | INFO | [Monitor step=71900] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.52
+2026-04-19 00:09:49,417 | INFO | [Monitor step=72000] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-19 00:10:11,686 | INFO | [Monitor step=72100] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-19 00:10:33,956 | INFO | [Monitor step=72200] temp=63C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-19 00:10:56,216 | INFO | [Monitor step=72300] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-19 00:11:18,483 | INFO | [Monitor step=72400] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-19 00:11:40,744 | INFO | [Monitor step=72500] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-19 00:12:03,013 | INFO | [Monitor step=72600] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-19 00:12:25,258 | INFO | [Monitor step=72700] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-19 00:12:47,521 | INFO | [Monitor step=72800] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.52
+2026-04-19 00:13:09,787 | INFO | [Monitor step=72900] temp=60C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-19 00:13:32,047 | INFO | [Monitor step=73000] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.52
+2026-04-19 00:13:54,316 | INFO | [Monitor step=73100] temp=62C | gpu=100% | vram=4.7GB | clock=2910MHz (99%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-19 00:14:16,578 | INFO | [Monitor step=73200] temp=63C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-19 00:14:38,841 | INFO | [Monitor step=73300] temp=62C | gpu=100% | vram=4.7GB | clock=2910MHz (99%) | ram=12.5/16.8GB (74%) | it/s=4.51
+2026-04-19 00:15:01,103 | INFO | [Monitor step=73400] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (73%) | it/s=4.51
+2026-04-19 00:15:23,365 | INFO | [Monitor step=73500] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (73%) | it/s=4.51
+2026-04-19 00:15:45,627 | INFO | [Monitor step=73600] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (73%) | it/s=4.50
+2026-04-19 00:16:07,890 | INFO | [Monitor step=73700] temp=60C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (73%) | it/s=4.52
+2026-04-19 00:16:30,186 | INFO | [Monitor step=73800] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-19 00:16:52,478 | INFO | [Monitor step=73900] temp=63C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-19 00:17:14,767 | INFO | [Monitor step=74000] temp=62C | gpu=98% | vram=4.7GB | clock=2910MHz (99%) | ram=12.4/16.8GB (74%) | it/s=4.50
+2026-04-19 00:17:37,055 | INFO | [Monitor step=74100] temp=63C | gpu=97% | vram=4.7GB | clock=2910MHz (99%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-19 00:17:59,340 | INFO | [Monitor step=74200] temp=63C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.53
+2026-04-19 00:18:21,627 | INFO | [Monitor step=74300] temp=60C | gpu=99% | vram=4.7GB | clock=2910MHz (99%) | ram=12.4/16.8GB (74%) | it/s=4.51
+2026-04-19 00:18:43,918 | INFO | [Monitor step=74400] temp=63C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-19 00:19:06,206 | INFO | [Monitor step=74500] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.50
+2026-04-19 00:19:28,497 | INFO | [Monitor step=74600] temp=61C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.50
+2026-04-19 00:19:50,790 | INFO | [Monitor step=74700] temp=60C | gpu=86% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.50
+2026-04-19 00:20:13,084 | INFO | [Monitor step=74800] temp=63C | gpu=99% | vram=4.7GB | clock=2910MHz (99%) | ram=12.4/16.8GB (74%) | it/s=4.50
+2026-04-19 00:20:35,376 | INFO | [Monitor step=74900] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.4/16.8GB (74%) | it/s=4.50
+2026-04-19 00:20:57,670 | INFO | [Monitor step=75000] temp=63C | gpu=97% | vram=4.7GB | clock=2910MHz (99%) | ram=12.4/16.8GB (74%) | it/s=4.50
+2026-04-19 00:21:19,968 | INFO | [Monitor step=75100] temp=63C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-19 00:21:42,255 | INFO | [Monitor step=75200] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-19 00:22:04,546 | INFO | [Monitor step=75300] temp=62C | gpu=100% | vram=4.7GB | clock=2910MHz (99%) | ram=12.3/16.8GB (74%) | it/s=4.52
+2026-04-19 00:22:26,816 | INFO | [Monitor step=75400] temp=62C | gpu=100% | vram=4.7GB | clock=2910MHz (99%) | ram=12.3/16.8GB (74%) | it/s=4.51
+2026-04-19 00:22:49,106 | INFO | [Monitor step=75500] temp=62C | gpu=99% | vram=4.7GB | clock=2910MHz (99%) | ram=12.1/16.8GB (72%) | it/s=4.51
+2026-04-19 00:23:11,398 | INFO | [Monitor step=75600] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=12.1/16.8GB (72%) | it/s=4.52
+2026-04-19 00:23:33,686 | INFO | [Monitor step=75700] temp=62C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=12.1/16.8GB (72%) | it/s=4.51
+2026-04-19 00:23:55,974 | INFO | [Monitor step=75800] temp=63C | gpu=98% | vram=4.7GB | clock=2917MHz (100%) | ram=11.1/16.8GB (66%) | it/s=4.51
+2026-04-19 00:24:18,264 | INFO | [Monitor step=75900] temp=62C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=11.1/16.8GB (66%) | it/s=4.51
+2026-04-19 00:24:40,553 | INFO | [Monitor step=76000] temp=62C | gpu=100% | vram=4.7GB | clock=2910MHz (99%) | ram=11.2/16.8GB (67%) | it/s=4.50
+2026-04-19 00:25:02,842 | INFO | [Monitor step=76100] temp=63C | gpu=100% | vram=4.7GB | clock=2917MHz (100%) | ram=11.2/16.8GB (67%) | it/s=4.51
+2026-04-19 00:25:25,126 | INFO | [Monitor step=76200] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=11.2/16.8GB (67%) | it/s=4.51
+2026-04-19 00:25:47,413 | INFO | [Monitor step=76300] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=11.2/16.8GB (67%) | it/s=4.50
+2026-04-19 00:26:09,711 | INFO | [Monitor step=76400] temp=62C | gpu=99% | vram=4.7GB | clock=2917MHz (100%) | ram=11.2/16.8GB (67%) | it/s=4.50
+2026-04-19 00:26:09,713 | INFO | Epoch 8 complete: loss=0.3271 | avg=4.51 it/s | time=35.5min
+2026-04-19 00:26:09,883 | INFO |   Running validation...
+2026-04-19 00:26:47,638 | INFO |   Val Accuracy:  99.10%
+2026-04-19 00:26:47,638 | INFO |   Val F1:        99.10%
+2026-04-19 00:26:47,639 | INFO |   Val Precision: 99.10%
+2026-04-19 00:26:47,639 | INFO |   Val Recall:    99.10%
+2026-04-19 00:26:47,639 | INFO |   Val Loss:      0.3383
+2026-04-19 00:26:47,640 | INFO |   No improvement. Patience: 3/3
+2026-04-19 00:26:47,640 | INFO | 
+Early stopping at epoch 8
+2026-04-19 00:26:47,640 | INFO | Best was epoch 5: 99.16%
+2026-04-19 00:26:47,640 | INFO | 
+============================================================
+2026-04-19 00:26:47,640 | INFO | STEP 5: POST-TRAINING DIAGNOSIS
+2026-04-19 00:26:47,640 | INFO | ============================================================
+2026-04-19 00:26:47,640 | INFO | Total training time: 4h 50m
+2026-04-19 00:26:47,642 | INFO | Best epoch:  5
+2026-04-19 00:26:47,642 | INFO | Best val acc: 99.16%
+2026-04-19 00:26:47,642 | INFO | Speed: start=4.49 end=4.51 it/s (-0.5% drop)
+2026-04-19 00:26:47,642 | INFO | 
+============================================================
+2026-04-19 00:26:47,642 | INFO | GPU DIAGNOSIS
+2026-04-19 00:26:47,642 | INFO | ============================================================
+2026-04-19 00:26:47,642 | INFO |   Max temperature: 63C
+2026-04-19 00:26:47,642 | INFO |   Avg GPU util:    98.9%
+2026-04-19 00:26:47,642 | INFO |   Clock range:     2910-2925MHz
+2026-04-19 00:26:47,642 | INFO |   Clock drop:      0.5%
+2026-04-19 00:26:47,642 | INFO |   Peak VRAM:       4.80GB / 8.5GB
+2026-04-19 00:26:47,643 | INFO |   Throttled:       False
+2026-04-19 00:26:47,643 | INFO | 
+============================================================
+2026-04-19 00:26:47,643 | INFO | STEP 6: FINAL EVALUATION
+2026-04-19 00:26:47,643 | INFO | ============================================================
+2026-04-19 00:26:47,643 | INFO | Loading best model from: ./models/vit-base-mrl-augmented\best_model
+2026-04-19 00:27:26,397 | INFO | Final Val Accuracy:  99.16%
+2026-04-19 00:27:26,398 | INFO | Final Val F1:        99.16%
+2026-04-19 00:27:26,398 | INFO | Final Val Precision: 99.17%
+2026-04-19 00:27:26,398 | INFO | Final Val Recall:    99.16%
+2026-04-19 00:27:26,398 | INFO | Final Val Loss:      0.3375
+2026-04-19 00:28:39,495 | INFO | Final Test Accuracy:  99.23%
+2026-04-19 00:28:39,495 | INFO | Final Test F1:        99.23%
+2026-04-19 00:28:39,499 | INFO | Final Test Precision: 99.23%
+2026-04-19 00:28:39,499 | INFO | Final Test Recall:    99.23%
+2026-04-19 00:28:39,499 | INFO | Final Test Loss:      0.3361
+2026-04-19 00:28:39,499 | INFO | 
+============================================================
+2026-04-19 00:28:39,500 | INFO | STEP 7: SAVING MODEL + FIGURES
+2026-04-19 00:28:39,500 | INFO | ============================================================
+2026-04-19 00:28:41,069 | INFO | Model saved: ./models/vit-base-mrl-augmented\final_model
+2026-04-19 00:28:43,326 | INFO | 
+============================================================
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  TRAINING COMPLETE
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=
+  Model:         ViT-Base (86M params)
+  Dataset:       MRL Augmented (305,622 train)
+  Training time: 4h 50m
+  Best epoch:    5
+
+  Val Accuracy:  99.16%
+  Val F1:        99.16%
+  Test Accuracy: 99.23%
+  Test F1:       99.23%
+
+  Saved to: ./models/vit-base-mrl-augmented\final_model
+=

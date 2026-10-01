@@ -1,0 +1,5 @@
+# Separate environment for video_eval/reference_eyes.py only.
+# mediapipe installs opencv-contrib-python, which conflicts with the
+# project's opencv-python, so keep it out of the main venv.
+mediapipe>=0.10
+numpy

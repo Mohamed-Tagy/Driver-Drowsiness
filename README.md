@@ -17,13 +17,23 @@ Uno LED/buzzer module).
 
 | Evaluation | Test accuracy | Closed eyes classified as open |
 |---|---|---|
-| Original image-level split (selected model, Exp. 3) | 99.23% (95% CI 99.09–99.35) | 0.93% |
+| Original image-level split (selected model, Exp. 3) | 99.23% (subject-bootstrap 95% CI 98.86–99.47) | 0.93% |
+| Exp. 1 ViT-Tiny / Exp. 2 ViT-Base (re-evaluated checkpoints) | 99.20% / 99.21% (no significant difference, McNemar p ≥ 0.69) | 0.98% / 0.74% |
 | Original split, control run of the new script | 99.19% | 0.83% |
 | **Subject-disjoint, unseen people (3 splits)** | **98.41 ± 0.65%** (97.71–98.99) | **1.81 ± 1.00%** |
 
 In the original split, every test subject also appears in training. On people
 not seen during training, accuracy is lower and varies by person (92.9–100%).
-These are static eye-state results, not validated drowsiness detection.
+
+**System on scripted video** (5 indoor participants + 1 with sunglasses, paper Table XIII):
+all 60 posed eye closures (0.5–5 s) raised Warning on the PC after a median
+0.27 s; the Arduino module's Critical alarm followed every closure ≥ 1.5 s
+after a median 1.27 s. Alerts also fired during slow blinks, half-closed eyes,
+yawning, downward glances and eye rubbing; the Haar face detector lost 74% of
+tilted-head frames; with sunglasses the output was unrelated to eye state.
+Processing: 22.0 ms per 1280×720 frame (median, RTX 3050 Ti).
+These are static eye-state and posed-closure results, not validated drowsiness
+detection.
 
 ## Model weights
 
@@ -46,11 +56,13 @@ model = AutoModelForImageClassification.from_pretrained("checkpoint")
 
 | Folder | What | Paper section |
 |---|---|---|
-| `code/` | `train.py` (Hugging Face Trainer pipeline, Experiment 2), `augmentation.py` (offline 6× augmentation), `demo.py` (real-time prototype), `requirements.txt`, Arduino firmware | Materials and Methods |
-| `code/subject_disjoint/` | Subject-disjoint split, training and aggregation scripts | Subject-Disjoint Evaluation |
+| `code/` | `train.py` (Hugging Face Trainer pipeline, Experiment 2), `augmentation.py` (offline 6× augmentation), `demo.py` (real-time prototype; now with the improved face tracker `face_tracker.py` + `models/face/` YuNet model), `requirements.txt`, Arduino firmware (corrected: a queued Critical is cancelled when the PC returns to the displayed state) | Materials and Methods |
+| `code/subject_disjoint/` | Subject-disjoint split, training and aggregation scripts; checkpoint re-evaluation (`evaluate_checkpoints.py`) and paired statistics (`paired_stats.py`) | Subject-Disjoint Evaluation; ViT Configurations |
 | `subject_disjoint_runs/` | Control run (original split) and three subject-disjoint runs: configs, per-epoch history, logs, per-image predictions, metrics; `summary.md` | Subject-Disjoint Evaluation |
-| `code/video_eval/` | Recording protocol, pipeline runner and event-level scorer for system-level evaluation | Conclusion (next steps) |
-| `logs/` | Complete training logs of the three ViT experiments and the two demo sessions whose frame rates are quoted | ViT experiments; Prototype Operation |
+| `checkpoint_eval/` | Per-image test predictions of every re-evaluated checkpoint, metrics, McNemar tests, Wilson and subject-bootstrap intervals (`paired_stats.json`) | ViT Configurations; Selected Model |
+| `code/video_eval/` | Recording protocol, pipeline runner (`--detector haar` = paper, `tracker` = current demo), MediaPipe reference annotation, labelling, event scorer, firmware emulator | System-Level Evaluation on Video |
+| `video_eval_results/` | Per-frame system outputs, reference eye-closure scores, scenario windows, labels and event scores of the six sessions (no video, audio or images, to protect the participants) | System-Level Evaluation on Video |
+| `logs/` | Training logs of the ViT experiments (including the earlier patience-3 run and both ViT-Tiny runs) and two demo sessions | ViT experiments |
 | `results/` | Confusion matrices, training curves and GPU monitor of the selected run | Selected-model results |
 | `checkpoint/` | Selected ViT-Base checkpoint (epoch 12): configuration files here, weights in the Release | Selected-model results |
 | `manifests/` | Per-image train/val/test assignment for the original split and the three subject-disjoint splits; subject-overlap audit | Partitioning; Subject-Disjoint Evaluation |
@@ -61,7 +73,7 @@ model = AutoModelForImageClassification.from_pretrained("checkpoint")
 
 | Paper | Model | Training data | Log |
 |---|---|---|---|
-| Exp. 1 | ViT-Tiny (`WinKawaks/vit-tiny-patch16-224`) | MRL | `logs/training_20260331_213932.log` |
+| Exp. 1 | ViT-Tiny (`WinKawaks/vit-tiny-patch16-224`) | MRL | `logs/training_20260406_215623.log` (reported run; an identical earlier run, `logs/training_20260331_213932.log`, had its checkpoint overwritten) |
 | Exp. 2 | ViT-Base (`google/vit-base-patch16-224`) | MRL | `logs/training_combined_20260412_120715.log` (file name from the shared training script; data directory `data/MRL`) |
 | Exp. 3 | ViT-Base | MRL Augmented | `logs/training_final_20260419_004212.log` |
 | Subject-disjoint + control | ViT-Base | MRL | `subject_disjoint_runs/full_run.log` and the per-run folders |
@@ -95,7 +107,11 @@ See `code/subject_disjoint/README.md` for details. Add
   subject-disjoint evaluation uses a new script,
   `code/subject_disjoint/train_subject_disjoint.py`, validated by a control
   run on the original split (99.19% vs 99.21% for Experiment 2).
-- The list of corrupted MRL files removed before training was not preserved.
+- An earlier run identical to Exp. 3 except for early-stopping patience 3
+  (`logs/training_final_20260418_193612.log`) reached the same 99.23%; its
+  re-evaluated predictions are in `checkpoint_eval/exp3earlier_*`.
+- The Arduino timing in the video evaluation is emulated from the logged PC
+  states (`code/video_eval/emulate_firmware.py`), not measured on hardware.
 - `augmentation.py` does not seed its two random variants, so the exact
   augmented images cannot be regenerated; `train_subject_disjoint.py` seeds
   them.

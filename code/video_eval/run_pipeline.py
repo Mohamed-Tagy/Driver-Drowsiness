@@ -1,14 +1,17 @@
 """
-Run the prototype's decision pipeline (identical to demo.py) on a recorded
-session or a live camera, logging every frame and timing every stage.
+Run the prototype's decision pipeline, as described in the paper, on a
+recorded session or a live camera, logging every frame and timing every stage.
 
-Constants and logic are copied from demo.py:
+Default (--detector haar) = the paper's prototype (the original demo.py):
     Haar frontal-face cascade, scaleFactor 1.1, minNeighbors 5, minSize 100x100,
     largest face; eye crops rows 0.18h-0.52h, cols 0.10w-0.45w / 0.55w-0.90w;
     both crops in one batch at 224x224 with the processor mean/std, BF16 on GPU;
     frame = closed if >= half of the valid crops are closed;
     counter +1 (max 15) on a closed frame, -1 (min 0) otherwise
     (open frame, no valid crop, or no face); Warning at 10, Critical at 15.
+--detector tracker = the current demo.py face tracking (face_tracker.py:
+    YuNet landmarks, levelled eye crops, Haar fallback); held frames leave
+    the counter unchanged, as in demo.py.
 
 Usage:
     # offline, every recorded frame (event-level metrics at camera rate)
@@ -54,12 +57,23 @@ def parse_args():
     p.add_argument("--seconds", type=float, default=120, help="Live mode duration")
     p.add_argument("--serial", default=None, help="Arduino port for live mode, e.g. COM5")
     p.add_argument("--model", default=MODEL_PATH)
+    p.add_argument("--detector", choices=("haar", "tracker"), default="haar",
+                   help="haar: the paper's prototype; tracker: current demo.py")
+    p.add_argument("--resize", default=None,
+                   help="WxH to scale video frames to, e.g. 1280x720 to match the "
+                        "prototype's webcam resolution for phone recordings")
     p.add_argument("--out", default=None)
     return p.parse_args()
 
 
 class Pipeline:
-    def __init__(self, model_path):
+    def __init__(self, model_path, detector="haar"):
+        self.tracker = None
+        if detector == "tracker":
+            import sys
+            sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+            from face_tracker import FaceTracker
+            self.tracker = FaceTracker()
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.bf16 = self.device.type == "cuda" and torch.cuda.is_bf16_supported()
         dtype = torch.bfloat16 if self.bf16 else torch.float32
@@ -94,12 +108,25 @@ class Pipeline:
     def step(self, frame):
         rec = {}
         t0 = time.perf_counter()
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        faces = self.face.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5,
-                                           minSize=(100, 100))
-        t1 = time.perf_counter()
-        rec["face"] = int(len(faces) > 0)
-        crops = []
+        hold = False
+        if self.tracker is not None:
+            face = self.tracker.update(frame)
+            t1 = time.perf_counter()
+            rec["face"] = int(face is not None)
+            rec["source"] = face["source"] if face else ""
+            hold = face is not None and face["source"] == "hold"
+            crops = []
+            if face is not None and not hold:
+                le, re_, _ = self.tracker.eye_crops(frame, face)
+                crops = [c for c in (le, re_) if c is not None and c.size > 0]
+            faces = []
+        else:
+            gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+            faces = self.face.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5,
+                                               minSize=(100, 100))
+            t1 = time.perf_counter()
+            rec["face"] = int(len(faces) > 0)
+            crops = []
         if len(faces):
             x, y, w, h = sorted(faces, key=lambda f: f[2] * f[3], reverse=True)[0]
             face = frame[y:y + h, x:x + w]
@@ -123,7 +150,9 @@ class Pipeline:
         t3 = time.perf_counter()
         votes = sum(p > 0.5 for p in probs)                # argmax of two classes
         closed = bool(probs) and votes >= len(probs) * 0.5
-        if closed:
+        if hold:
+            pass                                           # tracker hold: unchanged
+        elif closed:
             self.counter = min(self.counter + 1, CRITICAL_THRESHOLD)
         else:
             self.counter = max(self.counter - DECAY_RATE, 0)
@@ -147,7 +176,7 @@ def pct(values, q):
 
 def main():
     args = parse_args()
-    pipe = Pipeline(args.model)
+    pipe = Pipeline(args.model, args.detector)
     rows, serial_acks = [], []
 
     if args.video:
@@ -160,7 +189,7 @@ def main():
                 stamps = [float(r["t"]) for r in csv.DictReader(f)]
         cap = cv2.VideoCapture(str(video))
         fps = cap.get(cv2.CAP_PROP_FPS) or 30.0
-        idx, next_t = 0, 0.0
+        idx = 0
         busy_until = 0.0
         while True:
             ok, frame = cap.read()
@@ -170,6 +199,12 @@ def main():
             idx += 1
             if args.simulate_fps and t < busy_until:
                 continue                    # a live system would still be busy
+            if args.resize:
+                size = tuple(int(v) for v in args.resize.split("x"))
+                h0, w0 = frame.shape[:2]
+                if abs(w0 / h0 - size[0] / size[1]) > 0.01:
+                    raise SystemExit(f"--resize {args.resize} would distort a {w0}x{h0} video")
+                frame = cv2.resize(frame, size, interpolation=cv2.INTER_AREA)
             rec = pipe.step(frame)
             rec.update({"frame": idx - 1, "t": round(t, 4)})
             rows.append(rec)
@@ -219,10 +254,10 @@ def main():
         w.writeheader()
         w.writerows(rows)
 
-    tot = [r["ms_total"] for r in rows]
     span = rows[-1]["t"] - rows[0]["t"] if len(rows) > 1 else 0
     summary = {
         "source": args.video or f"camera {args.camera}",
+        "detector": args.detector, "resize": args.resize,
         "device": str(pipe.device), "bf16": pipe.bf16,
         "gpu": torch.cuda.get_device_name(0) if pipe.device.type == "cuda" else None,
         "frames_processed": len(rows),

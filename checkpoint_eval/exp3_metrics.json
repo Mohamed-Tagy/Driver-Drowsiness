@@ -1,0 +1,10 @@
+{
+  "model": "models/vit-base-mrl-augmented-2/final_model",
+  "n": 16981,
+  "accuracy": 0.9922854955538543,
+  "tn": 8538,
+  "fp": 53,
+  "fn": 78,
+  "tp": 8312,
+  "params": 85800194
+}

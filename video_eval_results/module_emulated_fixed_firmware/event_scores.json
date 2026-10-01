@@ -1,0 +1,1370 @@
+{
+  "overall": {
+    "sessions": 5,
+    "draft_label_sessions": 0,
+    "closure_events": 60,
+    "detection_by_duration": {
+      "<0.75s": {
+        "n": 9,
+        "warning_rate": 1.0,
+        "critical_rate": 0.444
+      },
+      "<1.5s": {
+        "n": 19,
+        "warning_rate": 1.0,
+        "critical_rate": 0.368
+      },
+      "<2.5s": {
+        "n": 17,
+        "warning_rate": 1.0,
+        "critical_rate": 1.0
+      },
+      ">=4s": {
+        "n": 15,
+        "warning_rate": 1.0,
+        "critical_rate": 1.0
+      }
+    },
+    "warning_latency_s": {
+      "n": 33,
+      "mean": 0.28,
+      "median": 0.267,
+      "p95": 0.3
+    },
+    "critical_latency_s": {
+      "n": 18,
+      "mean": 1.283,
+      "median": 1.267,
+      "p95": 1.315
+    },
+    "false_alarms": 89,
+    "false_alarms_during_annotated_blinks": 3,
+    "non_event_hours": 0.31,
+    "false_alarms_per_hour": 286.87,
+    "false_alarms_baseline": 4,
+    "baseline_alarms_at_long_closures": 0,
+    "baseline_long_closures": 0,
+    "latency_events_from_normal": 33,
+    "baseline_minutes": 4.87,
+    "closed_frame_recall_in_events": 0.999,
+    "face_available_by_segment": {
+      "baseline": 0.9973,
+      "blink": 1.0,
+      "closure": 1.0,
+      "half_closed": 1.0,
+      "head_down": 0.8162,
+      "head_roll": 0.2558,
+      "head_up": 0.6862,
+      "rub_eyes": 0.6118,
+      "slow_blinks": 1.0,
+      "yawn": 1.0
+    },
+    "alert_rate_by_segment": {
+      "baseline": {
+        "alerted": 2,
+        "n": 5,
+        "rate": 0.4
+      },
+      "blink": {
+        "alerted": 10,
+        "n": 93,
+        "rate": 0.108
+      },
+      "closure": {
+        "alerted": 60,
+        "n": 60,
+        "rate": 1.0
+      },
+      "half_closed": {
+        "alerted": 5,
+        "n": 5,
+        "rate": 1.0
+      },
+      "head_down": {
+        "alerted": 5,
+        "n": 5,
+        "rate": 1.0
+      },
+      "head_roll": {
+        "alerted": 4,
+        "n": 6,
+        "rate": 0.667
+      },
+      "head_up": {
+        "alerted": 3,
+        "n": 5,
+        "rate": 0.6
+      },
+      "rub_eyes": {
+        "alerted": 4,
+        "n": 4,
+        "rate": 1.0
+      },
+      "slow_blinks": {
+        "alerted": 5,
+        "n": 5,
+        "rate": 1.0
+      },
+      "yawn": {
+        "alerted": 4,
+        "n": 5,
+        "rate": 0.8
+      }
+    },
+    "processed_fps": [],
+    "total_latency_ms": []
+  },
+  "sessions": {
+    "P01": {
+      "duration_s": 265.2,
+      "events": [
+        {
+          "type": "closure",
+          "duration": 1.965,
+          "state_at_onset": 0,
+          "warning_detected": true,
+          "warning_latency_s": 0.4,
+          "critical_detected": true,
+          "critical_latency_s": 1.4,
+          "frames": 59,
+          "frames_closed": 57
+        },
+        {
+          "type": "closure",
+          "duration": 0.466,
+          "state_at_onset": 0,
+          "warning_detected": true,
+          "warning_latency_s": 0.267,
+          "critical_detected": false,
+          "critical_latency_s": null,
+          "frames": 14,
+          "frames_closed": 14
+        },
+        {
+          "type": "closure",
+          "duration": 0.666,
+          "state_at_onset": 1,
+          "warning_detected": true,
+          "warning_latency_s": null,
+          "critical_detected": true,
+          "critical_latency_s": null,
+          "frames": 20,
+          "frames_closed": 20
+        },
+        {
+          "type": "closure",
+          "duration": 0.933,
+          "state_at_onset": 0,
+          "warning_detected": true,
+          "warning_latency_s": 0.234,
+          "critical_detected": false,
+          "critical_latency_s": null,
+          "frames": 28,
+          "frames_closed": 28
+        },
+        {
+          "type": "closure",
+          "duration": 1.065,
+          "state_at_onset": 0,
+          "warning_detected": true,
+          "warning_latency_s": 0.266,
+          "critical_detected": false,
+          "critical_latency_s": null,
+          "frames": 31,
+          "frames_closed": 31
+        },
+        {
+          "type": "closure",
+          "duration": 1.565,
+          "state_at_onset": 0,
+          "warning_detected": true,
+          "warning_latency_s": 0.266,
+          "critical_detected": true,
+          "critical_latency_s": 1.266,
+          "frames": 46,
+          "frames_closed": 46
+        },
+        {
+          "type": "closure",
+          "duration": 2.232,
+          "state_at_onset": 0,
+          "warning_detected": true,
+          "warning_latency_s": 0.234,
+          "critical_detected": true,
+          "critical_latency_s": 1.234,
+          "frames": 67,
+          "frames_closed": 67
+        },
+        {
+          "type": "closure",
+          "duration": 1.898,
+          "state_at_onset": 1,
+          "warning_detected": true,
+          "warning_latency_s": null,
+          "critical_detected": true,
+          "critical_latency_s": null,
+          "frames": 57,
+          "frames_closed": 57
+        },
+        {
+          "type": "closure",
+          "duration": 2.064,
+          "state_at_onset": 1,
+          "warning_detected": true,
+          "warning_latency_s": null,
+          "critical_detected": true,
+          "critical_latency_s": null,
+          "frames": 61,
+          "frames_closed": 61
+        },
+        {
+          "type": "closure",
+          "duration": 4.929,
+          "state_at_onset": 0,
+          "warning_detected": true,
+          "warning_latency_s": 0.234,
+          "critical_detected": true,
+          "critical_latency_s": 1.234,
+          "frames": 148,
+          "frames_closed": 148
+        },
+        {
+          "type": "closure",
+          "duration": 5.028,
+          "state_at_onset": 1,
+          "warning_detected": true,
+          "warning_latency_s": null,
+          "critical_detected": true,
+          "critical_latency_s": null,
+          "frames": 151,
+          "frames_closed": 151
+        },
+        {
+          "type": "closure",
+          "duration": 5.228,
+          "state_at_onset": 1,
+          "warning_detected": true,
+          "warning_latency_s": null,
+          "critical_detected": true,
+          "critical_latency_s": null,
+          "frames": 156,
+          "frames_closed": 156
+        }
+      ],
+      "false_alarm_times_s": [
+        123.37,
+        128.04,
+        139.17,
+        149.2,
+        156.8,
+        171.0,
+        174.07,
+        178.0,
+        181.37,
+        184.84,
+        188.1,
+        208.74,
+        223.11,
+        237.04,
+        257.34,
+        262.87
+      ],
+      "false_alarms_during_annotated_blinks": 0,
+      "false_alarms_baseline": 0,
+      "baseline_hours": 0.015833333333333335,
+      "baseline_alarms_at_long_closures": 0,
+      "baseline_long_closures": 0,
+      "non_event_hours": 0.06254658333333334,
+      "face_by_segment": {
+        "baseline": [
+          1710,
+          1710
+        ],
+        "blink": [
+          103,
+          103
+        ],
+        "closure": [
+          838,
+          838
+        ],
+        "head_roll": [
+          83,
+          510
+        ],
+        "head_down": [
+          50,
+          180
+        ],
+        "head_up": [
+          240,
+          240
+        ],
+        "slow_blinks": [
+          1020,
+          1020
+        ],
+        "half_closed": [
+          810,
+          810
+        ],
+        "yawn": [
+          510,
+          510
+        ],
+        "rub_eyes": [
+          211,
+          360
+        ]
+      },
+      "alert_by_segment": {
+        "baseline": [
+          0,
+          1
+        ],
+        "blink": [
+          1,
+          21
+        ],
+        "closure": [
+          12,
+          12
+        ],
+        "head_roll": [
+          2,
+          2
+        ],
+        "head_down": [
+          1,
+          1
+        ],
+        "head_up": [
+          0,
+          1
+        ],
+        "slow_blinks": [
+          1,
+          1
+        ],
+        "half_closed": [
+          1,
+          1
+        ],
+        "yawn": [
+          1,
+          1
+        ],
+        "rub_eyes": [
+          1,
+          1
+        ]
+      },
+      "face_overall": [
+        7216,
+        7957
+      ],
+      "draft_labels": false
+    },
+    "P02": {
+      "duration_s": 261.6,
+      "events": [
+        {
+          "type": "closure",
+          "duration": 0.965,
+          "state_at_onset": 0,
+          "warning_detected": true,
+          "warning_latency_s": 0.266,
+          "critical_detected": false,
+          "critical_latency_s": null,
+          "frames": 28,
+          "frames_closed": 28
+        },
+        {
+          "type": "closure",
+          "duration": 1.099,
+          "state_at_onset": 0,
+          "warning_detected": true,
+          "warning_latency_s": 0.267,
+          "critical_detected": false,
+          "critical_latency_s": null,
+          "frames": 32,
+          "frames_closed": 32
+        },
+        {
+          "type": "closure",
+          "duration": 0.733,
+          "state_at_onset": 0,
+          "warning_detected": true,
+          "warning_latency_s": 0.267,
+          "critical_detected": false,
+          "critical_latency_s": null,
+          "frames": 22,
+          "frames_closed": 22
+        },
+        {
+          "type": "closure",
+          "duration": 1.365,
+          "state_at_onset": 0,
+          "warning_detected": true,
+          "warning_latency_s": 0.3,
+          "critical_detected": true,
+          "critical_latency_s": 1.3,
+          "frames": 40,
+          "frames_closed": 40
+        },
+        {
+          "type": "closure",
+          "duration": 1.232,
+          "state_at_onset": 0,
+          "warning_detected": true,
+          "warning_latency_s": 0.299,
+          "critical_detected": false,
+          "critical_latency_s": null,
+          "frames": 36,
+          "frames_closed": 36
+        },
+        {
+          "type": "closure",
+          "duration": 1.198,
+          "state_at_onset": 0,
+          "warning_detected": true,
+          "warning_latency_s": 0.3,
+          "critical_detected": false,
+          "critical_latency_s": null,
+          "frames": 35,
+          "frames_closed": 35
+        },
+        {
+          "type": "closure",
+          "duration": 2.398,
+          "state_at_onset": 0,
+          "warning_detected": true,
+          "warning_latency_s": 0.267,
+          "critical_detected": true,
+          "critical_latency_s": 1.267,
+          "frames": 72,
+          "frames_closed": 72
+        },
+        {
+          "type": "closure",
+          "duration": 2.064,
+          "state_at_onset": 1,
+          "warning_detected": true,
+          "warning_latency_s": null,
+          "critical_detected": true,
+          "critical_latency_s": null,
+          "frames": 61,
+          "frames_closed": 61
+        },
+        {
+          "type": "closure",
+          "duration": 2.131,
+          "state_at_onset": 1,
+          "warning_detected": true,
+          "warning_latency_s": null,
+          "critical_detected": true,
+          "critical_latency_s": null,
+          "frames": 63,
+          "frames_closed": 63
+        },
+        {
+          "type": "closure",
+          "duration": 4.995,
+          "state_at_onset": 0,
+          "warning_detected": true,
+          "warning_latency_s": 0.266,
+          "critical_detected": true,
+          "critical_latency_s": 1.266,
+          "frames": 149,
+          "frames_closed": 149
+        },
+        {
+          "type": "closure",
+          "duration": 5.028,
+          "state_at_onset": 1,
+          "warning_detected": true,
+          "warning_latency_s": null,
+          "critical_detected": true,
+          "critical_latency_s": null,
+          "frames": 150,
+          "frames_closed": 150
+        },
+        {
+          "type": "closure",
+          "duration": 5.095,
+          "state_at_onset": 1,
+          "warning_detected": true,
+          "warning_latency_s": null,
+          "critical_detected": true,
+          "critical_latency_s": null,
+          "frames": 153,
+          "frames_closed": 153
+        }
+      ],
+      "false_alarm_times_s": [
+        153.84,
+        162.5,
+        167.0,
+        179.1,
+        183.24,
+        188.6,
+        193.04,
+        198.24,
+        201.57,
+        204.11,
+        212.81,
+        218.07,
+        224.87,
+        238.44,
+        255.34
+      ],
+      "false_alarms_during_annotated_blinks": 0,
+      "false_alarms_baseline": 0,
+      "baseline_hours": 0.017777777777777778,
+      "baseline_alarms_at_long_closures": 0,
+      "baseline_long_closures": 0,
+      "non_event_hours": 0.06147325,
+      "face_by_segment": {
+        "baseline": [
+          1902,
+          1920
+        ],
+        "blink": [
+          5,
+          5
+        ],
+        "closure": [
+          841,
+          841
+        ],
+        "head_roll": [
+          336,
+          660
+        ],
+        "head_down": [
+          330,
+          330
+        ],
+        "head_up": [
+          169,
+          270
+        ],
+        "slow_blinks": [
+          990,
+          990
+        ],
+        "half_closed": [
+          870,
+          870
+        ],
+        "yawn": [
+          649,
+          649
+        ]
+      },
+      "alert_by_segment": {
+        "baseline": [
+          0,
+          1
+        ],
+        "blink": [
+          0,
+          1
+        ],
+        "closure": [
+          12,
+          12
+        ],
+        "head_roll": [
+          0,
+          1
+        ],
+        "head_down": [
+          1,
+          1
+        ],
+        "head_up": [
+          1,
+          1
+        ],
+        "slow_blinks": [
+          1,
+          1
+        ],
+        "half_closed": [
+          1,
+          1
+        ],
+        "yawn": [
+          1,
+          1
+        ]
+      },
+      "face_overall": [
+        7375,
+        7849
+      ],
+      "draft_labels": false
+    },
+    "P03": {
+      "duration_s": 270.7,
+      "events": [
+        {
+          "type": "closure",
+          "duration": 0.699,
+          "state_at_onset": 0,
+          "warning_detected": true,
+          "warning_latency_s": 0.267,
+          "critical_detected": true,
+          "critical_latency_s": 1.3,
+          "frames": 21,
+          "frames_closed": 20
+        },
+        {
+          "type": "closure",
+          "duration": 0.666,
+          "state_at_onset": 2,
+          "warning_detected": true,
+          "warning_latency_s": null,
+          "critical_detected": true,
+          "critical_latency_s": null,
+          "frames": 20,
+          "frames_closed": 20
+        },
+        {
+          "type": "closure",
+          "duration": 0.699,
+          "state_at_onset": 2,
+          "warning_detected": true,
+          "warning_latency_s": null,
+          "critical_detected": true,
+          "critical_latency_s": null,
+          "frames": 20,
+          "frames_closed": 20
+        },
+        {
+          "type": "closure",
+          "duration": 1.332,
+          "state_at_onset": 2,
+          "warning_detected": true,
+          "warning_latency_s": null,
+          "critical_detected": true,
+          "critical_latency_s": null,
+          "frames": 39,
+          "frames_closed": 39
+        },
+        {
+          "type": "closure",
+          "duration": 1.199,
+          "state_at_onset": 2,
+          "warning_detected": true,
+          "warning_latency_s": null,
+          "critical_detected": true,
+          "critical_latency_s": null,
+          "frames": 36,
+          "frames_closed": 36
+        },
+        {
+          "type": "closure",
+          "duration": 1.066,
+          "state_at_onset": 2,
+          "warning_detected": true,
+          "warning_latency_s": null,
+          "critical_detected": true,
+          "critical_latency_s": null,
+          "frames": 32,
+          "frames_closed": 32
+        },
+        {
+          "type": "closure",
+          "duration": 2.198,
+          "state_at_onset": 2,
+          "warning_detected": true,
+          "warning_latency_s": null,
+          "critical_detected": true,
+          "critical_latency_s": null,
+          "frames": 66,
+          "frames_closed": 66
+        },
+        {
+          "type": "closure",
+          "duration": 2.098,
+          "state_at_onset": 1,
+          "warning_detected": true,
+          "warning_latency_s": null,
+          "critical_detected": true,
+          "critical_latency_s": null,
+          "frames": 62,
+          "frames_closed": 62
+        },
+        {
+          "type": "closure",
+          "duration": 2.164,
+          "state_at_onset": 2,
+          "warning_detected": true,
+          "warning_latency_s": null,
+          "critical_detected": true,
+          "critical_latency_s": null,
+          "frames": 65,
+          "frames_closed": 65
+        },
+        {
+          "type": "closure",
+          "duration": 5.062,
+          "state_at_onset": 1,
+          "warning_detected": true,
+          "warning_latency_s": null,
+          "critical_detected": true,
+          "critical_latency_s": null,
+          "frames": 152,
+          "frames_closed": 152
+        },
+        {
+          "type": "closure",
+          "duration": 5.061,
+          "state_at_onset": 1,
+          "warning_detected": true,
+          "warning_latency_s": null,
+          "critical_detected": true,
+          "critical_latency_s": null,
+          "frames": 151,
+          "frames_closed": 151
+        },
+        {
+          "type": "closure",
+          "duration": 5.162,
+          "state_at_onset": 1,
+          "warning_detected": true,
+          "warning_latency_s": null,
+          "critical_detected": true,
+          "critical_latency_s": null,
+          "frames": 155,
+          "frames_closed": 155
+        }
+      ],
+      "false_alarm_times_s": [
+        0.3,
+        6.93,
+        15.8,
+        140.94,
+        144.0,
+        147.97,
+        158.5,
+        162.57,
+        165.14,
+        167.47,
+        171.17,
+        174.9,
+        182.3,
+        186.4,
+        191.77,
+        204.74,
+        240.07,
+        242.24,
+        254.11,
+        259.07,
+        264.37
+      ],
+      "false_alarms_during_annotated_blinks": 1,
+      "false_alarms_baseline": 2,
+      "baseline_hours": 0.01638888888888889,
+      "baseline_alarms_at_long_closures": 0,
+      "baseline_long_closures": 0,
+      "non_event_hours": 0.06424091666666665,
+      "face_by_segment": {
+        "baseline": [
+          1764,
+          1770
+        ],
+        "blink": [
+          104,
+          104
+        ],
+        "closure": [
+          819,
+          819
+        ],
+        "head_roll": [
+          83,
+          600
+        ],
+        "head_down": [
+          180,
+          180
+        ],
+        "head_up": [
+          104,
+          210
+        ],
+        "slow_blinks": [
+          900,
+          900
+        ],
+        "half_closed": [
+          1290,
+          1290
+        ],
+        "yawn": [
+          540,
+          540
+        ],
+        "rub_eyes": [
+          206,
+          360
+        ]
+      },
+      "alert_by_segment": {
+        "baseline": [
+          1,
+          1
+        ],
+        "blink": [
+          4,
+          23
+        ],
+        "closure": [
+          12,
+          12
+        ],
+        "head_roll": [
+          1,
+          1
+        ],
+        "head_down": [
+          1,
+          1
+        ],
+        "head_up": [
+          1,
+          1
+        ],
+        "slow_blinks": [
+          1,
+          1
+        ],
+        "half_closed": [
+          1,
+          1
+        ],
+        "yawn": [
+          1,
+          1
+        ],
+        "rub_eyes": [
+          1,
+          1
+        ]
+      },
+      "face_overall": [
+        7320,
+        8121
+      ],
+      "draft_labels": false
+    },
+    "P04": {
+      "duration_s": 259.0,
+      "events": [
+        {
+          "type": "closure",
+          "duration": 0.533,
+          "state_at_onset": 0,
+          "warning_detected": true,
+          "warning_latency_s": 0.267,
+          "critical_detected": false,
+          "critical_latency_s": null,
+          "frames": 16,
+          "frames_closed": 16
+        },
+        {
+          "type": "closure",
+          "duration": 0.766,
+          "state_at_onset": 1,
+          "warning_detected": true,
+          "warning_latency_s": null,
+          "critical_detected": true,
+          "critical_latency_s": null,
+          "frames": 22,
+          "frames_closed": 22
+        },
+        {
+          "type": "closure",
+          "duration": 0.766,
+          "state_at_onset": 0,
+          "warning_detected": true,
+          "warning_latency_s": 0.267,
+          "critical_detected": false,
+          "critical_latency_s": null,
+          "frames": 23,
+          "frames_closed": 23
+        },
+        {
+          "type": "closure",
+          "duration": 1.332,
+          "state_at_onset": 0,
+          "warning_detected": true,
+          "warning_latency_s": 0.267,
+          "critical_detected": true,
+          "critical_latency_s": 1.267,
+          "frames": 39,
+          "frames_closed": 39
+        },
+        {
+          "type": "closure",
+          "duration": 1.332,
+          "state_at_onset": 0,
+          "warning_detected": true,
+          "warning_latency_s": 0.266,
+          "critical_detected": true,
+          "critical_latency_s": 1.266,
+          "frames": 39,
+          "frames_closed": 39
+        },
+        {
+          "type": "closure",
+          "duration": 1.132,
+          "state_at_onset": 0,
+          "warning_detected": true,
+          "warning_latency_s": 0.3,
+          "critical_detected": false,
+          "critical_latency_s": null,
+          "frames": 34,
+          "frames_closed": 34
+        },
+        {
+          "type": "closure",
+          "duration": 2.031,
+          "state_at_onset": 0,
+          "warning_detected": true,
+          "warning_latency_s": 0.3,
+          "critical_detected": true,
+          "critical_latency_s": 1.3,
+          "frames": 60,
+          "frames_closed": 60
+        },
+        {
+          "type": "closure",
+          "duration": 2.032,
+          "state_at_onset": 0,
+          "warning_detected": true,
+          "warning_latency_s": 0.267,
+          "critical_detected": true,
+          "critical_latency_s": 1.267,
+          "frames": 61,
+          "frames_closed": 61
+        },
+        {
+          "type": "closure",
+          "duration": 1.965,
+          "state_at_onset": 0,
+          "warning_detected": true,
+          "warning_latency_s": 0.267,
+          "critical_detected": true,
+          "critical_latency_s": 1.267,
+          "frames": 59,
+          "frames_closed": 59
+        },
+        {
+          "type": "closure",
+          "duration": 4.995,
+          "state_at_onset": 0,
+          "warning_detected": true,
+          "warning_latency_s": 0.3,
+          "critical_detected": true,
+          "critical_latency_s": 1.3,
+          "frames": 150,
+          "frames_closed": 150
+        },
+        {
+          "type": "closure",
+          "duration": 4.795,
+          "state_at_onset": 1,
+          "warning_detected": true,
+          "warning_latency_s": null,
+          "critical_detected": true,
+          "critical_latency_s": null,
+          "frames": 143,
+          "frames_closed": 143
+        },
+        {
+          "type": "closure",
+          "duration": 5.062,
+          "state_at_onset": 1,
+          "warning_detected": true,
+          "warning_latency_s": null,
+          "critical_detected": true,
+          "critical_latency_s": null,
+          "frames": 152,
+          "frames_closed": 152
+        }
+      ],
+      "false_alarm_times_s": [
+        2.17,
+        116.1,
+        139.14,
+        149.94,
+        152.04,
+        155.87,
+        161.77,
+        164.7,
+        167.8,
+        171.9,
+        174.77,
+        178.5,
+        182.7,
+        188.64,
+        199.24,
+        204.67,
+        208.97,
+        241.07,
+        250.64
+      ],
+      "false_alarms_during_annotated_blinks": 0,
+      "false_alarms_baseline": 0,
+      "baseline_hours": 0.015,
+      "baseline_alarms_at_long_closures": 0,
+      "baseline_long_closures": 0,
+      "non_event_hours": 0.06118491666666667,
+      "face_by_segment": {
+        "baseline": [
+          1620,
+          1620
+        ],
+        "blink": [
+          146,
+          146
+        ],
+        "closure": [
+          798,
+          798
+        ],
+        "head_roll": [
+          42,
+          510
+        ],
+        "head_down": [
+          76,
+          150
+        ],
+        "head_up": [
+          31,
+          210
+        ],
+        "slow_blinks": [
+          960,
+          960
+        ],
+        "half_closed": [
+          960,
+          960
+        ],
+        "yawn": [
+          570,
+          570
+        ],
+        "rub_eyes": [
+          336,
+          540
+        ]
+      },
+      "alert_by_segment": {
+        "baseline": [
+          0,
+          1
+        ],
+        "blink": [
+          3,
+          34
+        ],
+        "closure": [
+          12,
+          12
+        ],
+        "head_roll": [
+          1,
+          1
+        ],
+        "head_down": [
+          1,
+          1
+        ],
+        "head_up": [
+          0,
+          1
+        ],
+        "slow_blinks": [
+          1,
+          1
+        ],
+        "half_closed": [
+          1,
+          1
+        ],
+        "yawn": [
+          0,
+          1
+        ],
+        "rub_eyes": [
+          1,
+          1
+        ]
+      },
+      "face_overall": [
+        6716,
+        7771
+      ],
+      "draft_labels": false
+    },
+    "P05": {
+      "duration_s": 257.9,
+      "events": [
+        {
+          "type": "closure",
+          "duration": 0.666,
+          "state_at_onset": 0,
+          "warning_detected": true,
+          "warning_latency_s": 0.3,
+          "critical_detected": false,
+          "critical_latency_s": null,
+          "frames": 20,
+          "frames_closed": 20
+        },
+        {
+          "type": "closure",
+          "duration": 0.666,
+          "state_at_onset": 1,
+          "warning_detected": true,
+          "warning_latency_s": null,
+          "critical_detected": false,
+          "critical_latency_s": null,
+          "frames": 19,
+          "frames_closed": 19
+        },
+        {
+          "type": "closure",
+          "duration": 0.8,
+          "state_at_onset": 1,
+          "warning_detected": true,
+          "warning_latency_s": null,
+          "critical_detected": false,
+          "critical_latency_s": null,
+          "frames": 24,
+          "frames_closed": 23
+        },
+        {
+          "type": "closure",
+          "duration": 1.266,
+          "state_at_onset": 0,
+          "warning_detected": true,
+          "warning_latency_s": 0.3,
+          "critical_detected": false,
+          "critical_latency_s": null,
+          "frames": 38,
+          "frames_closed": 38
+        },
+        {
+          "type": "closure",
+          "duration": 1.199,
+          "state_at_onset": 0,
+          "warning_detected": true,
+          "warning_latency_s": 0.3,
+          "critical_detected": false,
+          "critical_latency_s": null,
+          "frames": 36,
+          "frames_closed": 36
+        },
+        {
+          "type": "closure",
+          "duration": 1.199,
+          "state_at_onset": 0,
+          "warning_detected": true,
+          "warning_latency_s": 0.266,
+          "critical_detected": false,
+          "critical_latency_s": null,
+          "frames": 35,
+          "frames_closed": 35
+        },
+        {
+          "type": "closure",
+          "duration": 1.964,
+          "state_at_onset": 0,
+          "warning_detected": true,
+          "warning_latency_s": 0.3,
+          "critical_detected": true,
+          "critical_latency_s": 1.3,
+          "frames": 58,
+          "frames_closed": 58
+        },
+        {
+          "type": "closure",
+          "duration": 2.131,
+          "state_at_onset": 0,
+          "warning_detected": true,
+          "warning_latency_s": 0.3,
+          "critical_detected": true,
+          "critical_latency_s": 1.3,
+          "frames": 64,
+          "frames_closed": 64
+        },
+        {
+          "type": "closure",
+          "duration": 2.098,
+          "state_at_onset": 0,
+          "warning_detected": true,
+          "warning_latency_s": 0.267,
+          "critical_detected": true,
+          "critical_latency_s": 1.267,
+          "frames": 62,
+          "frames_closed": 62
+        },
+        {
+          "type": "closure",
+          "duration": 4.929,
+          "state_at_onset": 0,
+          "warning_detected": true,
+          "warning_latency_s": 0.3,
+          "critical_detected": true,
+          "critical_latency_s": 1.3,
+          "frames": 148,
+          "frames_closed": 148
+        },
+        {
+          "type": "closure",
+          "duration": 4.995,
+          "state_at_onset": 1,
+          "warning_detected": true,
+          "warning_latency_s": null,
+          "critical_detected": true,
+          "critical_latency_s": null,
+          "frames": 150,
+          "frames_closed": 150
+        },
+        {
+          "type": "closure",
+          "duration": 5.128,
+          "state_at_onset": 1,
+          "warning_detected": true,
+          "warning_latency_s": null,
+          "critical_detected": true,
+          "critical_latency_s": null,
+          "frames": 153,
+          "frames_closed": 153
+        }
+      ],
+      "false_alarm_times_s": [
+        46.87,
+        60.67,
+        141.47,
+        159.87,
+        164.6,
+        166.7,
+        171.37,
+        176.7,
+        183.64,
+        187.37,
+        191.2,
+        199.61,
+        202.81,
+        215.74,
+        226.61,
+        243.71,
+        249.74,
+        254.34
+      ],
+      "false_alarms_during_annotated_blinks": 2,
+      "false_alarms_baseline": 2,
+      "baseline_hours": 0.01611111111111111,
+      "baseline_alarms_at_long_closures": 0,
+      "baseline_long_closures": 0,
+      "non_event_hours": 0.06079602777777778,
+      "face_by_segment": {
+        "baseline": [
+          1740,
+          1740
+        ],
+        "blink": [
+          82,
+          82
+        ],
+        "closure": [
+          807,
+          807
+        ],
+        "head_roll": [
+          185,
+          570
+        ],
+        "head_down": [
+          270,
+          270
+        ],
+        "head_up": [
+          300,
+          300
+        ],
+        "slow_blinks": [
+          1050,
+          1050
+        ],
+        "half_closed": [
+          780,
+          780
+        ],
+        "yawn": [
+          450,
+          450
+        ],
+        "rub_eyes": [
+          292,
+          448
+        ]
+      },
+      "alert_by_segment": {
+        "baseline": [
+          1,
+          1
+        ],
+        "blink": [
+          2,
+          14
+        ],
+        "closure": [
+          12,
+          12
+        ],
+        "head_roll": [
+          0,
+          1
+        ],
+        "head_down": [
+          1,
+          1
+        ],
+        "head_up": [
+          1,
+          1
+        ],
+        "slow_blinks": [
+          1,
+          1
+        ],
+        "half_closed": [
+          1,
+          1
+        ],
+        "yawn": [
+          1,
+          1
+        ],
+        "rub_eyes": [
+          1,
+          1
+        ]
+      },
+      "face_overall": [
+        7197,
+        7738
+      ],
+      "draft_labels": false
+    }
+  }
+}

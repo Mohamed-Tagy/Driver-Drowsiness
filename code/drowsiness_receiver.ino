@@ -7,9 +7,11 @@
       2 = Critical → Red LEDs flash + rapid beep
 
     Minimum duration enforcement:
-      Warning stays active for at least 2 seconds
-      even if Python sends state 2 quickly.
-      This ensures yellow LED is visible.
+      Warning stays active for at least 1 second before
+      escalating to Critical, and at least 2 seconds before
+      returning to Normal; Critical stays at least 1 second.
+      This ensures each LED state is visible. A state equal to
+      the displayed one cancels any queued change.
 
     Hardware:
       Pin 13 = Green  LED  (Normal)
@@ -135,12 +137,18 @@
               // Queue it for minimum duration check
               pendingState       = newState;
               stateChangePending = true;
+            } else {
+              // PC is back in the displayed state: cancel any queued
+              // change (otherwise a queued Critical would still fire
+              // after the eyes had reopened)
+              stateChangePending = false;
             }
           }
         }
         inputBuffer = "";
 
-      } else {
+      } else if (inputBuffer.length() < 8) {
+        // Commands are one digit; ignore runaway input without a newline
         inputBuffer += c;
       }
     }

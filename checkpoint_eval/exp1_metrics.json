@@ -1,0 +1,10 @@
+{
+  "model": "B:/Demo 2/models/vit-drowsiness-enhanced",
+  "n": 16981,
+  "accuracy": 0.9919910488192686,
+  "tn": 8537,
+  "fp": 54,
+  "fn": 82,
+  "tp": 8308,
+  "params": 5524802
+}

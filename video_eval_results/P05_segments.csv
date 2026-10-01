@@ -1,0 +1,10 @@
+start_s,end_s,type
+6,64,baseline
+70,120,closure_phase
+122,141,head_roll
+142,151,head_down
+152,162,head_up
+163,198,slow_blinks
+200,226,half_closed
+227,242,yawn
+243,258,rub_eyes

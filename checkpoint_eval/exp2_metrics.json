@@ -1,0 +1,10 @@
+{
+  "model": "B:/Demo 2/models/vit-base-mrl-drowsiness/checkpoint-12736",
+  "n": 16981,
+  "accuracy": 0.9921088275131029,
+  "tn": 8519,
+  "fp": 72,
+  "fn": 62,
+  "tp": 8328,
+  "params": 85800194
+}
