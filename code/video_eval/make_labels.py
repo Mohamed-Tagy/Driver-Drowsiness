@@ -35,11 +35,11 @@ MIN_CUED_S = 0.3
 MAX_BLINK_S = 0.5
 
 
-def closures(ref):
+def closures(ref, thresh=THRESH):
     t = np.array([float(r["t"]) for r in ref])
     score = np.array([(float(r["blink_l"]) + float(r["blink_r"])) / 2
                       if r["face"] == "1" else 0.0 for r in ref])
-    closed = score > THRESH
+    closed = score > thresh
     runs, start = [], None
     for i, c in enumerate(closed):
         if c and start is None:
@@ -93,6 +93,10 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dir", default="video_eval/recordings")
     ap.add_argument("--session", required=True)
+    ap.add_argument("--thresh", type=float, default=THRESH,
+                    help="eye-blink score above which a frame counts as closed")
+    ap.add_argument("--labels-dir", default=None,
+                    help="write labels here instead of --dir (sensitivity runs)")
     ap.add_argument("--video", help="source video, for verification thumbnails")
     a = ap.parse_args()
     d = Path(a.dir)
@@ -102,7 +106,7 @@ def main():
     phase = [s for s in segs if s[2] == "closure_phase"]
     normal = [s for s in segs if s[2] in ("baseline", "closure_phase")]
     rows, events = [], []
-    for s, e in closures(ref):
+    for s, e in closures(ref, a.thresh):
         dur = e - s
         if any(inside((s, e), p) for p in phase) and dur >= MIN_CUED_S:
             rows.append((s, e, "closure"))
@@ -114,7 +118,9 @@ def main():
             rows.append((s, e, "long_closure"))
     rows += [s for s in segs if s[2] != "closure_phase"]
     rows.sort()
-    with open(d / f"{a.session}_labels.csv", "w", newline="") as f:
+    ld = Path(a.labels_dir) if a.labels_dir else d
+    ld.mkdir(parents=True, exist_ok=True)
+    with open(ld / f"{a.session}_labels.csv", "w", newline="") as f:
         w = csv.writer(f)
         w.writerow(["start_s", "end_s", "type"])
         for s, e, k in rows:

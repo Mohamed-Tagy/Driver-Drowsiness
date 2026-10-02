@@ -1,0 +1,114 @@
+2026-10-02 10:34:21,658 | HTTP Request: HEAD https://huggingface.co/google/vit-base-patch16-224/resolve/3f49326eb077187dfe1c2a2bb15fbd74e6ab91e3/processor_config.json "HTTP/1.1 404 Not Found"
+2026-10-02 10:34:21,658 | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-10-02 10:34:21,838 | HTTP Request: HEAD https://huggingface.co/google/vit-base-patch16-224/resolve/3f49326eb077187dfe1c2a2bb15fbd74e6ab91e3/processor_config.json "HTTP/1.1 404 Not Found"
+2026-10-02 10:34:22,466 | Config: {"data_root": "data", "manifest": "subject_disjoint/manifests/kfold5_fold4.csv", "out_dir": null, "model": "vit-base", "train_set": "base", "online_aug": "strong", "seed": 42, "epochs": 10, "batch_size": 8, "grad_accum": 4, "lr": 2e-05, "weight_decay": 0.01, "warmup_ratio": 0.1, "label_smoothing": 0.1, "grad_clip": 1.0, "patience": 3, "precision": "auto", "workers": 2, "resume": true, "smoke": false, "allow_subject_overlap": false, "model_id": "google/vit-base-patch16-224@3f49326eb077187dfe1c2a2bb15fbd74e6ab91e3", "n_variants": 1, "amp_dtype": "torch.bfloat16", "device": "cuda", "gpu": "NVIDIA GeForce RTX 3050 Ti Laptop GPU", "torch": "2.14.0+cu126", "transformers": "5.17.0", "python": "3.11.9", "total_steps": 15620, "warmup_steps": 1562, "images": {"train": 49979, "val": 18344, "test": 16575}, "train_samples_per_epoch": 49979}
+2026-10-02 10:34:22,467 | Subjects train/val/test: 22/8/7
+2026-10-02 10:35:26,433 |   epoch 1 step 500/6248 loss 0.5684 acc 73.15%
+2026-10-02 10:36:25,446 |   epoch 1 step 1000/6248 loss 0.4336 acc 84.25%
+2026-10-02 10:37:24,777 |   epoch 1 step 1500/6248 loss 0.3695 acc 88.73%
+2026-10-02 10:38:24,130 |   epoch 1 step 2000/6248 loss 0.3373 acc 90.91%
+2026-10-02 10:39:23,039 |   epoch 1 step 2500/6248 loss 0.3184 acc 92.24%
+2026-10-02 10:40:21,776 |   epoch 1 step 3000/6248 loss 0.3048 acc 93.15%
+2026-10-02 10:41:21,438 |   epoch 1 step 3500/6248 loss 0.2952 acc 93.81%
+2026-10-02 10:42:20,349 |   epoch 1 step 4000/6248 loss 0.2873 acc 94.35%
+2026-10-02 10:43:19,626 |   epoch 1 step 4500/6248 loss 0.2816 acc 94.74%
+2026-10-02 10:44:20,262 |   epoch 1 step 5000/6248 loss 0.2762 acc 95.11%
+2026-10-02 10:45:20,204 |   epoch 1 step 5500/6248 loss 0.2725 acc 95.38%
+2026-10-02 10:46:19,523 |   epoch 1 step 6000/6248 loss 0.2693 acc 95.60%
+2026-10-02 10:48:12,111 | Epoch 1: train loss 0.2676 acc 95.71% | val loss 0.2372 acc 97.79%  <- best (13.8 min)
+2026-10-02 10:49:13,576 |   epoch 2 step 500/6248 loss 0.2353 acc 98.05%
+2026-10-02 10:50:13,419 |   epoch 2 step 1000/6248 loss 0.2322 acc 98.25%
+2026-10-02 10:51:12,729 |   epoch 2 step 1500/6248 loss 0.2307 acc 98.33%
+2026-10-02 10:52:12,350 |   epoch 2 step 2000/6248 loss 0.2281 acc 98.47%
+2026-10-02 10:53:11,996 |   epoch 2 step 2500/6248 loss 0.2269 acc 98.53%
+2026-10-02 10:54:11,460 |   epoch 2 step 3000/6248 loss 0.2273 acc 98.50%
+2026-10-02 10:55:10,921 |   epoch 2 step 3500/6248 loss 0.2270 acc 98.51%
+2026-10-02 10:56:10,377 |   epoch 2 step 4000/6248 loss 0.2267 acc 98.50%
+2026-10-02 10:57:09,834 |   epoch 2 step 4500/6248 loss 0.2260 acc 98.54%
+2026-10-02 10:58:09,298 |   epoch 2 step 5000/6248 loss 0.2256 acc 98.55%
+2026-10-02 10:59:08,702 |   epoch 2 step 5500/6248 loss 0.2251 acc 98.58%
+2026-10-02 11:00:07,373 |   epoch 2 step 6000/6248 loss 0.2248 acc 98.59%
+2026-10-02 11:01:54,136 | Epoch 2: train loss 0.2245 acc 98.60% | val loss 0.2330 acc 97.93%  <- best (13.7 min)
+2026-10-02 11:02:54,772 |   epoch 3 step 500/6248 loss 0.2185 acc 98.97%
+2026-10-02 11:03:54,449 |   epoch 3 step 1000/6248 loss 0.2207 acc 98.80%
+2026-10-02 11:04:54,113 |   epoch 3 step 1500/6248 loss 0.2217 acc 98.73%
+2026-10-02 11:05:53,767 |   epoch 3 step 2000/6248 loss 0.2220 acc 98.73%
+2026-10-02 11:06:52,504 |   epoch 3 step 2500/6248 loss 0.2215 acc 98.73%
+2026-10-02 11:07:51,635 |   epoch 3 step 3000/6248 loss 0.2205 acc 98.78%
+2026-10-02 11:08:50,931 |   epoch 3 step 3500/6248 loss 0.2204 acc 98.77%
+2026-10-02 11:09:50,307 |   epoch 3 step 4000/6248 loss 0.2210 acc 98.73%
+2026-10-02 11:10:49,665 |   epoch 3 step 4500/6248 loss 0.2209 acc 98.74%
+2026-10-02 11:11:48,991 |   epoch 3 step 5000/6248 loss 0.2207 acc 98.75%
+2026-10-02 11:12:48,331 |   epoch 3 step 5500/6248 loss 0.2211 acc 98.73%
+2026-10-02 11:13:48,182 |   epoch 3 step 6000/6248 loss 0.2210 acc 98.73%
+2026-10-02 11:15:34,909 | Epoch 3: train loss 0.2210 acc 98.74% | val loss 0.2619 acc 96.35% (13.7 min)
+2026-10-02 11:16:35,688 |   epoch 4 step 500/6248 loss 0.2210 acc 98.72%
+2026-10-02 11:17:35,318 |   epoch 4 step 1000/6248 loss 0.2207 acc 98.76%
+2026-10-02 11:18:34,844 |   epoch 4 step 1500/6248 loss 0.2193 acc 98.83%
+2026-10-02 11:19:34,028 |   epoch 4 step 2000/6248 loss 0.2193 acc 98.81%
+2026-10-02 11:20:32,996 |   epoch 4 step 2500/6248 loss 0.2186 acc 98.85%
+2026-10-02 11:21:32,526 |   epoch 4 step 3000/6248 loss 0.2186 acc 98.85%
+2026-10-02 11:22:32,015 |   epoch 4 step 3500/6248 loss 0.2187 acc 98.85%
+2026-10-02 11:23:31,480 |   epoch 4 step 4000/6248 loss 0.2186 acc 98.85%
+2026-10-02 11:24:30,969 |   epoch 4 step 4500/6248 loss 0.2185 acc 98.87%
+2026-10-02 11:25:30,467 |   epoch 4 step 5000/6248 loss 0.2181 acc 98.90%
+2026-10-02 11:26:29,959 |   epoch 4 step 5500/6248 loss 0.2181 acc 98.90%
+2026-10-02 11:27:29,435 |   epoch 4 step 6000/6248 loss 0.2184 acc 98.89%
+2026-10-02 11:29:16,586 | Epoch 4: train loss 0.2184 acc 98.89% | val loss 0.2361 acc 97.73% (13.7 min)
+2026-10-02 11:30:17,852 |   epoch 5 step 500/6248 loss 0.2193 acc 98.78%
+2026-10-02 11:31:17,341 |   epoch 5 step 1000/6248 loss 0.2161 acc 98.97%
+2026-10-02 11:32:16,859 |   epoch 5 step 1500/6248 loss 0.2159 acc 98.97%
+2026-10-02 11:33:16,562 |   epoch 5 step 2000/6248 loss 0.2162 acc 98.99%
+2026-10-02 11:34:16,633 |   epoch 5 step 2500/6248 loss 0.2164 acc 98.98%
+2026-10-02 11:35:16,273 |   epoch 5 step 3000/6248 loss 0.2166 acc 98.97%
+2026-10-02 11:36:16,046 |   epoch 5 step 3500/6248 loss 0.2168 acc 98.95%
+2026-10-02 11:37:15,749 |   epoch 5 step 4000/6248 loss 0.2167 acc 98.97%
+2026-10-02 11:38:15,127 |   epoch 5 step 4500/6248 loss 0.2167 acc 98.96%
+2026-10-02 11:39:14,324 |   epoch 5 step 5000/6248 loss 0.2167 acc 98.95%
+2026-10-02 11:40:13,793 |   epoch 5 step 5500/6248 loss 0.2166 acc 98.98%
+2026-10-02 11:41:13,277 |   epoch 5 step 6000/6248 loss 0.2164 acc 98.99%
+2026-10-02 11:43:00,496 | Epoch 5: train loss 0.2163 acc 99.00% | val loss 0.2331 acc 97.97%  <- best (13.7 min)
+2026-10-02 11:44:02,110 |   epoch 6 step 500/6248 loss 0.2151 acc 99.05%
+2026-10-02 11:45:02,917 |   epoch 6 step 1000/6248 loss 0.2146 acc 99.12%
+2026-10-02 11:46:02,521 |   epoch 6 step 1500/6248 loss 0.2158 acc 99.02%
+2026-10-02 11:47:02,784 |   epoch 6 step 2000/6248 loss 0.2154 acc 99.04%
+2026-10-02 11:48:03,132 |   epoch 6 step 2500/6248 loss 0.2148 acc 99.08%
+2026-10-02 11:49:03,472 |   epoch 6 step 3000/6248 loss 0.2146 acc 99.10%
+2026-10-02 11:50:03,028 |   epoch 6 step 3500/6248 loss 0.2149 acc 99.09%
+2026-10-02 11:51:02,536 |   epoch 6 step 4000/6248 loss 0.2149 acc 99.10%
+2026-10-02 11:52:02,084 |   epoch 6 step 4500/6248 loss 0.2150 acc 99.08%
+2026-10-02 11:53:01,865 |   epoch 6 step 5000/6248 loss 0.2148 acc 99.09%
+2026-10-02 11:54:02,164 |   epoch 6 step 5500/6248 loss 0.2147 acc 99.09%
+2026-10-02 11:55:01,917 |   epoch 6 step 6000/6248 loss 0.2148 acc 99.08%
+2026-10-02 11:56:49,545 | Epoch 6: train loss 0.2149 acc 99.07% | val loss 0.2432 acc 97.51% (13.8 min)
+2026-10-02 11:57:51,280 |   epoch 7 step 500/6248 loss 0.2096 acc 99.53%
+2026-10-02 11:58:51,616 |   epoch 7 step 1000/6248 loss 0.2110 acc 99.39%
+2026-10-02 11:59:52,279 |   epoch 7 step 1500/6248 loss 0.2113 acc 99.38%
+2026-10-02 12:00:51,905 |   epoch 7 step 2000/6248 loss 0.2121 acc 99.30%
+2026-10-02 12:01:51,890 |   epoch 7 step 2500/6248 loss 0.2123 acc 99.28%
+2026-10-02 12:02:51,773 |   epoch 7 step 3000/6248 loss 0.2127 acc 99.22%
+2026-10-02 12:03:51,616 |   epoch 7 step 3500/6248 loss 0.2126 acc 99.22%
+2026-10-02 12:04:51,473 |   epoch 7 step 4000/6248 loss 0.2132 acc 99.20%
+2026-10-02 12:05:51,331 |   epoch 7 step 4500/6248 loss 0.2131 acc 99.19%
+2026-10-02 12:06:51,203 |   epoch 7 step 5000/6248 loss 0.2128 acc 99.21%
+2026-10-02 12:07:51,064 |   epoch 7 step 5500/6248 loss 0.2133 acc 99.17%
+2026-10-02 12:08:50,926 |   epoch 7 step 6000/6248 loss 0.2132 acc 99.18%
+2026-10-02 12:10:38,810 | Epoch 7: train loss 0.2132 acc 99.18% | val loss 0.2405 acc 97.42% (13.8 min)
+2026-10-02 12:11:40,907 |   epoch 8 step 500/6248 loss 0.2114 acc 99.33%
+2026-10-02 12:12:41,153 |   epoch 8 step 1000/6248 loss 0.2115 acc 99.25%
+2026-10-02 12:13:41,385 |   epoch 8 step 1500/6248 loss 0.2116 acc 99.22%
+2026-10-02 12:14:42,902 |   epoch 8 step 2000/6248 loss 0.2122 acc 99.19%
+2026-10-02 12:15:42,524 |   epoch 8 step 2500/6248 loss 0.2125 acc 99.20%
+2026-10-02 12:16:43,088 |   epoch 8 step 3000/6248 loss 0.2125 acc 99.19%
+2026-10-02 12:17:43,319 |   epoch 8 step 3500/6248 loss 0.2127 acc 99.17%
+2026-10-02 12:18:43,875 |   epoch 8 step 4000/6248 loss 0.2127 acc 99.19%
+2026-10-02 12:19:44,284 |   epoch 8 step 4500/6248 loss 0.2125 acc 99.21%
+2026-10-02 12:20:44,214 |   epoch 8 step 5000/6248 loss 0.2125 acc 99.20%
+2026-10-02 12:21:44,127 |   epoch 8 step 5500/6248 loss 0.2121 acc 99.22%
+2026-10-02 12:22:44,017 |   epoch 8 step 6000/6248 loss 0.2123 acc 99.21%
+2026-10-02 12:24:31,639 | Epoch 8: train loss 0.2123 acc 99.22% | val loss 0.2380 acc 97.75% (13.9 min)
+2026-10-02 12:24:32,614 | Early stopping after epoch 8
+2026-10-02 12:25:51,645 | VAL: accuracy 97.97% (95% CI [97.758, 98.166]) | macro F1 97.97% | closed->open 1.34%
+2026-10-02 12:27:09,133 | TEST: accuracy 98.82% (95% CI [98.641, 98.971]) | macro F1 98.79% | closed->open 1.30%
+2026-10-02 12:27:09,134 | Per-subject test accuracy: {'s0003': 99.12, 's0006': 95.45, 's0009': 97.93, 's0019': 100.0, 's0028': 97.01, 's0029': 98.56, 's0036': 98.48}
+2026-10-02 12:27:09,134 | Done. Outputs in B:\ViT Model\subject_disjoint\runs\kfold5_fold4_vit-base_base_strong_seed42

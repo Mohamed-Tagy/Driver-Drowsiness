@@ -20,7 +20,8 @@ Uno LED/buzzer module).
 | Original image-level split (selected model, Exp. 3) | 99.23% (subject-bootstrap 95% CI 98.86–99.47) | 0.93% |
 | Exp. 1 ViT-Tiny / Exp. 2 ViT-Base (re-evaluated checkpoints) | 99.20% / 99.21% (no significant difference, McNemar p ≥ 0.69) | 0.98% / 0.74% |
 | Original split, control run of the new script | 99.19% | 0.83% |
-| **Subject-disjoint, unseen people (3 splits)** | **98.41 ± 0.65%** (97.71–98.99) | **1.81 ± 1.00%** |
+| Subject-disjoint, unseen people (3 random splits) | 98.41 ± 0.65% (97.71–98.99) | 1.81 ± 1.00% |
+| **Subject-disjoint 5-fold CV, every person tested once (pooled)** | **98.37%** (subject-bootstrap 95% CI 97.81–98.88; folds 98.39 ± 0.67) | **1.63%** |
 
 In the original split, every test subject also appears in training. On people
 not seen during training, accuracy is lower and varies by person (92.9–100%).
@@ -58,7 +59,8 @@ model = AutoModelForImageClassification.from_pretrained("checkpoint")
 |---|---|---|
 | `code/` | `train.py` (Hugging Face Trainer pipeline, Experiment 2), `augmentation.py` (offline 6× augmentation), `demo.py` (real-time prototype; now with the improved face tracker `face_tracker.py` + `models/face/` YuNet model), `requirements.txt`, Arduino firmware (corrected: a queued Critical is cancelled when the PC returns to the displayed state) | Materials and Methods |
 | `code/subject_disjoint/` | Subject-disjoint split, training and aggregation scripts; checkpoint re-evaluation (`evaluate_checkpoints.py`) and paired statistics (`paired_stats.py`) | Subject-Disjoint Evaluation; ViT Configurations |
-| `subject_disjoint_runs/` | Control run (original split) and three subject-disjoint runs: configs, per-epoch history, logs, per-image predictions, metrics; `summary.md` | Subject-Disjoint Evaluation |
+| `subject_disjoint_runs/` | Control run (original split), three random subject-disjoint runs and the five cross-validation folds: configs, per-epoch history, logs, per-image predictions, metrics; `summary.md`, `kfold5_summary.json` | Subject-Disjoint Evaluation |
+| `tests/` | Unit tests of the statistics, firmware emulation and event scoring (`python -m pytest tests -q`) | |
 | `checkpoint_eval/` | Per-image test predictions of every re-evaluated checkpoint, metrics, McNemar tests, Wilson and subject-bootstrap intervals (`paired_stats.json`) | ViT Configurations; Selected Model |
 | `code/video_eval/` | Recording protocol, pipeline runner (`--detector haar` = paper, `tracker` = current demo), MediaPipe reference annotation, labelling, event scorer, firmware emulator | System-Level Evaluation on Video |
 | `video_eval_results/` | Per-frame system outputs, reference eye-closure scores, scenario windows, labels and event scores of the six sessions (no video, audio or images, to protect the participants) | System-Level Evaluation on Video |
@@ -88,6 +90,28 @@ experiments used its pre-split Kaggle redistribution
 train/val, seed 42). `manifests/kaggle_split.csv` lists the partition of every
 image. File names keep the MRL format `s0001_00014_0_0_0_0_0_01.png`, where
 `s0001` is the subject.
+
+## Reproducing the paper's statistics from this repository (no GPU, no data download)
+
+Run from the repository root (Python 3.11 with `numpy`; nothing else is needed):
+
+```bash
+# Accuracies, Wilson and subject-bootstrap intervals, McNemar tests (ViT Configurations)
+python code/subject_disjoint/paired_stats.py
+# Five-fold subject cross-validation summary (Subject-Disjoint Evaluation, Table XII)
+python code/subject_disjoint/kfold_summary.py
+# Unit tests of the analysis code (needs pytest)
+python -m pytest tests -q
+# Video evaluation on the PC (Table XIII, PC column)
+python code/video_eval/score_events.py --dir video_eval_results
+# Alert module with the released firmware (Table XIII, module column)
+python code/video_eval/emulate_firmware.py --src video_eval_results --dst module_out --fixed
+python code/video_eval/score_events.py --dir module_out
+```
+
+Re-running the video pipeline itself needs the recordings, which are not
+released; `code/video_eval/run_pipeline.py --video ... --resize 1280x720
+--model checkpoint` with the released weights reproduces the per-frame files.
 
 ## Reproducing the subject-disjoint evaluation
 

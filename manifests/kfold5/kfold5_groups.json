@@ -1,0 +1,146 @@
+{
+  "k": 5,
+  "seed": 2026,
+  "score": 0.09814,
+  "groups": [
+    {
+      "subjects": [
+        "s0001",
+        "s0005",
+        "s0008",
+        "s0013",
+        "s0015",
+        "s0017",
+        "s0021",
+        "s0032"
+      ],
+      "images": 18344,
+      "closed_ratio": 0.4763
+    },
+    {
+      "subjects": [
+        "s0002",
+        "s0010",
+        "s0011",
+        "s0012",
+        "s0022",
+        "s0026",
+        "s0027",
+        "s0031"
+      ],
+      "images": 15920,
+      "closed_ratio": 0.5158
+    },
+    {
+      "subjects": [
+        "s0007",
+        "s0014",
+        "s0018",
+        "s0023",
+        "s0024",
+        "s0034",
+        "s0035"
+      ],
+      "images": 16573,
+      "closed_ratio": 0.5107
+    },
+    {
+      "subjects": [
+        "s0004",
+        "s0016",
+        "s0020",
+        "s0025",
+        "s0030",
+        "s0033",
+        "s0037"
+      ],
+      "images": 17486,
+      "closed_ratio": 0.538
+    },
+    {
+      "subjects": [
+        "s0003",
+        "s0006",
+        "s0009",
+        "s0019",
+        "s0028",
+        "s0029",
+        "s0036"
+      ],
+      "images": 16575,
+      "closed_ratio": 0.4299
+    }
+  ],
+  "folds": [
+    {
+      "fold": 0,
+      "manifest": "kfold5_fold0.csv",
+      "subjects": {
+        "test": 8,
+        "val": 8,
+        "train": 21
+      },
+      "images": {
+        "test": 18344,
+        "val": 15920,
+        "train": 50634
+      }
+    },
+    {
+      "fold": 1,
+      "manifest": "kfold5_fold1.csv",
+      "subjects": {
+        "train": 22,
+        "test": 8,
+        "val": 7
+      },
+      "images": {
+        "train": 52405,
+        "test": 15920,
+        "val": 16573
+      }
+    },
+    {
+      "fold": 2,
+      "manifest": "kfold5_fold2.csv",
+      "subjects": {
+        "train": 23,
+        "val": 7,
+        "test": 7
+      },
+      "images": {
+        "train": 50839,
+        "test": 16573,
+        "val": 17486
+      }
+    },
+    {
+      "fold": 3,
+      "manifest": "kfold5_fold3.csv",
+      "subjects": {
+        "train": 23,
+        "val": 7,
+        "test": 7
+      },
+      "images": {
+        "train": 50837,
+        "val": 16575,
+        "test": 17486
+      }
+    },
+    {
+      "fold": 4,
+      "manifest": "kfold5_fold4.csv",
+      "subjects": {
+        "val": 8,
+        "train": 22,
+        "test": 7
+      },
+      "images": {
+        "val": 18344,
+        "train": 49979,
+        "test": 16575
+      }
+    }
+  ]
+}

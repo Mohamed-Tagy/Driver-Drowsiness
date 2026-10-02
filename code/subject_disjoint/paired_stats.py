@@ -20,8 +20,15 @@ import random
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-EVAL = HERE / "checkpoint_eval"
-CONTROL = HERE / "runs" / "kaggle_split_vit-base_base_strong_seed42" / "predictions_test.csv"
+CONTROL_RUN = Path("kaggle_split_vit-base_base_strong_seed42") / "predictions_test.csv"
+# Project layout (subject_disjoint/checkpoint_eval, subject_disjoint/runs) or
+# released-repository layout (checkpoint_eval/, subject_disjoint_runs/ at the
+# top level, script in code/subject_disjoint/).
+if (HERE / "checkpoint_eval").exists():
+    EVAL, CONTROL = HERE / "checkpoint_eval", HERE / "runs" / CONTROL_RUN
+else:
+    TOP = HERE.parent.parent
+    EVAL, CONTROL = TOP / "checkpoint_eval", TOP / "subject_disjoint_runs" / CONTROL_RUN
 MODELS = {"exp1": "ViT-Tiny, MRL (Exp. 1)", "exp2": "ViT-Base, MRL (Exp. 2)",
           "exp3": "ViT-Base, MRL Aug. (Exp. 3, selected)",
           "exp3earlier": "ViT-Base, MRL Aug., earlier run (patience 3)",
@@ -77,6 +84,14 @@ def mcnemar(a, b):
 
 
 def main():
+    global EVAL, CONTROL
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--eval-dir", default=None, help="folder with *_test_predictions.csv")
+    ap.add_argument("--control", default=None, help="control run predictions_test.csv")
+    a = ap.parse_args()
+    EVAL = Path(a.eval_dir) if a.eval_dir else EVAL
+    CONTROL = Path(a.control) if a.control else CONTROL
     preds = {m: load(m) for m in MODELS
              if m == "control" or (EVAL / f"{m}_test_predictions.csv").exists()}
     out = {"models": {}, "mcnemar": []}
