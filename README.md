@@ -13,6 +13,83 @@ Dataset to classify eyes as open or closed. The classifier drives a webcam
 prototype (Haar-cascade face detection, a closed-eye counter, and an Arduino
 Uno LED/buzzer module).
 
+## At a glance
+
+- **What it does:** watches a driver through a webcam, classifies each eye as
+  open or closed with a fine-tuned Vision Transformer, and escalates sustained
+  closure from an on-screen Warning to an Arduino alarm (LEDs and buzzer).
+- **Accuracy:** 99.23% on the dataset's original test split, and **98.37%**
+  when every person is tested on a model that never saw them (subject-disjoint
+  five-fold cross-validation). Full table in [Key results](#key-results).
+- **End to end:** on scripted video, all 60 posed eye closures raised a Warning
+  (median 0.27 s), and every closure of 1.5 s or longer triggered the Arduino
+  alarm.
+- **Speed:** 22 ms per 1280×720 frame (median, RTX 3050 Ti); the recorded live
+  sessions ran at 27–29 FPS. The demo falls back to the CPU when no CUDA GPU is
+  present.
+- **Reproducible:** every log, per-image prediction, split manifest and
+  statistic behind the paper is in this repository, with unit tests and
+  SHA-256 checksums, so the paper's numbers can be recomputed without a GPU or
+  the dataset.
+
+## How it works
+
+```mermaid
+flowchart LR
+    A[Webcam frame] --> B["Face tracker (YuNet)<br/>level eye crops"]
+    B --> C["ViT-Base classifier<br/>open / closed"]
+    C --> D["Closed-eye counter<br/>Warning at 10 · Critical at 15"]
+    D -- "serial, 9600 baud<br/>state 0 / 1 / 2" --> E["Arduino Uno<br/>LEDs + buzzer"]
+```
+
+| State | Triggered when | Arduino module |
+|---|---|---|
+| 0 — Normal | eyes open | green LED |
+| 1 — Warning | closed-eye counter reaches 10 | yellow LED, slow beep |
+| 2 — Critical | closed-eye counter reaches 15 | red LEDs flash, rapid beep |
+
+The counter rises by one on each closed-eye frame and falls by one on each
+open-eye frame, so an ordinary blink does not build up to an alert. The
+firmware holds each state long enough to be seen: Warning lasts at least 1 s
+before escalating and 2 s before returning to Normal. The paper's evaluation
+used Haar-cascade face detection; the current `demo.py` uses the YuNet tracker
+in `face_tracker.py`, which keeps the face through head tilts and turns.
+
+## Quick start (live demo)
+
+You need Python 3.11, a webcam and, ideally, an NVIDIA GPU.
+
+```bash
+git clone https://github.com/Mohamed-Tagy/Driver-Drowsiness.git
+cd Driver-Drowsiness
+# Install PyTorch for your CUDA version first (https://pytorch.org), then:
+pip install -r code/requirements.txt
+```
+
+1. Download `model_weights.zip` from the
+   [v1.0 release](https://github.com/Mohamed-Tagy/Driver-Drowsiness/releases/tag/v1.0)
+   and unzip it into `checkpoint/`.
+2. In `code/demo.py`, set `MODEL_PATH = "checkpoint"`. The default points at
+   the folder the training run wrote to.
+3. From the repository root, run:
+
+```bash
+python code/demo.py
+```
+
+Keys: `q` quit · `s` screenshot · `r` reset counters · `f` toggle frame
+skipping · `a` reconnect the Arduino.
+
+**Optional Arduino alert module:** flash `code/drowsiness_receiver.ino` to an
+Arduino Uno wired as pin 13 green LED, pin 12 yellow LED, pins 11 and 10 red
+LEDs, pin 9 active buzzer. The demo finds the board's serial port on its own.
+
+## Tech stack
+
+Python · PyTorch · Hugging Face Transformers (ViT-Base,
+`google/vit-base-patch16-224`) · OpenCV (YuNet face detection) · Arduino (C++)
+· pyserial · NumPy / SciPy · pytest
+
 ## Key results
 
 | Evaluation | Test accuracy | Closed eyes classified as open |
